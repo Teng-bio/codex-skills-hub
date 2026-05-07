@@ -8,10 +8,10 @@ Create a well-organized repository that can store current skills and automatical
 
 ## Current Status
 - Local repository scaffold is complete and committed on main.
-- Initial sync mirrored 20 global skills, 1 workspace skill, and 1 local authored publisher skill into registry.
-- New global skill installed: skill-library-publisher, so future requests to create/update/upload/sync skills should auto-trigger the publishing workflow.
-- Remote origin is configured as git@github.com:Teng-bio/codex-skills-hub.git, but GitHub reports repository not found.
-- gh CLI is not installed, so remote repository creation still requires GitHub web UI, installing/logging into gh, or a GitHub API token.
+- Initial sync mirrored global/workspace/local skills into registry.
+- Global skill installed: skill-library-publisher, so future requests to create/update/upload/sync skills should auto-trigger the publishing workflow.
+- Remote origin is configured as git@github.com:Teng-bio/codex-skills-hub.git.
+- Initial main branch has been pushed to GitHub successfully.
 
 ## Key Paths
 - skills/local/skill-library-publisher/SKILL.md
@@ -32,21 +32,17 @@ Create a well-organized repository that can store current skills and automatical
 - Auto-upload is explicit via scripts/sync_skills.py --watch --apply --commit --push or the example user service.
 
 ## Recent Changes
-- Created skill-library-publisher under skills/local and installed it globally.
-- Added scripts/new_skill.py for standardized skill scaffolding.
-- Ran scripts/sync_skills.py --apply to mirror skills and generate inventory.
-- Initialized git repository and committed initial skill hub.
-- Configured origin to git@github.com:Teng-bio/codex-skills-hub.git; remote does not exist yet.
+- Pushed initial codex-skills-hub repository to GitHub remote git@github.com:Teng-bio/codex-skills-hub.git.
+- Confirmed local main tracks origin/main.
 
 ## Open Problems
-- Need create GitHub repository Teng-bio/codex-skills-hub before push can succeed.
-- Validation has warnings for credential-like words in some mirrored skill docs; no errors, but review before public publishing if repository will be public.
-- Need decide whether auto-upload service should be enabled after first successful push.
+- Validation has warnings for credential-like words in some mirrored skill docs; no errors, but review before public publishing if repository is public.
+- Need decide whether auto-upload service should be enabled after confirming GitHub repo visibility and contents.
 
 ## Next Step
-- Create the GitHub repository named codex-skills-hub under Teng-bio.
-- Then run: git -C /home/teng/claude_code/codex-skills-hub push -u origin main.
+- Optionally inspect the GitHub repository contents in browser.
+- If automatic upload is desired, enable the watcher command or adapt services/codex-skills-hub-sync.service.example.
 - For future new skills, use skill-library-publisher workflow or scripts/new_skill.py --apply --sync --commit --push.
 
 ## Resume Prompt
-Continue from /home/teng/claude_code/codex-skills-hub. The local repo is committed and origin is set, but the GitHub repo does not exist yet. Create Teng-bio/codex-skills-hub on GitHub, push main, then optionally enable scripts/sync_skills.py --watch for auto-upload.
+codex-skills-hub has been pushed to git@github.com:Teng-bio/codex-skills-hub.git. Continue by deciding whether to enable automatic watch-based sync, or create the next local skill under skills/local/ using scripts/new_skill.py.
