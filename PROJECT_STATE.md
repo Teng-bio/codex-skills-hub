@@ -8,12 +8,15 @@ Create a well-organized repository that can store current skills and automatical
 
 ## Current Status
 - Local repository scaffold is complete and committed on main.
-- Initial sync mirrored global/workspace/local skills into registry.
+- Initial sync mirrors global/workspace/local skills into registry.
+- planning-with-files has been promoted to a global Codex skill and mirrored into skills/global/planning-with-files/.
 - Global skill installed: skill-library-publisher, so future requests to create/update/upload/sync skills should auto-trigger the publishing workflow.
 - Remote origin is configured as git@github.com:Teng-bio/codex-skills-hub.git and main has been pushed.
-- README.md has been expanded into a Chinese skill catalog explaining each skill role and trigger phrases.
+- README.md documents the skill catalog, trigger phrases, and now marks planning-with-files as global.
 
 ## Key Paths
+- skills/global/planning-with-files/SKILL.md
+- skills/workspace/pipeline_v2/planning-with-files/SKILL.md
 - skills/local/skill-library-publisher/SKILL.md
 - /home/teng/.codex/skills/skill-library-publisher/SKILL.md
 - scripts/new_skill.py
@@ -25,6 +28,7 @@ Create a well-organized repository that can store current skills and automatical
 - services/codex-skills-hub-sync.service.example
 
 ## Decisions
+- planning-with-files is the global planning kernel; workspace copy remains mirrored as pilot provenance/backup.
 - Future authored skills should be created under skills/local/<skill-name>/ first.
 - After creating or editing a skill, run validate, sync inventory, commit, and push.
 - skill-library-publisher is the standard workflow skill for new/updated skill publication.
@@ -32,18 +36,19 @@ Create a well-organized repository that can store current skills and automatical
 - Auto-upload is explicit via scripts/sync_skills.py --watch --apply --commit --push or the example user service.
 
 ## Recent Changes
-- Rewrote README.md with repository purpose, directory layout, new skill workflow, auto-sync commands, trigger principles, and grouped skill catalog.
-- Documented each current skill by role, typical trigger phrases, and repository path.
-- Validated skills after README update; validation has 0 errors and known warnings only.
+- Ran scripts/sync_skills.py --apply after global promotion of planning-with-files.
+- Added skills/global/planning-with-files/ mirror and refreshed registry/SKILL_INVENTORY.tsv plus registry/skills.json.
+- Updated README.md so planning-with-files appears as a global skill with its workspace pilot mirror noted.
+- Validated skills after sync; validation has 0 errors and 8 known credential-word warnings only.
 
 ## Open Problems
 - Validation still warns about credential-like words in some mirrored skill docs; no errors, but review before making the repository public.
 - Need decide whether auto-upload service should be enabled after confirming GitHub repo visibility and contents.
 
 ## Next Step
-- Commit and push the README catalog update.
-- If desired, enable automatic watch-based sync using scripts/sync_skills.py --watch or the example service.
-- For future new skills, use skill-library-publisher or scripts/new_skill.py --apply --sync --commit --push.
+- Commit and push the planning-with-files global mirror plus README/inventory updates.
+- If desired later, enable automatic watch-based sync using scripts/sync_skills.py --watch or the example service.
+- Continue Retron result organization with manifest-only current/README.md and current/MANIFEST.tsv only after explicit user approval.
 
 ## Resume Prompt
-README.md now documents each skill role and trigger phrases. Continue by pushing this documentation update, then decide whether to enable automatic watch-based sync.
+planning-with-files has been promoted to global and mirrored into the skill hub. Continue by verifying git status, committing and pushing the global mirror/README/inventory update, then return to Retron result organization if requested.

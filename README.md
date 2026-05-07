@@ -11,7 +11,7 @@ git@github.com:Teng-bio/codex-skills-hub.git
 ## 这个仓库解决什么问题
 
 - 把 `~/.codex/skills` 中的全局 skill 版本化备份。
-- 把项目级 workspace skill 也纳入同一个 inventory，例如 `planning-with-files`。
+- 把全局 skill 和项目级 workspace skill 都纳入同一个 inventory；`planning-with-files` 已从试点 workspace 版本提升为全局 skill。
 - 所有新写的自定义 skill 先放到 `skills/local/`，通过统一标准验证、同步、提交、推送。
 - 生成机器可读和人可读的 skill 清单：
   - `registry/SKILL_INVENTORY.tsv`
@@ -115,7 +115,7 @@ Codex 选择 skill 时主要依赖每个 `SKILL.md` frontmatter 的 `description
 
 | Skill | 作用 | 典型触发语 | 位置 |
 |---|---|---|---|
-| `planning-with-files` | 大项目任务内核，用 `task_plan.md`、`findings.md`、`progress.md` 管理当前任务、阶段和进展。 | `继续下一步`、`大项目逐步推进`、`制定计划`、`拆解任务`、`恢复上下文`、`当前进展`、`task_plan.md`、`planning-with-files` | `skills/workspace/pipeline_v2/planning-with-files/` |
+| `planning-with-files` | 大项目任务内核，用 `task_plan.md`、`findings.md`、`progress.md` 管理当前任务、阶段和进展。已全局安装，workspace 镜像保留为试点来源/对照。 | `继续下一步`、`大项目逐步推进`、`制定计划`、`拆解任务`、`恢复上下文`、`当前进展`、`task_plan.md`、`planning-with-files` | `skills/global/planning-with-files/`；试点镜像：`skills/workspace/pipeline_v2/planning-with-files/` |
 | `project-state-maintainer` | 维护每个项目的 `PROJECT_STATE.md`，让项目可从文件恢复，而不是依赖聊天记录。 | `记录项目状态`、`更新项目状态文档`、`总结当前进展`、`下一步是什么`、`handoff`、`resume state` | `skills/global/project-state-maintainer/` |
 | `project-flow-guard` | 管控生成产物、重跑、版本、current/baseline/release，避免文件覆盖和版本混乱。 | `重跑`、`重新生成`、`保留这个版本`、`设为当前版本`、`release`、`打包`、`开分支`、`snapshot`、`清理旧版本` | `skills/global/project-flow-guard/` |
 | `project-version-curator` | 对已经混乱的目录做盘点、版本冲突检测、dry-run 整理方案。 | `整理结果`、`太混乱了`、`清理目录`、`版本混乱`、`final/current/v1/v2 很多`、`生成 inventory`、`dry-run cleanup` | `skills/global/project-version-curator/` |
