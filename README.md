@@ -138,6 +138,35 @@ Codex 选择 skill 时主要依赖每个 `SKILL.md` frontmatter 的 `description
 | `answers` | 基于 OpenAI-compatible `/chat/completions` 的 AI-grounded answer。当前生态中不作为 `auto-deep-research` 的自动依赖。 | `AI answer`、`single-search answer`、`deep research answer`、明确要求使用 answers | `skills/global/answers/` |
 | `research-orchestrator` | 合并、比对、去重、核验多个 research report。 | `合并报告`、`compare research`、`merge reports`、`fact-check these documents`、`create unified report` | `skills/global/research-orchestrator/` |
 
+### 科研 / 生物信息 / 论文复现
+
+详细候选、选择依据和后续批次见：
+
+```text
+docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
+```
+
+| Skill | 作用 | 典型触发语 | 位置 |
+|---|---|---|---|
+| `tooluniverse` | 生命科学数据库总路由，用于基因、蛋白、疾病、药物、化合物等事实查证和数据库查询。 | `生物`、`医学`、`生命科学`、`基因`、`蛋白`、`疾病`、`药物`、`UniProt`、`ChEMBL`、`ClinVar`、`GWAS` | `skills/global/tooluniverse/` |
+| `tooluniverse-literature-deep-research` | 科学文献深度调研，包含主题消歧、证据分级、主题提取和结构化报告。 | `文献深度调研`、`研究进展`、`机制证据`、`证据分级`、`基因/蛋白/药物/疾病综述` | `skills/global/tooluniverse-literature-deep-research/` |
+| `pubmed-database` | PubMed / E-utilities / MeSH 查询与医学文献检索。 | `PubMed`、`MeSH`、`医学文献`、`布尔检索`、`批量文献检索` | `skills/global/pubmed-database/` |
+| `systematic-literature-review` | 系统综述流水线：多源检索、去重、逐篇评分、分主题、写综述。 | `系统综述`、`文献综述`、`related work`、`相关工作`、`文献调研` | `skills/global/systematic-literature-review/` |
+| `read-arxiv-paper` | 对 arXiv 论文下载 TeX 源并解析公式/结构。 | `读arXiv论文`、`arXiv URL`、`TeX源`、`论文公式`、`解析论文结构` | `skills/global/read-arxiv-paper/` |
+| `paper-context-resolver` | 论文复现中补齐关键论文细节，例如数据集版本、split、checkpoint、metric。 | `论文复现`、`复现细节`、`数据集版本`、`dataset split`、`评估协议`、`checkpoint映射` | `skills/global/paper-context-resolver/` |
+| `env-and-assets-bootstrap` | 复现环境和资源准备，聚焦 conda、依赖、checkpoint、dataset/cache 路径。 | `复现环境`、`依赖安装`、`checkpoint路径`、`dataset路径`、`cache目录` | `skills/global/env-and-assets-bootstrap/` |
+| `repo-intake-and-plan` | 扫描论文代码仓库，读取 README，提取最小可信复现计划。 | `论文代码仓库`、`复现仓库`、`README扫描`、`复现计划`、`最小可信复现` | `skills/global/repo-intake-and-plan/` |
+| `minimal-run-and-audit` | 跑最小 smoke test / inference / evaluation，并记录标准化复现证据。 | `最小复现运行`、`smoke test`、`复现实验审计`、`repro_outputs`、`评估命令` | `skills/global/minimal-run-and-audit/` |
+| `implement-paper` | 把论文方法实现为交互式 marimo notebook。 | `实现论文`、`论文变代码`、`paper to code`、`marimo`、`教学notebook` | `skills/global/implement-paper/` |
+| `tooluniverse-sequence-retrieval` | 从 NCBI/ENA 检索 DNA/RNA/蛋白序列。 | `序列检索`、`FASTA`、`NCBI`、`ENA`、`GenBank`、`RefSeq`、`accession` | `skills/global/tooluniverse-sequence-retrieval/` |
+| `tooluniverse-protein-structure-retrieval` | 检索 PDB/PDBe/AlphaFold 蛋白结构并做质量/元数据整理。 | `蛋白结构`、`PDB`、`PDBe`、`AlphaFold`、`三维结构`、`晶体结构` | `skills/global/tooluniverse-protein-structure-retrieval/` |
+| `tooluniverse-rnaseq-deseq2` | RNA-seq / PyDESeq2 差异表达分析和结果解释。 | `RNA-seq`、`转录组`、`DESeq2`、`差异表达`、`DEG`、`count matrix` | `skills/global/tooluniverse-rnaseq-deseq2/` |
+| `tooluniverse-phylogenetics` | 系统发育、比对、树文件和分子进化指标分析。 | `系统发育`、`进化树`、`Newick`、`ortholog`、`同源基因`、`bootstrap` | `skills/global/tooluniverse-phylogenetics/` |
+| `tooluniverse-gene-enrichment` | GO/KEGG/Reactome/GSEA/ORA 富集和通路分析。 | `基因富集`、`GO富集`、`KEGG`、`Reactome`、`GSEA`、`通路分析` | `skills/global/tooluniverse-gene-enrichment/` |
+| `scientific-critical-thinking` | 科研严谨性、方法学、实验设计、统计有效性和证据质量审查。 | `批判性审读`、`方法学评估`、`统计有效性`、`偏倚`、`混杂`、`证据质量` | `skills/global/scientific-critical-thinking/` |
+| `scientific-visualization` | 期刊级科学图表、多面板图、误差棒、显著性标记和导出格式。 | `科学绘图`、`科研图表`、`期刊级figure`、`多面板图`、`显著性标记` | `skills/global/scientific-visualization/` |
+| `scientific-slides` | 科研汇报、会议报告、答辩 PPT / Beamer 的结构和设计。 | `科研汇报`、`论文slides`、`会议报告`、`答辩PPT`、`scientific talk` | `skills/global/scientific-slides/` |
+
 ### 需求澄清 / 拆任务 / 执行辅助
 
 | Skill | 作用 | 典型触发语 | 位置 |
