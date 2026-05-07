@@ -1,7 +1,8 @@
 ---
 
+
 name: read-arxiv-paper
-description: "Use this skill when asked to read an arxiv paper given an arxiv URL 中文触发词：读arXiv论文、arXiv URL、arxiv源码、TeX源、论文公式、解析论文结构、下载论文源文件。"
+description: "Use this skill when asked to read an arxiv paper given an arxiv URL 中文触发词：读arXiv论文、arXiv URL、arxiv源码、TeX源、论文公式、解析论文结构、下载论文源文件。 中文追加触发词：读这篇论文、分析这篇arXiv、提取论文公式、看论文源码、根据这篇arXiv有什么想法。"
 ---
 
 You will be given a URL of an arxiv paper, for example:

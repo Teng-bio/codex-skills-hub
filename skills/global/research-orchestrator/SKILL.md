@@ -1,6 +1,7 @@
 ---
+
 name: research-orchestrator
-description: "Orchestrate, compare, verify, and merge multiple deep research reports into a single authoritative document. Use this skill whenever the user uploads 2+ research reports/documents and wants them compared, verified, merged, deduplicated, fact-checked, or synthesized into one. Also trigger when the user says 'compare research', 'merge reports', 'verify links in my research', 'combine deep research', 'check sources', 'fact-check these documents', 'create unified report', 'best of all research', or mentions having multiple deep research outputs. Trigger even if the user just uploads several long documents and asks to 'make one good version'. Do NOT use for single-document editing, simple summaries, or non-research content."
+description: "Orchestrate, compare, verify, and merge multiple deep research reports into a single authoritative document. Use this skill whenever the user uploads 2+ research reports/documents and wants them compared, verified, merged, deduplicated, fact-checked, or synthesized into one. Also trigger when the user says 'compare research', 'merge reports', 'verify links in my research', 'combine deep research', 'check sources', 'fact-check these documents', 'create unified report', 'best of all research', or mentions having multiple deep research outputs. Trigger even if the user just uploads several long documents and asks to 'make one good version'. Do NOT use for single-document editing, simple summaries, or non-research content. 中文触发词：根据这几篇文献有什么想法、整合这几篇文献、比较这几篇论文、合并多篇文献、核验这些文献来源、从多篇文献提炼结论、综合多个研究报告。"
 ---
 
 # Research Orchestrator

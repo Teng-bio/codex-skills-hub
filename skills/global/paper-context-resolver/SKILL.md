@@ -1,7 +1,8 @@
 ---
 
+
 name: paper-context-resolver
-description: "Optional narrow helper skill for README-first AI repo reproduction. Use only when the README and repository files leave a narrow reproduction-critical gap and the task is to resolve a specific paper detail such as dataset split, preprocessing, evaluation protocol, checkpoint mapping, or runtime assumption from primary paper sources while recording conflicts. Do not use for general paper summary, repo scanning, environment setup, command execution, title-only paper lookup, or replacing README guidance by default. 中文触发词：论文复现、复现细节、数据集版本、dataset split、预处理、评估协议、checkpoint映射、runtime假设、README缺口。"
+description: "Optional narrow helper skill for README-first AI repo reproduction. Use only when the README and repository files leave a narrow reproduction-critical gap and the task is to resolve a specific paper detail such as dataset split, preprocessing, evaluation protocol, checkpoint mapping, or runtime assumption from primary paper sources while recording conflicts. Do not use for general paper summary, repo scanning, environment setup, command execution, title-only paper lookup, or replacing README guidance by default. 中文触发词：论文复现、复现细节、数据集版本、dataset split、预处理、评估协议、checkpoint映射、runtime假设、README缺口。 中文追加触发词：参考文献的做法、论文里的实验做法、论文方法怎么复现、文献方法细节、数据集split怎么做、metric怎么做、checkpoint怎么对应。"
 ---
 
 # paper-context-resolver

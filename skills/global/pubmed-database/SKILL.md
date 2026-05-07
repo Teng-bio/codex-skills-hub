@@ -1,7 +1,8 @@
 ---
 
+
 name: pubmed-database
-description: "Direct REST API access to PubMed. Advanced Boolean/MeSH queries, E-utilities API, batch processing, citation management. For Python workflows, prefer biopython (Bio.Entrez). Use this for direct HTTP/REST work or custom API implementations. 中文触发词：PubMed、医学文献、MeSH、E-utilities、布尔检索、批量文献检索、citation、生命科学论文搜索。"
+description: "Direct REST API access to PubMed. Advanced Boolean/MeSH queries, E-utilities API, batch processing, citation management. For Python workflows, prefer biopython (Bio.Entrez). Use this for direct HTTP/REST work or custom API implementations. 中文触发词：PubMed、医学文献、MeSH、E-utilities、布尔检索、批量文献检索、citation、生命科学论文搜索。 中文追加触发词：寻找参考文献、搜索文献、查参考文献、找PubMed文献、检索生物医学文献、按MeSH找论文、生命科学参考文献。"
 license: Unknown
 metadata:
     skill-author: K-Dense Inc.

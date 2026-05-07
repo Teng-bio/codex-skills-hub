@@ -7,11 +7,9 @@ Personal GitHub-backed skill library for Codex/agent skills. It mirrors global a
 Create a well-organized repository that can store current skills and automatically upload newly created or modified skills to GitHub.
 
 ## Current Status
-- planning-with-files is global and mirrored into skills/global/planning-with-files/.
 - Science/bioinformatics batch A is installed globally for Codex under ~/.codex/skills and mirrored into skills/global/.
-- The batch covers ToolUniverse life-science routing, literature deep research, PubMed, systematic reviews, arXiv reading, paper reproduction, RNA-seq, phylogenetics, enrichment, scientific critique, visualization, and slides.
-- README.md now documents the science/bioinformatics skills and trigger phrases.
-- docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md records the selection rationale, install commands, and optional batch B.
+- Exact Chinese trigger phrases for literature search and multi-paper idea synthesis have been added to relevant SKILL.md descriptions.
+- README.md now contains a common Chinese prompt routing table for references, literature search, multi-paper synthesis, paper methods, and paper reproduction.
 
 ## Key Paths
 - docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
@@ -36,11 +34,9 @@ Create a well-organized repository that can store current skills and automatical
 - Leave single-cell, metabolomics, comparative genomics, CRISPR, drug-target, peer review, and multi-dimensional paper reader for optional batch B.
 
 ## Recent Changes
-- Installed 18 science/bioinformatics skills via npx skills add using GIT_CONFIG_GLOBAL=/dev/null to bypass stale git proxy settings.
-- Copied the installed skills to ~/.codex/skills and added Chinese trigger phrases to their descriptions.
-- Ran scripts/sync_skills.py --apply to mirror new skills into skills/global and refresh registry files.
-- Ran scripts/validate_skills.py: 46 skills, 0 errors, 11 warnings for credential-like words only.
-- Updated README.md with a science/bioinformatics skill catalog section.
+- Patched descriptions for auto-deep-research, research-orchestrator, tooluniverse-literature-deep-research, pubmed-database, systematic-literature-review, scientific-critical-thinking, paper-context-resolver, and read-arxiv-paper with exact Chinese trigger phrases such as 寻找参考文献、搜索文献、根据这几篇文献有什么想法、参考文献的做法.
+- Ran scripts/sync_skills.py --apply to mirror the trigger phrase updates into skills/global.
+- Ran scripts/validate_skills.py after trigger updates.
 
 ## Open Problems
 - Codex should be restarted to load the new skills in the current session skill list.
@@ -48,9 +44,8 @@ Create a well-organized repository that can store current skills and automatical
 - The machine still has git global proxy entries pointing at 127.0.0.1:7890; future npx skills add may need GIT_CONFIG_GLOBAL=/dev/null unless the proxy config is fixed.
 
 ## Next Step
-- Commit and push the science/bioinformatics skills, README, candidate document, and refreshed registry.
-- After restart, test Chinese trigger prompts for PubMed, paper reproduction, RNA-seq, phylogenetics, and scientific critique.
-- Later, consider optional batch B only when a real project needs single-cell, metabolomics, comparative genomics, CRISPR, or drug discovery skills.
+- Commit and push the trigger phrase updates.
+- After Codex restart, test prompts: 寻找参考文献、搜索文献、根据这几篇文献有什么想法、参考文献的做法、这个论文代码怎么复现.
 
 ## Resume Prompt
-Science/bioinformatics batch A has been installed and mirrored. Continue by committing and pushing the updated skill hub, then remind the user to restart Codex and run trigger smoke tests.
+Exact Chinese literature/reference trigger phrases have been added and synced. Continue by committing and pushing, then ask the user to restart Codex before testing automatic skill routing.

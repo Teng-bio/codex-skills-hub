@@ -1,7 +1,8 @@
 ---
 
+
 name: scientific-critical-thinking
-description: "Evaluate research rigor. Assess methodology, experimental design, statistical validity, biases, confounding, evidence quality (GRADE, Cochrane ROB), for critical analysis of scientific claims. 中文触发词：批判性审读、科研严谨性、方法学评估、实验设计、统计有效性、偏倚、混杂、证据质量、同行评审。"
+description: "Evaluate research rigor. Assess methodology, experimental design, statistical validity, biases, confounding, evidence quality (GRADE, Cochrane ROB), for critical analysis of scientific claims. 中文触发词：批判性审读、科研严谨性、方法学评估、实验设计、统计有效性、偏倚、混杂、证据质量、同行评审。 中文追加触发词：根据这几篇文献有什么想法、这些文献说明什么、参考文献的做法、论文方法借鉴、比较文献方法、评估文献质量、从文献提出研究思路、找创新点。"
 allowed-tools: [Read, Write, Edit, Bash]
 ---
 

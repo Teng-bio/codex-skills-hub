@@ -167,6 +167,17 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 | `scientific-visualization` | 期刊级科学图表、多面板图、误差棒、显著性标记和导出格式。 | `科学绘图`、`科研图表`、`期刊级figure`、`多面板图`、`显著性标记` | `skills/global/scientific-visualization/` |
 | `scientific-slides` | 科研汇报、会议报告、答辩 PPT / Beamer 的结构和设计。 | `科研汇报`、`论文slides`、`会议报告`、`答辩PPT`、`scientific talk` | `skills/global/scientific-slides/` |
 
+常用中文提示语的预期路由：
+
+| 用户说法 | 优先触发 | 说明 |
+|---|---|---|
+| `寻找参考文献`、`搜索文献`、`查参考文献` | `auto-deep-research`；生物医学语境下再叠加 `pubmed-database` / `tooluniverse-literature-deep-research` | 普通找文献走通用调研；明确 PubMed/生信/医学时走专业数据库。 |
+| `帮我找几篇 XXX 的参考文献` | `auto-deep-research` + `pubmed-database` | 适合快速列论文、DOI、PMID、摘要和相关性。 |
+| `做系统综述`、`文献综述`、`related work` | `systematic-literature-review` | 适合多源检索、去重、逐篇评分、主题分组和综述写作。 |
+| `根据这几篇文献有什么想法`、`整合这几篇文献` | `research-orchestrator` + `scientific-critical-thinking` | 多篇文献上传/给出后，先整合，再做方法学和创新点分析。 |
+| `参考文献的做法`、`论文里的实验做法怎么复现` | `scientific-critical-thinking`；复现细节缺口时叠加 `paper-context-resolver` | 区分“评价/借鉴方法”和“补齐复现细节”。 |
+| `这个论文代码怎么跑/怎么复现` | `repo-intake-and-plan` → `env-and-assets-bootstrap` → `minimal-run-and-audit` | 和 `planning-with-files` 组合，逐阶段推进，不一次性乱跑。 |
+
 ### 需求澄清 / 拆任务 / 执行辅助
 
 | Skill | 作用 | 典型触发语 | 位置 |

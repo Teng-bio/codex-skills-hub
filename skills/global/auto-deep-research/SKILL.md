@@ -1,6 +1,7 @@
 ---
+
 name: auto-deep-research
-description: "Automatically orchestrates web search, raw web context, and deep research for requests to search, 查资料, 搜资料, 深度搜索, 调研, 文献综述, 找论文/资料/来源, look up, research, gather sources, compare current tools, or verify online claims. Use when the user asks for search/research without naming a specific search skill; it routes only through Brave spellcheck, autosuggest, web search, LLM context, and local report orchestration."
+description: "Automatically orchestrates web search, raw web context, and deep research for requests to search, 查资料, 搜资料, 深度搜索, 调研, 文献综述, 找论文/资料/来源, look up, research, gather sources, compare current tools, or verify online claims. Use when the user asks for search/research without naming a specific search skill; it routes only through Brave spellcheck, autosuggest, web search, LLM context, and local report orchestration. 中文追加触发词：寻找参考文献、搜索文献、查参考文献、找相关论文、找几篇论文、文献搜索、论文搜索、参考文献怎么找、根据文献找来源。"
 ---
 
 # Auto Deep Research

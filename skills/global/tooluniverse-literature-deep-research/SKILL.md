@@ -1,7 +1,8 @@
 ---
 
+
 name: tooluniverse-literature-deep-research
-description: "Comprehensive literature deep research across any academic domain using 120+ ToolUniverse tools. Conducts subject disambiguation, systematic literature search with citation network expansion, evidence grading (T1-T4), and structured theme extraction. Produces detailed reports with mandatory completeness checklists, integrated models, and testable hypotheses. Use when users need thorough literature reviews, target/drug/disease profiles, topic deep-dives, claim verification, or systematic evidence synthesis. Supports biomedical (genes, proteins, drugs, diseases), computer science, social science, and general academic topics. For single factoid questions, uses a fast verification mode with inline answer. 中文触发词：文献深度调研、科研调研、研究进展、机制证据、证据分级、基因/蛋白/药物/疾病综述、系统证据综合。"
+description: "Comprehensive literature deep research across any academic domain using 120+ ToolUniverse tools. Conducts subject disambiguation, systematic literature search with citation network expansion, evidence grading (T1-T4), and structured theme extraction. Produces detailed reports with mandatory completeness checklists, integrated models, and testable hypotheses. Use when users need thorough literature reviews, target/drug/disease profiles, topic deep-dives, claim verification, or systematic evidence synthesis. Supports biomedical (genes, proteins, drugs, diseases), computer science, social science, and general academic topics. For single factoid questions, uses a fast verification mode with inline answer. 中文触发词：文献深度调研、科研调研、研究进展、机制证据、证据分级、基因/蛋白/药物/疾病综述、系统证据综合。 中文追加触发词：寻找参考文献、搜索文献、查参考文献、找相关论文、根据这几篇文献有什么想法、基于几篇文献提出想法、参考文献的做法、文献方法对比、从文献找方法、论文思路启发。"
 ---
 
 # Literature Deep Research
