@@ -7,45 +7,37 @@ Personal GitHub-backed skill library for Codex/agent skills. It mirrors global a
 Create a well-organized repository that can store current skills and automatically upload newly created or modified skills to GitHub.
 
 ## Current Status
-- Science/bioinformatics batch A is installed globally for Codex under ~/.codex/skills and mirrored into skills/global/.
-- Exact Chinese trigger phrases for literature search and multi-paper idea synthesis have been added to relevant SKILL.md descriptions.
-- README.md now contains a common Chinese prompt routing table for references, literature search, multi-paper synthesis, paper methods, and paper reproduction.
+- planning-with-files is global and mirrored into skills/global/planning-with-files/.
+- Science/bioinformatics suite is installed and documented.
+- New local/global skill literature-method-data-miner now captures short prompts like 文献是怎么做的 and maps them to method/data/supplement extraction workflows.
 
 ## Key Paths
-- docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
+- skills/local/literature-method-data-miner/SKILL.md
+- skills/local/literature-method-data-miner/references/output-template.md
+- skills/global/literature-method-data-miner/SKILL.md
 - README.md
-- skills/global/tooluniverse/SKILL.md
-- skills/global/tooluniverse-literature-deep-research/SKILL.md
-- skills/global/pubmed-database/SKILL.md
-- skills/global/systematic-literature-review/SKILL.md
-- skills/global/paper-context-resolver/SKILL.md
-- skills/global/env-and-assets-bootstrap/SKILL.md
-- skills/global/repo-intake-and-plan/SKILL.md
-- skills/global/minimal-run-and-audit/SKILL.md
-- skills/global/implement-paper/SKILL.md
+- docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 - registry/SKILL_INVENTORY.tsv
 - registry/skills.json
 
 ## Decisions
-- Keep planning-with-files as the task kernel; science/bioinformatics skills are phase tools, not replacements.
-- Install a broad but bounded batch A first: literature, PubMed, paper reading/reproduction, core bioinformatics, critique, visualization, slides.
-- Copy npx-installed skills from ~/.agents/skills into ~/.codex/skills because this Codex environment loads skills from ~/.codex/skills.
-- Patch third-party SKILL.md descriptions with Chinese trigger phrases so automatic triggering works for Chinese prompts.
-- Leave single-cell, metabolomics, comparative genomics, CRISPR, drug-target, peer review, and multi-dimensional paper reader for optional batch B.
+- Treat 文献是怎么做的 as a high-level shorthand for extracting research methods, main-text data, figure/table data, appendix/supplement data, reproducibility details, and reusable ideas.
+- If papers are not provided, literature-method-data-miner should route through auto-deep-research/pubmed/tooluniverse-literature-deep-research before extraction.
+- Keep this as a lightweight router skill under skills/local, mirrored globally for Codex triggering.
 
 ## Recent Changes
-- Patched descriptions for auto-deep-research, research-orchestrator, tooluniverse-literature-deep-research, pubmed-database, systematic-literature-review, scientific-critical-thinking, paper-context-resolver, and read-arxiv-paper with exact Chinese trigger phrases such as 寻找参考文献、搜索文献、根据这几篇文献有什么想法、参考文献的做法.
-- Ran scripts/sync_skills.py --apply to mirror the trigger phrase updates into skills/global.
-- Ran scripts/validate_skills.py after trigger updates.
+- Created literature-method-data-miner under skills/local and installed it globally under ~/.codex/skills.
+- Added an output template for paper list, method/data matrix, supplement checklist, and cross-paper synthesis.
+- Updated README.md and docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md to document the shorthand prompt routing.
+- Ran scripts/sync_skills.py --apply and scripts/validate_skills.py.
 
 ## Open Problems
-- Codex should be restarted to load the new skills in the current session skill list.
-- Validation warnings remain credential-word heuristics; no forbidden secret-like files were detected.
-- The machine still has git global proxy entries pointing at 127.0.0.1:7890; future npx skills add may need GIT_CONFIG_GLOBAL=/dev/null unless the proxy config is fixed.
+- Current Codex session must be restarted before literature-method-data-miner appears in the active skill list.
+- Need run smoke prompts after restart: 文献是怎么做的, 这篇文献怎么做的, 参考文献的做法, 从文献收集正文和附录数据.
 
 ## Next Step
-- Commit and push the trigger phrase updates.
-- After Codex restart, test prompts: 寻找参考文献、搜索文献、根据这几篇文献有什么想法、参考文献的做法、这个论文代码怎么复现.
+- Commit and push literature-method-data-miner plus docs/registry updates.
+- After restart, test whether short Chinese prompts trigger literature-method-data-miner automatically.
 
 ## Resume Prompt
-Exact Chinese literature/reference trigger phrases have been added and synced. Continue by committing and pushing, then ask the user to restart Codex before testing automatic skill routing.
+literature-method-data-miner has been created to interpret 文献是怎么做的 as method/data/supplement extraction from provided or discovered papers. Commit and push, then restart Codex and smoke-test the shorthand prompts.

@@ -148,6 +148,7 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 
 | Skill | 作用 | 典型触发语 | 位置 |
 |---|---|---|---|
+| `literature-method-data-miner` | 把“文献是怎么做的”这类短提示自动理解为：从文献中提取科研方法、正文/表图/附录/补充材料数据、复现细节和可借鉴做法；如果文献未提供，则先走深度调研找文献。 | `文献是怎么做的`、`这篇文献怎么做的`、`参考文献是怎么做的`、`文献里的方法`、`参考文献的做法`、`从文献找科研方法`、`正文和附录数据`、`补充材料数据` | `skills/local/literature-method-data-miner/`；同时镜像到 `skills/global/literature-method-data-miner/` |
 | `tooluniverse` | 生命科学数据库总路由，用于基因、蛋白、疾病、药物、化合物等事实查证和数据库查询。 | `生物`、`医学`、`生命科学`、`基因`、`蛋白`、`疾病`、`药物`、`UniProt`、`ChEMBL`、`ClinVar`、`GWAS` | `skills/global/tooluniverse/` |
 | `tooluniverse-literature-deep-research` | 科学文献深度调研，包含主题消歧、证据分级、主题提取和结构化报告。 | `文献深度调研`、`研究进展`、`机制证据`、`证据分级`、`基因/蛋白/药物/疾病综述` | `skills/global/tooluniverse-literature-deep-research/` |
 | `pubmed-database` | PubMed / E-utilities / MeSH 查询与医学文献检索。 | `PubMed`、`MeSH`、`医学文献`、`布尔检索`、`批量文献检索` | `skills/global/pubmed-database/` |
@@ -171,11 +172,12 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 
 | 用户说法 | 优先触发 | 说明 |
 |---|---|---|
+| `文献是怎么做的`、`这篇文献怎么做的`、`参考文献是怎么做的` | `literature-method-data-miner` | 默认理解为提取科研方法、正文/表图/附录/补充材料数据、复现细节和可借鉴做法；如果文献未给出，先找文献。 |
 | `寻找参考文献`、`搜索文献`、`查参考文献` | `auto-deep-research`；生物医学语境下再叠加 `pubmed-database` / `tooluniverse-literature-deep-research` | 普通找文献走通用调研；明确 PubMed/生信/医学时走专业数据库。 |
 | `帮我找几篇 XXX 的参考文献` | `auto-deep-research` + `pubmed-database` | 适合快速列论文、DOI、PMID、摘要和相关性。 |
 | `做系统综述`、`文献综述`、`related work` | `systematic-literature-review` | 适合多源检索、去重、逐篇评分、主题分组和综述写作。 |
 | `根据这几篇文献有什么想法`、`整合这几篇文献` | `research-orchestrator` + `scientific-critical-thinking` | 多篇文献上传/给出后，先整合，再做方法学和创新点分析。 |
-| `参考文献的做法`、`论文里的实验做法怎么复现` | `scientific-critical-thinking`；复现细节缺口时叠加 `paper-context-resolver` | 区分“评价/借鉴方法”和“补齐复现细节”。 |
+| `参考文献的做法`、`论文里的实验做法怎么复现` | `literature-method-data-miner`；复现细节缺口时叠加 `paper-context-resolver` | 区分“提取/比较科研方法”和“补齐复现细节”。 |
 | `这个论文代码怎么跑/怎么复现` | `repo-intake-and-plan` → `env-and-assets-bootstrap` → `minimal-run-and-audit` | 和 `planning-with-files` 组合，逐阶段推进，不一次性乱跑。 |
 
 ### 需求澄清 / 拆任务 / 执行辅助
