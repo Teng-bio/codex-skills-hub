@@ -10,8 +10,8 @@ Create a well-organized repository that can store current skills and automatical
 - Local repository scaffold is complete and committed on main.
 - Initial sync mirrored global/workspace/local skills into registry.
 - Global skill installed: skill-library-publisher, so future requests to create/update/upload/sync skills should auto-trigger the publishing workflow.
-- Remote origin is configured as git@github.com:Teng-bio/codex-skills-hub.git.
-- Initial main branch has been pushed to GitHub successfully.
+- Remote origin is configured as git@github.com:Teng-bio/codex-skills-hub.git and main has been pushed.
+- README.md has been expanded into a Chinese skill catalog explaining each skill role and trigger phrases.
 
 ## Key Paths
 - skills/local/skill-library-publisher/SKILL.md
@@ -32,17 +32,18 @@ Create a well-organized repository that can store current skills and automatical
 - Auto-upload is explicit via scripts/sync_skills.py --watch --apply --commit --push or the example user service.
 
 ## Recent Changes
-- Pushed initial codex-skills-hub repository to GitHub remote git@github.com:Teng-bio/codex-skills-hub.git.
-- Confirmed local main tracks origin/main.
+- Rewrote README.md with repository purpose, directory layout, new skill workflow, auto-sync commands, trigger principles, and grouped skill catalog.
+- Documented each current skill by role, typical trigger phrases, and repository path.
+- Validated skills after README update; validation has 0 errors and known warnings only.
 
 ## Open Problems
-- Validation has warnings for credential-like words in some mirrored skill docs; no errors, but review before public publishing if repository is public.
+- Validation still warns about credential-like words in some mirrored skill docs; no errors, but review before making the repository public.
 - Need decide whether auto-upload service should be enabled after confirming GitHub repo visibility and contents.
 
 ## Next Step
-- Optionally inspect the GitHub repository contents in browser.
-- If automatic upload is desired, enable the watcher command or adapt services/codex-skills-hub-sync.service.example.
-- For future new skills, use skill-library-publisher workflow or scripts/new_skill.py --apply --sync --commit --push.
+- Commit and push the README catalog update.
+- If desired, enable automatic watch-based sync using scripts/sync_skills.py --watch or the example service.
+- For future new skills, use skill-library-publisher or scripts/new_skill.py --apply --sync --commit --push.
 
 ## Resume Prompt
-codex-skills-hub has been pushed to git@github.com:Teng-bio/codex-skills-hub.git. Continue by deciding whether to enable automatic watch-based sync, or create the next local skill under skills/local/ using scripts/new_skill.py.
+README.md now documents each skill role and trigger phrases. Continue by pushing this documentation update, then decide whether to enable automatic watch-based sync.
