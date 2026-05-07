@@ -1,7 +1,8 @@
 ---
 
+
 name: tooluniverse
-description: "Router skill for ToolUniverse tasks. First checks if specialized tooluniverse skills (105+ skills covering disease/drug/target research, gene-disease associations, clinical decision support, genomics, epigenomics, proteomics, comparative genomics, chemical safety, toxicology, systems biology, and more) can solve the problem, then falls back to general strategies for using 2300+ scientific tools. Covers tool discovery, multi-hop queries, comprehensive research workflows, disambiguation, evidence grading, and report generation. Use when users need to research any scientific topic, find biological data, or explore drug/target/disease relationships. ALSO USE for any biology, medicine, chemistry, pharmacology, or life science question — even simple factoid questions like \"how many X in protein Y\", \"what drug interacts with Z\", \"what gene causes disease W\", or \"translate this sequence\". These questions benefit from database lookups (UniProt, PubMed, ChEMBL, ClinVar, GWAS Catalog, etc.) rather than answering from memory alone. When in doubt about a scientific fact, USE THIS SKILL to verify against real databases. 中文触发词：生物、医学、生命科学、基因、蛋白、疾病、药物、化合物、UniProt、PubMed、ChEMBL、ClinVar、GWAS、数据库查证、科学事实核验。"
+description: "Router for ToolUniverse life-science and biomedical database work. Use for biology, medicine, chemistry, pharmacology, genes, proteins, diseases, drugs, compounds, sequences, variants, pathways, and scientific fact checking against databases such as UniProt, PubMed, ChEMBL, ClinVar, GWAS, PDB, and Ensembl. Also use when the user asks 生物、医学、生命科学、基因、蛋白、疾病、药物、化合物、序列、突变、通路、数据库查证、科学事实核验, or when unsure and a real database lookup is better than memory."
 ---
 
 # ToolUniverse Router

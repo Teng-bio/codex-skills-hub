@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / 'skills'
 REQUIRED = {'name', 'description'}
+MAX_DESCRIPTION_CHARS = 1024
 FORBIDDEN_NAMES = {'.env'}
 FORBIDDEN_SUFFIXES = ('.pem', '.key')
 SYSTEM_MIRROR_EXCLUDES = {'imagegen', 'openai-docs', 'plugin-creator', 'skill-creator', 'skill-installer'}
@@ -43,6 +44,8 @@ def main() -> int:
         desc = fm.get('description', '')
         if len(desc) < 30:
             issues.append({'path': path.relative_to(ROOT).as_posix(), 'level': 'warning', 'issue': 'description is short; auto-trigger may be weak'})
+        if len(desc) > MAX_DESCRIPTION_CHARS:
+            issues.append({'path': path.relative_to(ROOT).as_posix(), 'level': 'error', 'issue': f'description exceeds {MAX_DESCRIPTION_CHARS} characters; Codex loader may skip this skill'})
         if re.search(r'api[_-]?key|token|password|secret', text, re.I):
             issues.append({'path': path.relative_to(ROOT).as_posix(), 'level': 'warning', 'issue': 'contains credential-like words; review before push'})
     for path in ROOT.rglob('*'):

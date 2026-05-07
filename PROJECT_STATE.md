@@ -7,9 +7,9 @@ Personal GitHub-backed skill library for Codex/agent skills. It mirrors global a
 Create a well-organized repository that can store current skills and automatically upload newly created or modified skills to GitHub.
 
 ## Current Status
-- planning-with-files is global and mirrored into skills/global/planning-with-files/.
-- Science/bioinformatics suite is installed and documented.
-- New local/global skill literature-method-data-miner now captures short prompts like 文献是怎么做的 and maps them to method/data/supplement extraction workflows.
+- Fixed ToolUniverse SKILL.md loader error by shortening the description under both ~/.codex/skills/tooluniverse and ~/.agents/skills/tooluniverse to 450 characters.
+- Synced the fixed ~/.codex skill into skills/global/tooluniverse and refreshed registry files.
+- validate_skills.py now enforces the Codex 1024-character description limit.
 
 ## Key Paths
 - skills/local/literature-method-data-miner/SKILL.md
@@ -26,18 +26,17 @@ Create a well-organized repository that can store current skills and automatical
 - Keep this as a lightweight router skill under skills/local, mirrored globally for Codex triggering.
 
 ## Recent Changes
-- Created literature-method-data-miner under skills/local and installed it globally under ~/.codex/skills.
-- Added an output template for paper list, method/data matrix, supplement checklist, and cross-paper synthesis.
-- Updated README.md and docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md to document the shorthand prompt routing.
-- Ran scripts/sync_skills.py --apply and scripts/validate_skills.py.
+- Patched /home/teng/.codex/skills/tooluniverse/SKILL.md and /home/teng/.agents/skills/tooluniverse/SKILL.md after Codex reported invalid description length.
+- Ran scripts/sync_skills.py --apply and scripts/validate_skills.py; validation has 0 errors.
+- Added MAX_DESCRIPTION_CHARS=1024 check to scripts/validate_skills.py to prevent future skipped-skill loader errors.
 
 ## Open Problems
-- Current Codex session must be restarted before literature-method-data-miner appears in the active skill list.
-- Need run smoke prompts after restart: 文献是怎么做的, 这篇文献怎么做的, 参考文献的做法, 从文献收集正文和附录数据.
+- User should restart Codex once more to confirm the ToolUniverse skipped-skill warning is gone.
+- Validation still has known credential-word warnings only; they are unrelated to the description-length loader error.
 
 ## Next Step
-- Commit and push literature-method-data-miner plus docs/registry updates.
-- After restart, test whether short Chinese prompts trigger literature-method-data-miner automatically.
+- Commit and push the ToolUniverse description-length fix and validation guard.
+- After restart, verify no invalid SKILL.md warning appears and that tooluniverse loads normally.
 
 ## Resume Prompt
-literature-method-data-miner has been created to interpret 文献是怎么做的 as method/data/supplement extraction from provided or discovered papers. Commit and push, then restart Codex and smoke-test the shorthand prompts.
+ToolUniverse description was shortened in both ~/.codex and ~/.agents, synced to the hub, and validation now checks the 1024-character limit. Commit/push, then ask the user to restart Codex to verify the warning is gone.
