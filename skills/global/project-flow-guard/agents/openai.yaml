@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Flow Guard"
+  short_description: "Prevent version confusion during Codex development."
+  default_prompt: "Use $project-flow-guard to start a guarded run, promote accepted outputs, or checkpoint the current state before branching."

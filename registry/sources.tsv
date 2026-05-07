@@ -1,0 +1,3 @@
+source_id	scope	path	enabled	note
+global_codex_skills	global	/home/teng/.codex/skills	yes	Installed global Codex skills; mirrored into skills/global.
+pipeline_v2_workspace	workspace	/home/teng/claude_code/retron/pipeline_v2/.codex/skills	yes	Workspace pilot skills; mirrored into skills/workspace/pipeline_v2.

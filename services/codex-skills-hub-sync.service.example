@@ -1,0 +1,13 @@
+[Unit]
+Description=Auto-sync Codex skills to GitHub
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/teng/claude_code/codex-skills-hub
+ExecStart=/usr/bin/env python3 scripts/sync_skills.py --watch --interval 60 --apply --commit --push
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

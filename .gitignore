@@ -1,0 +1,20 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+*.pyc
+*.tmp
+*.log
+.env
+.env.*
+*.key
+*.pem
+id_rsa*
+id_ed25519*
+node_modules/
+# Provider/system skills are not published from this personal repo by default
+skills/global/imagegen/
+skills/global/openai-docs/
+skills/global/plugin-creator/
+skills/global/skill-creator/
+skills/global/skill-installer/
