@@ -7,9 +7,10 @@ Personal GitHub-backed skill library for Codex/agent skills. It mirrors global a
 Create a well-organized repository that can store current skills and automatically upload newly created or modified skills to GitHub.
 
 ## Current Status
-- Fixed ToolUniverse SKILL.md loader error by shortening the description under both ~/.codex/skills/tooluniverse and ~/.agents/skills/tooluniverse to 450 characters.
-- Synced the fixed ~/.codex skill into skills/global/tooluniverse and refreshed registry files.
-- validate_skills.py now enforces the Codex 1024-character description limit.
+- All SKILL.md files under ~/.codex/skills and ~/.agents/skills pass local frontmatter and description length validation.
+- Hub validation reports 48 skills, 0 errors, and 11 known credential-word warnings only.
+- The science/bioinformatics flow has been smoke-checked with codex exec --ephemeral; no skipped/invalid skill loading warning appeared.
+- Chinese trigger descriptions are mirrored into .agents duplicates for the science suite, so either .codex or .agents source can route short Chinese prompts.
 
 ## Key Paths
 - skills/local/literature-method-data-miner/SKILL.md
@@ -26,17 +27,18 @@ Create a well-organized repository that can store current skills and automatical
 - Keep this as a lightweight router skill under skills/local, mirrored globally for Codex triggering.
 
 ## Recent Changes
-- Patched /home/teng/.codex/skills/tooluniverse/SKILL.md and /home/teng/.agents/skills/tooluniverse/SKILL.md after Codex reported invalid description length.
-- Ran scripts/sync_skills.py --apply and scripts/validate_skills.py; validation has 0 errors.
-- Added MAX_DESCRIPTION_CHARS=1024 check to scripts/validate_skills.py to prevent future skipped-skill loader errors.
+- Copied literature-method-data-miner into ~/.agents/skills so npx/global agent listing also sees it.
+- Mirrored Chinese-trigger descriptions from ~/.codex/skills into duplicate ~/.agents/skills for 17 science/bioinformatics skills.
+- Ran prompt-substring simulations for 文献是怎么做的, 寻找参考文献, 搜索文献, 参考文献的做法, 根据这几篇文献有什么想法, PubMed, RNA-seq, 系统发育, 基因富集, 科学绘图.
+- Ran codex exec --ephemeral -C /home/teng/claude_code/codex-skills-hub 只输出 OK and confirmed no invalid SKILL.md warning appeared.
 
 ## Open Problems
-- User should restart Codex once more to confirm the ToolUniverse skipped-skill warning is gone.
-- Validation still has known credential-word warnings only; they are unrelated to the description-length loader error.
+- The current chat session skill list may still be stale; a fresh Codex session is needed for active skill list confirmation.
+- Duplicate names exist across ~/.codex/skills and ~/.agents/skills by design after npx installation plus Codex copy; both copies are valid and now have matching trigger descriptions for the science suite.
 
 ## Next Step
-- Commit and push the ToolUniverse description-length fix and validation guard.
-- After restart, verify no invalid SKILL.md warning appears and that tooluniverse loads normally.
+- Commit and push the PROJECT_STATE update if desired.
+- In a new Codex session, test natural prompts: 文献是怎么做的, 搜索文献, 根据这几篇文献有什么想法, RNA-seq差异表达怎么做, 系统发育分析.
 
 ## Resume Prompt
-ToolUniverse description was shortened in both ~/.codex and ~/.agents, synced to the hub, and validation now checks the 1024-character limit. Commit/push, then ask the user to restart Codex to verify the warning is gone.
+Skill startup validation passed: no invalid SKILL.md files, no >1024 descriptions, codex exec starts without skipped-skill warnings, and Chinese trigger routing simulations hit the intended skills. Continue with fresh-session prompt smoke tests if needed.
