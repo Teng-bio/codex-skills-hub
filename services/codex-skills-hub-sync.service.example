@@ -5,6 +5,7 @@ After=network-online.target
 [Service]
 Type=simple
 WorkingDirectory=/home/teng/claude_code/codex-skills-hub
+Environment=HOME=/home/teng
 ExecStart=/usr/bin/env python3 scripts/sync_skills.py --watch --interval 60 --apply --commit --push
 Restart=on-failure
 RestartSec=10

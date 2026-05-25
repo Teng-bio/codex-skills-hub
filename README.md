@@ -5,7 +5,7 @@
 仓库地址：
 
 ```text
-git@github.com:Teng-bio/codex-skills-hub.git
+https://github.com/Teng-bio/codex-skills-hub.git
 ```
 
 ## 这个仓库解决什么问题
@@ -47,7 +47,7 @@ services/
 ```bash
 cd /home/teng/claude_code/codex-skills-hub
 
-python scripts/new_skill.py my-skill-name \
+python3 scripts/new_skill.py my-skill-name \
   --description "Describe what this skill does. Use when 用户说..." \
   --apply \
   --sync \
@@ -64,34 +64,46 @@ skills/local/<skill-name>/SKILL.md
 然后运行：
 
 ```bash
-python scripts/validate_skills.py
-python scripts/sync_skills.py --apply --commit --push
+python3 scripts/validate_skills.py
+python3 scripts/sync_skills.py --apply --commit --push
+```
+
+面向用户可见的新 skill 还必须同步维护：
+
+```text
+README.md                         # GitHub 首页说明和触发方式
+docs/SKILL_ROUTING_MATRIX.md      # 如果改变路由边界
+PROJECT_STATE.md                  # 如果改变当前技能体系状态
+registry/SKILL_INVENTORY.tsv      # 由 sync 脚本生成
+registry/skills.json              # 由 sync 脚本生成
 ```
 
 ## 自动同步 / 自动上传
 
+重要：自动上传不是默认后台行为。默认只有在显式运行 `sync_skills.py --apply --commit --push`，或安装并启动 user service 后，才会提交和推送。
+
 预览变化：
 
 ```bash
-python scripts/sync_skills.py --dry-run
+python3 scripts/sync_skills.py --dry-run
 ```
 
 同步 inventory 和镜像：
 
 ```bash
-python scripts/sync_skills.py --apply
+python3 scripts/sync_skills.py --apply
 ```
 
 同步、提交、推送：
 
 ```bash
-python scripts/sync_skills.py --apply --commit --push
+python3 scripts/sync_skills.py --apply --commit --push
 ```
 
 持续监控并自动上传：
 
 ```bash
-python scripts/sync_skills.py --watch --interval 60 --apply --commit --push
+python3 scripts/sync_skills.py --watch --interval 60 --apply --commit --push
 ```
 
 也可以参考：
@@ -99,6 +111,18 @@ python scripts/sync_skills.py --watch --interval 60 --apply --commit --push
 ```text
 services/codex-skills-hub-sync.service.example
 ```
+
+如果要启用真正的后台自动上传，可安装 user service：
+
+```bash
+mkdir -p ~/.config/systemd/user
+cp services/codex-skills-hub-sync.service.example ~/.config/systemd/user/codex-skills-hub-sync.service
+systemctl --user daemon-reload
+systemctl --user enable --now codex-skills-hub-sync.service
+systemctl --user status codex-skills-hub-sync.service
+```
+
+如果没有启用该服务，新建 skill 后不会自动出现在 GitHub，必须手动 commit/push。
 
 ## 触发原则
 
@@ -145,6 +169,44 @@ Codex 选择 skill 时主要依赖每个 `SKILL.md` frontmatter 的 `description
 ```text
 docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 ```
+
+#### 生信自动路由、证据线和写作线
+
+这组 skills 解决一个核心问题：用户通常不会说具体 skill 名，只会说“这些结果能不能写文章”“下一步怎么做”“帮我写一下”。因此新增了一个自动路由入口，先判断任务属于证据/分析还是写作/投稿材料。
+
+核心边界：
+
+```text
+生信 Agent 负责事实和证据，不写论文。
+写作 Skill 负责表达和投稿材料，不跑分析。
+二者通过 EVIDENCE_PACK.md 交接。
+```
+
+| Skill | 作用 | 典型触发语 | 位置 |
+|---|---|---|---|
+| `bio-research-auto-router` | 模糊任务自动路由入口。用户不用说 skill 名，它根据任务判断走证据线、写作线、文献方法挖掘、PubMed/ToolUniverse 或复现链。 | `帮我看看这些结果`、`这个能不能写文章`、`下一步怎么做`、`整理一下生信结果`、`写论文`、`改文章`、`审稿意见怎么回`、`做组会PPT` | `skills/local/bio-research-auto-router/`；同时镜像到 `skills/global/bio-research-auto-router/` |
+| `bioinfo-evidence-orchestrator` | 生信证据总控，只负责分析路由、证据整理、风险表、图表清单和 `EVIDENCE_PACK.md`，不写论文。 | `生信分析`、`组学分析`、`GEO/SRA/accession`、`QC`、`富集分析`、`RNA-seq`、`写论文前整理结果`、`复现生信流程` | `skills/local/bioinfo-evidence-orchestrator/`；同时镜像到 `skills/global/bioinfo-evidence-orchestrator/` |
+| `bio-paper-writing` | 生信论文写作总控，从证据包、图表、分析摘要或中文笔记写 abstract、introduction、discussion、title、outline。 | `生信论文`、`写abstract`、`写introduction`、`写Discussion`、`根据结果写论文`、`中文实验记录写英文论文` | `skills/local/bio-paper-writing/`；同时镜像到 `skills/global/bio-paper-writing/` |
+| `bio-results-writing` | 根据 figure/table/evidence pack 写 Results 段落和图文对应表，不跑分析、不补 FDR/p value。 | `根据图表写结果`、`生信Results`、`RNA-seq结果写作`、`富集结果写作`、`多组学结果段落` | `skills/local/bio-results-writing/`；同时镜像到 `skills/global/bio-results-writing/` |
+| `bio-methods-writing` | 根据 workflow provenance、命令、配置、软件版本和作者笔记写可复现 Methods。 | `生信Methods`、`材料与方法`、`workflow写法`、`可复现方法`、`软件参数怎么写` | `skills/local/bio-methods-writing/`；同时镜像到 `skills/global/bio-methods-writing/` |
+| `bio-polishing` | 生信论文润色、中译英、术语统一、claim calibration 和 overclaim 检查。 | `生信论文润色`、`中译英`、`SCI润色`、`Results润色`、`Discussion润色`、`术语统一`、`overclaim检查` | `skills/local/bio-polishing/`；同时镜像到 `skills/global/bio-polishing/` |
+| `bio-reviewer-response` | 生信审稿意见逐点回复，覆盖 batch effect、FDR、外部验证、数据泄露、样本量、可复现性等问题。 | `生信审稿回复`、`逐点回复`、`大修回复`、`reviewer质疑batch effect`、`FDR`、`外部验证`、`数据泄露` | `skills/local/bio-reviewer-response/`；同时镜像到 `skills/global/bio-reviewer-response/` |
+| `bio-data-code-availability` | 生信 Data / Code Availability，覆盖 GEO、SRA、ENA、BioProject、BioSample、PRIDE、GitHub、Zenodo 等。 | `生信数据可用性`、`代码可用性`、`GEO/SRA/ENA`、`BioProject`、`BioSample`、`PRIDE`、`Zenodo`、`source data` | `skills/local/bio-data-code-availability/`；同时镜像到 `skills/global/bio-data-code-availability/` |
+| `bio-paper2ppt` | 生信论文转中文组会 / journal club PPT，强调 workflow、关键图、证据链、局限性和讨论问题。 | `生信论文转PPT`、`组会汇报`、`journal club`、`多组学论文汇报`、`单细胞论文汇报` | `skills/local/bio-paper2ppt/`；同时镜像到 `skills/global/bio-paper2ppt/` |
+
+常见自然语言路由示例：
+
+| 用户说法 | 默认处理 |
+|---|---|
+| `这些结果能不能写文章` | `bio-research-auto-router` -> `bioinfo-evidence-orchestrator`，先判断证据强度和缺口 |
+| `帮我分析并写文章` | 先证据线生成 `EVIDENCE_PACK.md`，再进入写作线 |
+| `这些图帮我写一下` | `bio-results-writing` |
+| `这个流程帮我写成材料方法` | `bio-methods-writing` |
+| `这段帮我改得像论文` | `bio-polishing` |
+| `审稿人这个问题怎么回` | `bio-reviewer-response` |
+| `数据和代码怎么写` | `bio-data-code-availability` |
+| `做个组会 PPT` | `bio-paper2ppt` |
+| `这篇文献是怎么做的` | `literature-method-data-miner` |
 
 | Skill | 作用 | 典型触发语 | 位置 |
 |---|---|---|---|

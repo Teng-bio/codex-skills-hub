@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import re
 import subprocess
+import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
@@ -75,9 +76,10 @@ def main() -> int:
         skill_dir.mkdir(parents=True, exist_ok=True)
         skill_md.write_text(template(name, args.description), encoding='utf-8')
         print('created')
-        subprocess.run(['python', 'scripts/validate_skills.py'], cwd=REPO, check=True)
+        py = sys.executable or 'python3'
+        subprocess.run([py, 'scripts/validate_skills.py'], cwd=REPO, check=True)
         if args.sync:
-            cmd = ['python', 'scripts/sync_skills.py', '--apply']
+            cmd = [py, 'scripts/sync_skills.py', '--apply']
             if args.commit:
                 cmd.append('--commit')
             if args.push:

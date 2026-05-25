@@ -55,13 +55,16 @@ Maintain a structured local skill library for research workflows, with a clear t
 - Added six specialized bio writing skills with one-level references where useful.
 - Added `bio-research-auto-router` for vague natural-language task selection.
 - Installed the bio skill suite into global user skill directories for automatic selection in future sessions.
+- Updated `README.md` so the GitHub landing page documents the bio auto-router, evidence line, writing line, and natural-language routing examples.
+- Fixed `scripts/new_skill.py` to use the running Python interpreter instead of assuming `python` exists.
+- Clarified that auto-upload requires either explicit `sync_skills.py --apply --commit --push` or an installed user service.
 - Updated planning/progress/findings files.
 - Ran validation, dry-run sync, apply sync, second validation, and registry grep checks.
 
 ## Open Problems
 - No real-project smoke test has yet been run through the full `EVIDENCE_PACK.md -> writing skill` handoff.
 - The current active Codex session's listed skills may remain stale until a fresh session reloads local/global skill metadata.
-- Repository changes from the auto-routing enhancement are not committed or pushed yet.
+- The background auto-upload service is documented but not currently enabled by default.
 
 ## Next Step
 - Commit the auto-routing enhancement if accepted.
