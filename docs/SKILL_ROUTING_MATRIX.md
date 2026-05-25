@@ -14,6 +14,9 @@
 生信证据线：
   bioinfo-evidence-orchestrator
 
+自动路由线：
+  bio-research-auto-router
+
 论文写作线：
   bio-paper-writing
   bio-results-writing
@@ -41,6 +44,23 @@
 - 生信 Agent 不写 abstract、Results、Discussion、rebuttal。
 - 写作 skill 不跑 RNA-seq、富集、数据库验证、workflow 复现。
 - 如果用户同时要求“分析并写论文”，先生成 `EVIDENCE_PACK.md`，再进入写作。
+
+### 1.1 模糊请求的自动路由
+
+如果用户没有说 skill 名，只说“帮我看看”“下一步怎么做”“能不能写文章”“帮我整理一下”“帮我写一下”，优先触发 `bio-research-auto-router` 做第一层判断：
+
+| 模糊说法 | 默认路线 | 原因 |
+|---|---|---|
+| “这些结果能不能写文章” | `bioinfo-evidence-orchestrator` | 先判断证据强度、缺口和风险 |
+| “帮我分析并写文章” | 证据线 -> 写作线 | 混合任务必须先形成 evidence pack |
+| “这些图帮我写一下” | `bio-results-writing` | 图表到 Results prose |
+| “流程帮我写成材料方法” | `bio-methods-writing` | provenance 到 Methods |
+| “这段帮我改得像论文” | `bio-polishing` | 已有文本优先润色/重构 |
+| “审稿人这个问题怎么回” | `bio-reviewer-response` | 逐点回复和 action mapping |
+| “数据和代码怎么写” | `bio-data-code-availability` | availability statement |
+| “做个组会 PPT” | `bio-paper2ppt` | paper/evidence 到中文 slides |
+
+默认原则：能判断就直接选，不要求用户说具体 skill 名；只有“分析还是写作”会导致高风险误判时才追问。
 
 ---
 

@@ -43,3 +43,8 @@
 - The safest shared contract remains `EVIDENCE_PACK.md` plus figure/table inventories.
 - Specialized writing skills should route back to `bioinfo-evidence-orchestrator` when evidence, accession validation, database facts, or new analyses are missing.
 - No new skill duplicates the existing ToolUniverse, PubMed, RNA-seq, enrichment, sequence, protein structure, phylogenetics, visualization, or reproduction skills.
+
+## Auto-routing Finding
+
+- Users should not need to say exact skill names. A broad router skill should capture natural prompts such as “这些结果能不能写文章”, “帮我看看下一步”, “这个流程写成方法”, “审稿人这个怎么回”, and then select the evidence or writing lane.
+- Ambiguous mixed requests should default to evidence first, then manuscript writing.

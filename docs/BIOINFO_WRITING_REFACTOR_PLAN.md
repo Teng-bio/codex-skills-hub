@@ -2,8 +2,9 @@
 
 更新日期：2026-05-25
 
-目标：基于本地已有 `codex-skills-hub` skill 生态，重构 `nature-skills`/科研写作能力，而不是重复造一套生信分析工具。最终形成两条互不重叠、但可协作的能力线：
+目标：基于本地已有 `codex-skills-hub` skill 生态，重构 `nature-skills`/科研写作能力，而不是重复造一套生信分析工具。最终形成一个自动路由入口和两条互不重叠、但可协作的能力线：
 
+0. **自动路由入口**：`bio-research-auto-router`，用于普通/模糊中文任务的第一层判断。
 1. **生信 Agent 线**：查数据库、做/审分析、复现、QC、证据整理。
 2. **论文写作 Skill 线**：根据已整理证据写论文、润色、审稿回复、PPT、Data/code availability。
 
@@ -65,6 +66,7 @@
 
 ```text
 skills/local/
+  bio-research-auto-router/       # 自动识别模糊任务并路由到证据线或写作线
   bioinfo-evidence-orchestrator/    # 生信证据总控，路由到已有 tooluniverse/pubmed/复现/QC skills
   bioinfo-evidence-pack/            # 可选：只定义/校验 EVIDENCE_PACK.md 的结构
   bioinfo-omics-figure-brief/        # 可选：把数据图表转成“图表信息卡”，不写 Results prose
@@ -336,4 +338,5 @@ Phase 2 bioinfo-evidence-orchestrator：complete
 Phase 3 bio-paper-writing：complete
 Phase 4 专项写作 skills：complete
 Phase 5 验证和 registry 同步：complete after latest validation/sync
+Auto-router：bio-research-auto-router added for vague prompt routing
 ```

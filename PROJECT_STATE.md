@@ -7,8 +7,9 @@ Personal GitHub-backed skill library for Codex/agent skills. It mirrors global a
 Maintain a structured local skill library for research workflows, with a clear two-lane bioinformatics architecture: evidence/analysis orchestration and manuscript-writing support.
 
 ## Current Status
-- Hub validation reports 56 skills, 0 errors, and 11 known credential-word warnings from existing mirrored skills only.
+- Hub validation reports 66 skills, 0 errors, and 11 known credential-word warnings from existing mirrored skills only.
 - `nature-skills` is clean and is no longer used as the implementation target for this refactor.
+- Natural-language auto routing is implemented as `skills/local/bio-research-auto-router/`.
 - Bioinformatics evidence line is implemented as `skills/local/bioinfo-evidence-orchestrator/`.
 - Bioinformatics writing line is implemented as:
   - `bio-paper-writing`
@@ -18,6 +19,8 @@ Maintain a structured local skill library for research workflows, with a clear t
   - `bio-reviewer-response`
   - `bio-data-code-availability`
   - `bio-paper2ppt`
+- Added natural-language routing so users can write vague prompts without naming skills.
+- The bio routing/writing skills have also been installed to `/home/teng/.codex/skills` and `/home/teng/.agents/skills` for future-session auto-triggering.
 - Registry files have been refreshed with `python3 scripts/sync_skills.py --apply`.
 
 ## Key Paths
@@ -26,6 +29,7 @@ Maintain a structured local skill library for research workflows, with a clear t
 - task_plan.md
 - findings.md
 - progress.md
+- skills/local/bio-research-auto-router/SKILL.md
 - skills/local/bioinfo-evidence-orchestrator/SKILL.md
 - skills/local/bio-paper-writing/SKILL.md
 - skills/local/bio-results-writing/SKILL.md
@@ -49,17 +53,20 @@ Maintain a structured local skill library for research workflows, with a clear t
 - Added `bioinfo-evidence-orchestrator` plus an evidence-pack template.
 - Added `bio-paper-writing` plus references for evidence-pack intake, article types, and section workflows.
 - Added six specialized bio writing skills with one-level references where useful.
+- Added `bio-research-auto-router` for vague natural-language task selection.
+- Installed the bio skill suite into global user skill directories for automatic selection in future sessions.
 - Updated planning/progress/findings files.
 - Ran validation, dry-run sync, apply sync, second validation, and registry grep checks.
 
 ## Open Problems
 - No real-project smoke test has yet been run through the full `EVIDENCE_PACK.md -> writing skill` handoff.
 - The current active Codex session's listed skills may remain stale until a fresh session reloads local/global skill metadata.
-- Repository changes are not committed or pushed yet.
+- Repository changes from the auto-routing enhancement are not committed or pushed yet.
 
 ## Next Step
-- Optionally commit and push the current refactor.
+- Commit the auto-routing enhancement if accepted.
 - In a fresh Codex session, test natural prompts for boundary routing:
+  - “这些结果能不能写文章” -> `bio-research-auto-router` -> `bioinfo-evidence-orchestrator`
   - “帮我整理这个GSE数据写论文前的证据包” -> `bioinfo-evidence-orchestrator`
   - “根据这个EVIDENCE_PACK写abstract” -> `bio-paper-writing`
   - “根据这些图写Results” -> `bio-results-writing`
@@ -67,4 +74,4 @@ Maintain a structured local skill library for research workflows, with a clear t
   - “审稿人质疑batch effect怎么回” -> `bio-reviewer-response`
 
 ## Resume Prompt
-Bioinformatics skill refactor is implemented in `codex-skills-hub`: evidence orchestrator plus seven writing-line skills. Validation and registry sync pass with 0 errors. Continue with real-project smoke testing or commit/push if requested.
+Bioinformatics skill refactor is implemented in `codex-skills-hub`: natural-language auto-router, evidence orchestrator, and seven writing-line skills. Validation and registry sync pass with 0 errors. Continue with real-project smoke testing or commit/push if requested.

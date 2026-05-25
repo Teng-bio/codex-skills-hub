@@ -71,3 +71,10 @@
   - Ran `python3 scripts/sync_skills.py --apply` to refresh `registry/SKILL_INVENTORY.tsv` and `registry/skills.json`.
   - Re-ran `python3 scripts/validate_skills.py`: 0 errors.
   - Checked registry entries for `bio-paper-writing`, `bio-results-writing`, `bio-methods-writing`, `bio-polishing`, `bio-reviewer-response`, `bio-data-code-availability`, and `bio-paper2ppt`.
+
+### Auto-routing enhancement
+- **Status:** complete
+- Actions taken:
+  - Created `skills/local/bio-research-auto-router/` to catch vague Chinese/English bioinformatics and manuscript prompts.
+  - Added `references/vague-prompt-map.md` with natural prompt examples and target routes.
+  - Updated routing docs so users do not need to name specific skills.

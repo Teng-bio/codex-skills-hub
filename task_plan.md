@@ -4,7 +4,7 @@
 Create a clean two-lane skill architecture in `codex-skills-hub`: bioinformatics evidence orchestration plus manuscript-writing skills, reusing existing local/global skills instead of duplicating analysis tools.
 
 ## Current Phase
-Phase 5 complete; ready for user review or real-project smoke testing.
+Auto-routing enhancement complete; ready for real-project smoke testing.
 
 ## Phases
 
@@ -62,6 +62,12 @@ Phase 5 complete; ready for user review or real-project smoke testing.
 |---|---:|---|
 | Earlier draft changes were made in `nature-skills` before planning was complete | 1 | Backed up to `/tmp/nature-skills-draft-backup-20260525-104128` and reverted `nature-skills` to clean status |
 | `python scripts/validate_skills.py` failed because `python` is not installed | 1 | Re-ran with `python3 scripts/validate_skills.py`; validation passed with pre-existing warnings only |
+
+### Phase 6: Natural-language auto routing
+- [x] Create `bio-research-auto-router`
+- [x] Add vague prompt mapping reference
+- [x] Update routing documentation
+- **Status:** complete
 
 ## Acceptance Summary
 
