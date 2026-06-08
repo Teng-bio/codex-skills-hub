@@ -140,9 +140,27 @@ Codex 选择 skill 时主要依赖每个 `SKILL.md` frontmatter 的 `description
 | Skill | 作用 | 典型触发语 | 位置 |
 |---|---|---|---|
 | `planning-with-files` | 大项目任务内核，用 `task_plan.md`、`findings.md`、`progress.md` 管理当前任务、阶段和进展。已全局安装，workspace 镜像保留为试点来源/对照。 | `继续下一步`、`大项目逐步推进`、`制定计划`、`拆解任务`、`恢复上下文`、`当前进展`、`task_plan.md`、`planning-with-files` | `skills/global/planning-with-files/`；试点镜像：`skills/workspace/pipeline_v2/planning-with-files/` |
-| `project-state-maintainer` | 维护每个项目的 `PROJECT_STATE.md`，让项目可从文件恢复，而不是依赖聊天记录。 | `记录项目状态`、`更新项目状态文档`、`总结当前进展`、`下一步是什么`、`handoff`、`resume state` | `skills/global/project-state-maintainer/` |
-| `project-flow-guard` | 管控生成产物、重跑、版本、current/baseline/release，避免文件覆盖和版本混乱。 | `重跑`、`重新生成`、`保留这个版本`、`设为当前版本`、`release`、`打包`、`开分支`、`snapshot`、`清理旧版本` | `skills/global/project-flow-guard/` |
-| `project-version-curator` | 对已经混乱的目录做盘点、版本冲突检测、dry-run 整理方案。 | `整理结果`、`太混乱了`、`清理目录`、`版本混乱`、`final/current/v1/v2 很多`、`生成 inventory`、`dry-run cleanup` | `skills/global/project-version-curator/` |
+| `project-state-maintainer` | 维护“薄” `PROJECT_STATE.md`，只记录当前共识、关键入口和下一步；细节拆到 `RESULTS_INDEX.md`、`DECISIONS.md`、`DATA_ASSETS.md`、`RUNS_INDEX.tsv` 和 `RUN_MANIFEST.json`。 | `记录项目状态`、`更新项目状态文档`、`总结当前进展`、`下一步是什么`、`项目文档太大`、`拆分项目文档`、`handoff`、`resume state` | `skills/global/project-state-maintainer/` |
+| `project-flow-guard` | 事前防乱：formal run 只作 provenance，使用 `RUN_MANIFEST.json` 和 `RUNS_INDEX.tsv` 记录来源；accepted/candidate 结果通过 `RESULTS_INDEX.md` 和 `current/` 发现。branch/workstream 只在长期方向且用户确认后创建。 | `重跑`、`重新生成`、`保留这个版本`、`设为当前版本`、`release`、`打包`、`开分支`、`snapshot`、`清理旧版本`、`RUN_MANIFEST.json` | `skills/global/project-flow-guard/` |
+| `project-version-curator` | 事后整理：对已经混乱的目录做 inventory、版本冲突检测、cleanup/release dry-run；优先信任 `RESULTS_INDEX.md` / registry，`final/current` 文件名只作线索。 | `整理结果`、`太混乱了`、`清理目录`、`版本混乱`、`final/current/v1/v2 很多`、`生成 inventory`、`dry-run cleanup`、`release planning` | `skills/global/project-version-curator/` |
+
+项目维护三层模型：
+
+```text
+project-state-maintainer  # 当前共识入口：薄 PROJECT_STATE.md + companion docs
+project-flow-guard        # 未来运行防乱：runs 只作 provenance，current/index 才是入口
+project-version-curator   # 既有混乱整理：inventory/conflict audit/release dry-run
+```
+
+维护文档的 canonical source 固定为：
+
+```text
+Markdown = 人类总结、状态、决策、结果入口
+TSV      = 可筛选索引和 registry
+JSON     = run manifest / 结构化元数据
+```
+
+SQLite / HTML 只能作为后续自动生成的查询或展示层，不作为维护源文档。
 
 ### Skill 发现、创建、发布
 
@@ -273,14 +291,17 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 1. `planning-with-files` 读取 active plan。
 2. 需求不清时用 `grill-me`。
 3. 需要拆小步骤时用 `ticket-breakdown`。
-4. 有结果/版本/重跑时用 `project-flow-guard`。
-5. 结束前用 `project-state-maintainer` 更新 `PROJECT_STATE.md`。
+4. 有正式生成型分析、重跑或换参数时用 `project-flow-guard`，创建 `RUN_MANIFEST.json` 并登记 `RUNS_INDEX.tsv`。
+5. 如果结果进入 candidate/accepted/legacy，更新 `RESULTS_INDEX.md`；只有用户确认或明确 promote 时才进入 `current/`。
+6. 结束前用 `project-state-maintainer` 更新薄 `PROJECT_STATE.md`，长细节放入对应 companion docs。
 
 ### 整理混乱项目结果
 
-1. `project-version-curator` 做 inventory 和 dry-run 整理方案。
-2. `project-flow-guard` 管控任何真正的 copy/move/archive/release 操作。
-3. `project-state-maintainer` 记录当前整理状态。
+1. `project-version-curator` 先读 `PROJECT_STATE.md`、`RESULTS_INDEX.md`、`DECISIONS.md`、`DATA_ASSETS.md` 和 registries。
+2. 生成 inventory / conflict audit / `CURATION_PLAN.md`，只做 dry-run，不直接删除。
+3. 不信任文件名里的 `final/current`；以 `RESULTS_INDEX.md`、`current/`、registry 和 `DECISIONS.md` 判断 accepted/candidate/legacy/superseded。
+4. 如需真正 copy/move/archive/release，再交给 `project-flow-guard` 或显式用户确认。
+5. `project-state-maintainer` 最后只记录整理结论、关键入口和下一步。
 
 ### 新建并上传 skill
 
