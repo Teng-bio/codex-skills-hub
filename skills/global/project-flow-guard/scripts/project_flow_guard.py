@@ -11,6 +11,7 @@ import argparse
 import csv
 import datetime as dt
 import hashlib
+import json
 import os
 import re
 import shutil
@@ -152,6 +153,24 @@ def find_run(root: Path, run_id: str) -> dict[str, str] | None:
 
 
 def make_manifest(run_path: Path, run_id: str, task: str, intent: str, branch_id: str, parent_run_id: str) -> None:
+    manifest = {
+        "run_id": run_id,
+        "intent": intent,
+        "task": task,
+        "branch_id": branch_id,
+        "parent_run_id": parent_run_id,
+        "status": "active",
+        "created_at": iso(),
+        "closed_at": "",
+        "inputs": [],
+        "commands": [],
+        "outputs": [],
+        "decisions": [],
+        "notes": "",
+        "promoted_to": [],
+        "superseded_by": "",
+    }
+    (run_path / "RUN_MANIFEST.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     text = f"""# Run Manifest: {run_id}
 
 - intent: {intent}
@@ -179,6 +198,47 @@ def make_manifest(run_path: Path, run_id: str, task: str, intent: str, branch_id
 ## Decisions / notes
 """
     (run_path / "RUN_MANIFEST.md").write_text(text, encoding="utf-8")
+
+
+def update_manifest_status(root: Path, run_id: str, status: str, note: str = "") -> None:
+    row = find_run(root, run_id)
+    if not row:
+        return
+    run_path = root / row["run_path"]
+    p = run_path / "RUN_MANIFEST.json"
+    if not p.exists():
+        return
+    try:
+        manifest = json.loads(p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return
+    manifest["status"] = status
+    if status in {"completed", "failed", "pending_review", "closed"} and not manifest.get("closed_at"):
+        manifest["closed_at"] = iso()
+    if note:
+        manifest["notes"] = (manifest.get("notes", "") + ("\n" if manifest.get("notes") else "") + note).strip()
+    p.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def append_manifest_promotion(root: Path, run_id: str, source_path: str, canonical_path: str) -> None:
+    if not run_id:
+        return
+    row = find_run(root, run_id)
+    if not row:
+        return
+    p = root / row["run_path"] / "RUN_MANIFEST.json"
+    if not p.exists():
+        return
+    try:
+        manifest = json.loads(p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return
+    promoted = manifest.get("promoted_to")
+    if not isinstance(promoted, list):
+        promoted = []
+    promoted.append({"source_path": source_path, "canonical_path": canonical_path, "promoted_at": iso()})
+    manifest["promoted_to"] = promoted
+    p.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def cmd_init(args: argparse.Namespace) -> int:
@@ -248,6 +308,7 @@ def update_run_status(root: Path, run_id: str, status: str, note: str = "") -> N
     if not found:
         raise SystemExit(f"Run not found: {run_id}")
     write_tsv(flow_dir(root) / "RUNS.tsv", rows, FLOW_FILES["RUNS.tsv"])
+    update_manifest_status(root, run_id, status, note)
 
 
 def cmd_close_run(args: argparse.Namespace) -> int:
@@ -361,6 +422,7 @@ def cmd_promote(args: argparse.Namespace) -> int:
         },
         FLOW_FILES["PROMOTIONS.tsv"],
     )
+    append_manifest_promotion(root, run_id, rel(source, root), rel(dest, root))
     print(f"promoted\t{rel(source, root)}\t=>\t{rel(dest, root)}")
     return 0
 
