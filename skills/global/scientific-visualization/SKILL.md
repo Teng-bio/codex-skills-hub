@@ -1,7 +1,6 @@
 ---
-
 name: scientific-visualization
-description: "Create publication figures with matplotlib/seaborn/plotly. Multi-panel layouts, error bars, significance markers, colorblind-safe, export PDF/EPS/TIFF, for journal-ready scientific plots. 中文触发词：科学绘图、科研图表、期刊级figure、多面板图、误差棒、显著性标记、色盲友好、导出PDF/EPS/TIFF。"
+description: "Create publication figures with matplotlib/seaborn/plotly. Multi-panel layouts, error bars, significance markers, colorblind-safe, export PDF/EPS/TIFF, for journal-ready scientific plots."
 ---
 
 # Scientific Visualization

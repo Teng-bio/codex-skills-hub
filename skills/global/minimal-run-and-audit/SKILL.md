@@ -1,7 +1,6 @@
 ---
-
 name: minimal-run-and-audit
-description: "Trusted-lane execution and reporting skill for README-first AI repo reproduction. Use when the task is specifically to capture or normalize evidence from the selected smoke test or documented inference or evaluation command and write standardized `repro_outputs/` files, including patch notes when repository files changed. Do not use for training execution, initial repo intake, generic environment setup, paper lookup, target selection, or end-to-end orchestration by itself. 中文触发词：最小复现运行、smoke test、复现实验审计、运行证据、repro_outputs、评估命令、复现失败记录。"
+description: Trusted-lane execution and reporting skill for README-first AI repo reproduction. Use when the task is specifically to capture or normalize evidence from the selected smoke test or documented inference or evaluation command and write standardized `repro_outputs/` files, including patch notes when repository files changed. Do not use for training execution, initial repo intake, generic environment setup, paper lookup, target selection, or end-to-end orchestration by itself.
 ---
 
 # minimal-run-and-audit

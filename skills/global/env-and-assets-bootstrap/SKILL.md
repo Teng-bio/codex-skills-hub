@@ -1,7 +1,6 @@
 ---
-
 name: env-and-assets-bootstrap
-description: "Environment and assets sub-skill for README-first AI repo reproduction. Use when the task is specifically to prepare a conservative conda-first environment, checkpoint and dataset path assumptions, cache location hints, and setup notes before any run on a README-documented repository. Do not use for repo scanning, full orchestration, paper interpretation, final run reporting, or generic environment setup that is not tied to a specific reproduction target. 中文触发词：复现环境、论文复现环境、conda环境、依赖安装、checkpoint路径、dataset路径、cache目录、复现准备。"
+description: Environment and assets sub-skill for README-first AI repo reproduction. Use when the task is specifically to prepare a conservative conda-first environment, checkpoint and dataset path assumptions, cache location hints, and setup notes before any run on a README-documented repository. Do not use for repo scanning, full orchestration, paper interpretation, final run reporting, or generic environment setup that is not tied to a specific reproduction target.
 ---
 
 # env-and-assets-bootstrap

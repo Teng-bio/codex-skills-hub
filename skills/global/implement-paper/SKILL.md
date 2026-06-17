@@ -1,7 +1,6 @@
 ---
-
 name: implement-paper
-description: "Implement a research paper as an interactive marimo notebook together with the user. Start by understanding what the user wants to explore, fetch the paper via alphaxiv, then build a focused notebook. 中文触发词：实现论文、论文变代码、paper to code、交互式notebook、marimo、复现方法、教学演示notebook。"
+description: Implement a research paper as an interactive marimo notebook together with the user. Start by understanding what the user wants to explore, fetch the paper via alphaxiv, then build a focused notebook.
 ---
 
 # Implement Paper

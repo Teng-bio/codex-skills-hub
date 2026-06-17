@@ -1,4 +1,4 @@
 interface:
   display_name: "Project Version Curator"
-  short_description: "Post-hoc audit and release planning for messy project versions."
-  default_prompt: "Use $project-version-curator to inventory mixed versions, cross-check RESULTS_INDEX.md/current/registries, classify accepted/candidate/legacy/superseded files, and propose a dry-run cleanup or release plan without deleting originals."
+  short_description: "Audit, separate, and package mixed project versions safely."
+  default_prompt: "Audit this project for mixed file versions, identify final/candidate/intermediate outputs, and propose a safe publication-release structure without deleting original files."
