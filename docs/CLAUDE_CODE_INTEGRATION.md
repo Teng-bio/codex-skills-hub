@@ -80,34 +80,14 @@ python3 scripts/sync_skills.py --watch --apply --commit --push --interval 300
 
 ## Skill 命名规则
 
-### Codex Skills（无命名空间）
-
-大多数 skills 直接使用名称，无前缀：
+所有 skills 直接使用名称，无前缀：
 
 ```
 /implement-paper
 /planning-with-files
 /bio-paper-writing
-```
-
-### CCG Skills（带命名空间）
-
-CCG 工具和质量门使用 `ccg:` 前缀：
-
-```
-/ccg:verify-security
-/ccg:verify-quality
-/ccg:verify-change
-/ccg:verify-module
-/ccg:gen-docs
-```
-
-其他 CCG impeccable skills 也使用 `ccg:` 前缀：
-
-```
-/ccg:polish
-/ccg:clarify
-/ccg:optimize
+/auto-deep-research
+/skill-library-publisher
 ```
 
 ## 目录结构
@@ -116,9 +96,9 @@ CCG 工具和质量门使用 `ccg:` 前缀：
 codex-skills-hub/
 ├── skills/
 │   ├── global/           # 从 ~/.codex/skills 和 ~/.claude/skills 镜像
-│   │   ├── ccg/          # CCG 工具套件（Claude Code 特有）
 │   │   ├── bio-*/        # 生信相关 skills
 │   │   ├── planning-with-files/
+│   │   ├── auto-deep-research/
 │   │   └── ...
 │   ├── local/            # 本仓库原创 skills（优先创建位置）
 │   └── workspace/        # 项目级 workspace skills
@@ -130,24 +110,16 @@ codex-skills-hub/
     └── CLAUDE_CODE_INTEGRATION.md  # 本文档
 ```
 
-## 差异说明
+## 统一的 Skill 库
 
-### Codex 特有 skills
+从 2026-06-17 起，Codex 和 Claude Code 共享完全相同的 skill 集：
 
-- 原始 Codex CLI 工具的 skills
+- **生信研究 skills**: bio-*, tooluniverse-*
+- **文献和论文 skills**: paper-*, literature-*, implement-paper
+- **通用开发 skills**: planning-with-files, project-*, grill-me
+- **搜索和研究 skills**: auto-deep-research, answers, systematic-literature-review
 
-### Claude Code 特有 skills
-
-- **CCG 套件**: 质量门工具（verify-security, verify-quality 等）
-- **CCG domains**: 知识领域自动路由（AI, 架构, DevOps, 前端设计等）
-- **CCG impeccable**: 高级代码质量工具
-
-### 共享 skills
-
-绝大多数 skills 在两个环境中共享，包括：
-- 生信研究 skills（bio-*）
-- 文献和论文 skills（paper-*, literature-*）
-- 通用开发 skills（planning-with-files, implement-paper 等）
+**注意**: CCG 相关的 skills 已被移除，因为它们是 Claude Code 特定的工具套件，不适合共享。
 
 ## 故障排除
 
@@ -174,5 +146,3 @@ python3 scripts/sync_skills.py --apply
 
 - [codex-skills-hub README](../README.md)
 - [OPERATING_MODEL.md](./OPERATING_MODEL.md)
-- CCG 规则: `~/.claude/rules/ccg-skills.md`
-- CCG 路由: `~/.claude/rules/ccg-skill-routing.md`
