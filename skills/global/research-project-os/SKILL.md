@@ -1,6 +1,6 @@
 ---
 name: research-project-os
-description: Operate a repository-local research project harness under `.project_os/` for long-running scientific or analysis projects. Use when the user asks for research-project-os, project harness, 项目工作台, 长期科研项目管理, run provenance, RESULTS_INDEX, DATA_ASSETS, current_task, continue 当前任务, task/runtime pointers, result promotion, or release workflow.
+description: Operate and bootstrap a repository-local research project harness under `.project_os/` for long-running scientific or analysis projects. Use when the user asks for research-project-os, project harness, 项目骨架, 新项目骨架, 搭项目骨架, 初始化项目骨架, 研究项目骨架, 科研项目骨架, 项目工作流骨架, 项目工作台, 长期科研项目管理, run provenance, RESULTS_INDEX, DATA_ASSETS, current_task, continue 当前任务, task/runtime pointers, result promotion, or release workflow.
 ---
 
 # research-project-os
@@ -34,8 +34,12 @@ DECISIONS.md                 # durable decisions
 From this skill directory:
 
 ```bash
+python scripts/project_os.py new-project --root <project> --title "..." --profile research --platforms codex --apply
 python scripts/project_os.py init --root <project> --apply
+python scripts/project_os.py start --root <project>
 python scripts/project_os.py status --root <project>
+python scripts/project_os.py doctor --root <project>
+python scripts/project_os.py install-adapters --root <project> --platforms codex --apply
 python scripts/project_os.py validate --root <project>
 python scripts/project_os.py create-task --root <project> --title "..." --kind analysis --set-current
 python scripts/project_os.py create-run --root <project> --task-id <task_id> --slug "..."
@@ -43,7 +47,15 @@ python scripts/project_os.py register-result --root <project> --run-id <run_id> 
 python scripts/project_os.py refresh-indexes --root <project>
 ```
 
-Use `init` without `--apply` first when adopting an unfamiliar project.
+Use `new-project` or `init` without `--apply` first when adopting an unfamiliar project.
+
+## Project skeleton entry
+
+When triggered by `项目骨架`, `新项目骨架`, or `搭项目骨架`:
+
+- If `.project_os/` is absent, run `new-project` as a dry-run first and ask before applying unless the user clearly requested changes.
+- If `.project_os/` exists, run `start` and resume from the active task/run.
+- Treat `project_os.py` as the deterministic backend; users do not need to remember Python commands.
 
 ## Operating rules
 

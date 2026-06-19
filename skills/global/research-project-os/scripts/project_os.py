@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import os
 import re
@@ -87,6 +88,45 @@ ROOT_DOC_DEFAULTS = {
     'RUNS_INDEX.tsv': '\t'.join(ROOT_RUNS_HEADERS) + '\n',
     'DECISIONS.md': '# DECISIONS\n\nDurable project decisions.\n',
 }
+
+PROJECT_OS_AGENTS_BLOCK_START = '<!-- PROJECT_OS:START -->'
+PROJECT_OS_AGENTS_BLOCK_END = '<!-- PROJECT_OS:END -->'
+
+PROJECT_OS_AGENTS_BLOCK = f'''{PROJECT_OS_AGENTS_BLOCK_START}
+## research-project-os
+
+This repository uses a local project workflow harness under `.project_os/`.
+
+Before substantive work:
+
+1. Read `PROJECT_STATE.md`.
+2. Read `.project_os/workflow.md`.
+3. Resolve `.project_os/runtime/current_task` and `.project_os/runtime/current_run`.
+4. If a current task exists, load `.project_os/tasks/<task_id>/context_manifest.jsonl`.
+5. Create a run before formal analysis work.
+6. Register useful outputs as draft/candidate results before promotion.
+7. Never promote to `current/` or `release/` without explicit user approval.
+8. Update `PROJECT_STATE.md` or the active task `handoff.md` before stopping when project state changed.
+
+Useful trigger phrases: `项目骨架`, `新项目骨架`, `搭项目骨架`, `项目工作流骨架`, `开工`, `继续项目`.
+{PROJECT_OS_AGENTS_BLOCK_END}
+'''
+
+REPO_PROJECT_SKELETON_SKILL = '''---
+name: project-skeleton
+description: Repository-local entry for this project's `.project_os/` workflow. Use when the user says 项目骨架, 新项目骨架, 搭项目骨架, 项目工作流骨架, 开工, 继续项目, or asks to resume this project.
+---
+
+# project-skeleton
+
+This repository uses `.project_os/` as the project workflow source of truth.
+
+1. Read `PROJECT_STATE.md`.
+2. Read `.project_os/workflow.md`.
+3. Resolve `.project_os/runtime/current_task` and `.project_os/runtime/current_run`.
+4. If a current task exists, read its `context_manifest.jsonl` before broad file inventory.
+5. Use the global `research-project-os` skill and its `project_os.py` backend for deterministic operations.
+'''
 
 class ProjectOSError(Exception):
     pass
@@ -193,8 +233,7 @@ def ensure_dir(path: Path, apply: bool, actions: list[dict[str, str]]) -> None:
         path.mkdir(parents=True, exist_ok=True)
 
 
-def command_init(args: argparse.Namespace) -> int:
-    root = Path(args.root).resolve()
+def init_harness(root: Path, apply: bool) -> list[dict[str, str]]:
     os_dir = project_os(root)
     actions: list[dict[str, str]] = []
     dirs = [
@@ -211,18 +250,158 @@ def command_init(args: argparse.Namespace) -> int:
         root / 'release',
     ]
     for directory in dirs:
-        ensure_dir(directory, args.apply, actions)
-    write_missing_file(os_dir / 'workflow.md', WORKFLOW_TEXT, args.apply, actions)
-    write_missing_file(os_dir / 'config.yaml', CONFIG_TEXT, args.apply, actions)
+        ensure_dir(directory, apply, actions)
+    write_missing_file(os_dir / 'workflow.md', WORKFLOW_TEXT, apply, actions)
+    write_missing_file(os_dir / 'config.yaml', CONFIG_TEXT, apply, actions)
     for name, text in SPEC_TEXTS.items():
-        write_missing_file(os_dir / 'spec' / name, text, args.apply, actions)
+        write_missing_file(os_dir / 'spec' / name, text, apply, actions)
     for pointer in ['current_task', 'current_branch', 'current_run']:
-        write_missing_file(os_dir / 'runtime' / pointer, '', args.apply, actions)
+        write_missing_file(os_dir / 'runtime' / pointer, '', apply, actions)
     for name, headers in INDEX_HEADERS.items():
-        write_missing_file(os_dir / 'indexes' / name, '\t'.join(headers) + '\n', args.apply, actions)
+        write_missing_file(os_dir / 'indexes' / name, '\t'.join(headers) + '\n', apply, actions)
     for name, text in ROOT_DOC_DEFAULTS.items():
-        write_missing_file(root / name, text, args.apply, actions)
+        write_missing_file(root / name, text, apply, actions)
+    return actions
+
+
+def command_init(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve()
+    actions = init_harness(root, args.apply)
     print_json({'root': root.as_posix(), 'applied': bool(args.apply), 'actions': actions})
+    return 0
+
+
+def managed_block_content(existing: str, block: str) -> str:
+    start = existing.find(PROJECT_OS_AGENTS_BLOCK_START)
+    if start == -1:
+        trimmed = existing.rstrip()
+        return (trimmed + '\n\n' if trimmed else '') + block.rstrip() + '\n'
+    end = existing.find(PROJECT_OS_AGENTS_BLOCK_END, start)
+    if end == -1:
+        trimmed = existing.rstrip()
+        return trimmed + '\n\n' + block.rstrip() + '\n'
+    end += len(PROJECT_OS_AGENTS_BLOCK_END)
+    return existing[:start] + block.rstrip() + existing[end:].lstrip('\n')
+
+
+def compute_hash(text: str) -> str:
+    return hashlib.sha256(text.replace('\r\n', '\n').encode('utf-8')).hexdigest()
+
+
+def update_template_hashes(root: Path, files: dict[str, str]) -> None:
+    path = project_os(root) / '.template-hashes.json'
+    payload: dict[str, Any] = {'__version': 1, 'hashes': {}}
+    if path.exists():
+        try:
+            loaded = json.loads(path.read_text(encoding='utf-8'))
+            if isinstance(loaded, dict):
+                payload.update(loaded)
+                if not isinstance(payload.get('hashes'), dict):
+                    payload['hashes'] = {}
+        except json.JSONDecodeError:
+            payload = {'__version': 1, 'hashes': {}}
+    hashes = payload.setdefault('hashes', {})
+    for rel, content in files.items():
+        hashes[rel] = compute_hash(content)
+    write_json(path, payload)
+
+
+def install_codex_adapter(root: Path, apply: bool) -> list[dict[str, str]]:
+    actions: list[dict[str, str]] = []
+    written_templates: dict[str, str] = {}
+
+    agents_path = root / 'AGENTS.md'
+    existing_agents = agents_path.read_text(encoding='utf-8') if agents_path.exists() else ''
+    new_agents = managed_block_content(existing_agents, PROJECT_OS_AGENTS_BLOCK)
+    if existing_agents == new_agents:
+        actions.append({'status': 'exists', 'path': 'AGENTS.md'})
+    else:
+        if apply:
+            status = 'create' if not agents_path.exists() else 'update'
+        else:
+            status = 'would_create' if not agents_path.exists() else 'would_update'
+        actions.append({'status': status, 'path': 'AGENTS.md'})
+        if apply:
+            agents_path.write_text(new_agents, encoding='utf-8')
+            written_templates['AGENTS.md#PROJECT_OS_BLOCK'] = PROJECT_OS_AGENTS_BLOCK
+
+    repo_skill_path = root / '.agents' / 'skills' / 'project-skeleton' / 'SKILL.md'
+    rel_skill = relpath(root, repo_skill_path)
+    if repo_skill_path.exists() and repo_skill_path.read_text(encoding='utf-8') == REPO_PROJECT_SKELETON_SKILL:
+        actions.append({'status': 'exists', 'path': rel_skill})
+    else:
+        if apply:
+            status = 'create' if not repo_skill_path.exists() else 'update'
+        else:
+            status = 'would_create' if not repo_skill_path.exists() else 'would_update'
+        actions.append({'status': status, 'path': rel_skill})
+        if apply:
+            repo_skill_path.parent.mkdir(parents=True, exist_ok=True)
+            repo_skill_path.write_text(REPO_PROJECT_SKELETON_SKILL, encoding='utf-8')
+            written_templates[rel_skill] = REPO_PROJECT_SKELETON_SKILL
+
+    if apply and written_templates:
+        update_template_hashes(root, written_templates)
+    return actions
+
+
+def parse_platforms(raw_platforms: list[str]) -> set[str]:
+    return {item.strip().lower() for raw in raw_platforms for item in raw.split(',') if item.strip()}
+
+
+def command_install_adapters(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve()
+    ensure_initialized(root)
+    platforms = parse_platforms(args.platforms)
+    actions: list[dict[str, str]] = []
+    if not platforms or 'codex' in platforms:
+        actions.extend(install_codex_adapter(root, args.apply))
+    unsupported = sorted(platforms - {'codex'})
+    for platform in unsupported:
+        actions.append({'status': 'unsupported', 'path': platform})
+    print_json({'root': root.as_posix(), 'applied': bool(args.apply), 'platforms': sorted(platforms or {'codex'}), 'actions': actions})
+    return 0
+
+
+def command_new_project(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve()
+    actions = init_harness(root, args.apply)
+    adapter_actions: list[dict[str, str]] = []
+    platforms = parse_platforms(args.platforms)
+    if args.install_adapters:
+        if not platforms or 'codex' in platforms:
+            adapter_actions.extend(install_codex_adapter(root, args.apply))
+        for platform in sorted(platforms - {'codex'}):
+            adapter_actions.append({'status': 'unsupported', 'path': platform})
+    bootstrap_task = ''
+    if args.apply and args.bootstrap_task:
+        task_title = args.bootstrap_title or f"Bootstrap project skeleton: {args.title}"
+        task_id = f"{datetime.now().strftime('%Y%m%d')}_{slugify(task_title)}"
+        if not task_json_path(root, task_id).exists():
+            create_task_record(
+                root=root,
+                title=task_title,
+                kind='planning',
+                task_id=task_id,
+                branch_id='main',
+                parent_task_id=None,
+                owner='',
+                stage='Intake',
+                notes=f'Created by project_os.py new-project; profile={args.profile}',
+                set_current=True,
+            )
+        bootstrap_task = task_id
+    print_json({
+        'root': root.as_posix(),
+        'title': args.title,
+        'profile': args.profile,
+        'platforms': sorted(platforms or {'codex'}),
+        'applied': bool(args.apply),
+        'actions': actions,
+        'adapter_actions': adapter_actions,
+        'bootstrap_task': bootstrap_task,
+        'next': 'Run project_os.py start --root <project> or trigger 项目骨架/开工.',
+    })
     return 0
 
 
@@ -257,6 +436,102 @@ def command_status(args: argparse.Namespace) -> int:
     return 0
 
 
+def read_jsonl(path: Path) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    if not path.exists():
+        return rows
+    for line in path.read_text(encoding='utf-8').splitlines():
+        if not line.strip():
+            continue
+        try:
+            item = json.loads(line)
+        except json.JSONDecodeError:
+            item = {'_error': 'malformed_jsonl', 'raw': line}
+        if isinstance(item, dict):
+            rows.append(item)
+    return rows
+
+
+def command_start(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve()
+    ensure_initialized(root)
+    current_task = current_pointer(root, 'current_task')
+    current_run = current_pointer(root, 'current_run')
+    task_payload: dict[str, Any] = {}
+    if current_task:
+        tjson = task_json_path(root, current_task)
+        if tjson.exists():
+            task = read_json(tjson)
+            manifest_name = str(task.get('context_manifest', 'context_manifest.jsonl'))
+            manifest_path = tjson.parent / manifest_name
+            task_payload = {
+                'task_id': current_task,
+                'task_path': relpath(root, tjson.parent),
+                'task': task,
+                'context_manifest_path': relpath(root, manifest_path),
+                'context_manifest': read_jsonl(manifest_path),
+            }
+        else:
+            task_payload = {'task_id': current_task, 'error': 'current_task points to missing task'}
+    run_payload: dict[str, Any] = {}
+    if current_run:
+        manifest_path = find_run_manifest(root, current_run)
+        if manifest_path:
+            run_payload = {
+                'run_id': current_run,
+                'run_path': relpath(root, manifest_path.parent),
+                'manifest_path': relpath(root, manifest_path),
+                'manifest': read_json(manifest_path),
+            }
+        else:
+            run_payload = {'run_id': current_run, 'error': 'current_run points to missing run'}
+    payload = {
+        'root': root.as_posix(),
+        'initialized': True,
+        'entry_files': [name for name in ROOT_ENTRY_FILES if (root / name).exists()],
+        'workflow': relpath(root, project_os(root) / 'workflow.md'),
+        'current_task': current_task,
+        'current_run': current_run,
+        'task_context': task_payload,
+        'run_context': run_payload,
+        'next_step': 'Load required context_manifest paths, then continue the active task. Create a run before formal analysis if no current_run exists.',
+    }
+    print_json(payload)
+    return 0
+
+
+def command_doctor(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve()
+    os_dir = project_os(root)
+    checks: list[dict[str, Any]] = []
+
+    def add(name: str, ok: bool, detail: str, hint: str = '') -> None:
+        checks.append({'name': name, 'ok': ok, 'detail': detail, 'hint': hint})
+
+    add('harness', (os_dir / 'workflow.md').exists(), f'{OS_DIR}/workflow.md', 'Run project_os.py new-project --apply')
+    for name in ROOT_ENTRY_FILES:
+        add(f'entry:{name}', (root / name).exists(), name, 'Run project_os.py init --apply')
+    for pointer in ['current_task', 'current_run']:
+        path = os_dir / 'runtime' / pointer
+        add(f'pointer:{pointer}', path.exists(), relpath(root, path), 'Run project_os.py init --apply')
+    if (os_dir / 'runtime' / 'current_task').exists():
+        task_id = current_pointer(root, 'current_task')
+        add('current_task_target', not task_id or task_json_path(root, task_id).exists(), task_id or '(none)', 'Set a valid current task or clear the pointer')
+    if (os_dir / 'runtime' / 'current_run').exists():
+        run_id = current_pointer(root, 'current_run')
+        add('current_run_target', not run_id or find_run_manifest(root, run_id) is not None, run_id or '(none)', 'Set a valid current run or clear the pointer')
+    agents = root / 'AGENTS.md'
+    agents_has_block = False
+    if agents.exists():
+        agents_has_block = PROJECT_OS_AGENTS_BLOCK_START in agents.read_text(encoding='utf-8', errors='replace')
+    add('codex_adapter:AGENTS', agents_has_block, 'AGENTS.md project-os block', 'Run project_os.py install-adapters --platforms codex --apply')
+    repo_skill = root / '.agents' / 'skills' / 'project-skeleton' / 'SKILL.md'
+    add('codex_adapter:project-skeleton', repo_skill.exists(), relpath(root, repo_skill), 'Run project_os.py install-adapters --platforms codex --apply')
+    ok = all(item['ok'] for item in checks)
+    print_json({'root': root.as_posix(), 'ok': ok, 'checks': checks})
+    return 0 if ok else 1
+
+
 def task_dir(root: Path, task_id: str) -> Path:
     return project_os(root) / 'tasks' / task_id
 
@@ -276,11 +551,20 @@ def default_context_manifest() -> str:
     return ''.join(json.dumps(line, ensure_ascii=False) + '\n' for line in lines)
 
 
-def command_create_task(args: argparse.Namespace) -> int:
-    root = Path(args.root).resolve()
-    ensure_initialized(root)
+def create_task_record(
+    root: Path,
+    title: str,
+    kind: str = 'analysis',
+    task_id: str = '',
+    branch_id: str = 'main',
+    parent_task_id: str | None = None,
+    owner: str = '',
+    stage: str = 'Intake',
+    notes: str = '',
+    set_current: bool = False,
+) -> dict[str, Any]:
     created = now_iso()
-    task_id = args.task_id or f"{datetime.now().strftime('%Y%m%d')}_{slugify(args.title)}"
+    task_id = task_id or f"{datetime.now().strftime('%Y%m%d')}_{slugify(title)}"
     tdir = task_dir(root, task_id)
     if tdir.exists():
         raise ProjectOSError(f'Task already exists: {task_id}')
@@ -288,21 +572,21 @@ def command_create_task(args: argparse.Namespace) -> int:
     (tdir / 'research').mkdir()
     task = {
         'task_id': task_id,
-        'title': args.title,
+        'title': title,
         'status': 'active',
-        'kind': args.kind,
-        'parent_task_id': args.parent_task_id,
-        'branch_id': args.branch_id,
+        'kind': kind,
+        'parent_task_id': parent_task_id,
+        'branch_id': branch_id,
         'created_at': created,
         'updated_at': created,
-        'owner': args.owner or '',
-        'stage': args.stage,
+        'owner': owner or '',
+        'stage': stage,
         'objective_file': 'objective.md',
         'context_manifest': 'context_manifest.jsonl',
-        'notes': args.notes or '',
+        'notes': notes or '',
     }
     write_json(tdir / 'task.json', task)
-    (tdir / 'objective.md').write_text(f"# Objective\n\n{args.title}\n", encoding='utf-8')
+    (tdir / 'objective.md').write_text(f"# Objective\n\n{title}\n", encoding='utf-8')
     (tdir / 'context.md').write_text('# Context\n\nAdd task-specific context here.\n', encoding='utf-8')
     (tdir / 'context_manifest.jsonl').write_text(default_context_manifest(), encoding='utf-8')
     (tdir / 'decisions.md').write_text('# Decisions\n\n', encoding='utf-8')
@@ -310,9 +594,27 @@ def command_create_task(args: argparse.Namespace) -> int:
     write_tsv(tdir / 'result_links.tsv', RESULT_LINK_HEADERS, [])
     (tdir / 'handoff.md').write_text('# Handoff\n\nCurrent handoff notes.\n', encoding='utf-8')
     refresh_task_index(root)
-    if args.set_current:
+    if set_current:
         set_pointer(root, 'current_task', task_id)
-    print_json({'created_task': task_id, 'path': relpath(root, tdir), 'set_current': bool(args.set_current)})
+    return {'created_task': task_id, 'path': relpath(root, tdir), 'set_current': bool(set_current)}
+
+
+def command_create_task(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve()
+    ensure_initialized(root)
+    payload = create_task_record(
+        root=root,
+        title=args.title,
+        kind=args.kind,
+        task_id=args.task_id,
+        branch_id=args.branch_id,
+        parent_task_id=args.parent_task_id,
+        owner=args.owner,
+        stage=args.stage,
+        notes=args.notes,
+        set_current=args.set_current,
+    )
+    print_json(payload)
     return 0
 
 
@@ -700,9 +1002,40 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument('--apply', action='store_true', help='Actually write files')
     p.set_defaults(func=command_init)
 
+    p = sub.add_parser('new-project', help='Create a new project workflow skeleton; dry-run unless --apply')
+    add_root(p)
+    p.add_argument('--title', default='Untitled project')
+    p.add_argument('--profile', default='research')
+    p.add_argument('--platforms', nargs='*', default=['codex'])
+    p.add_argument('--apply', action='store_true', help='Actually write files')
+    p.add_argument('--install-adapters', action=argparse.BooleanOptionalAction, default=True)
+    p.add_argument('--bootstrap-task', action=argparse.BooleanOptionalAction, default=True)
+    p.add_argument('--bootstrap-title', default='')
+    p.set_defaults(func=command_new_project)
+
+    p = sub.add_parser('start', help='Load project workflow state, current task/run, and context manifest')
+    add_root(p)
+    p.set_defaults(func=command_start)
+
     p = sub.add_parser('status', help='Show current harness state')
     add_root(p)
     p.set_defaults(func=command_status)
+
+    p = sub.add_parser('doctor', help='Check harness and adapter readiness')
+    add_root(p)
+    p.set_defaults(func=command_doctor)
+
+    p = sub.add_parser('install-adapters', help='Install thin project-local agent adapters; dry-run unless --apply')
+    add_root(p)
+    p.add_argument('--platforms', nargs='*', default=['codex'])
+    p.add_argument('--apply', action='store_true')
+    p.set_defaults(func=command_install_adapters)
+
+    p = sub.add_parser('build-adapters', help='Alias for install-adapters; rebuild thin project-local agent adapters')
+    add_root(p)
+    p.add_argument('--platforms', nargs='*', default=['codex'])
+    p.add_argument('--apply', action='store_true')
+    p.set_defaults(func=command_install_adapters)
 
     p = sub.add_parser('validate', help='Validate harness files, pointers, indexes, tasks, and runs')
     add_root(p)
