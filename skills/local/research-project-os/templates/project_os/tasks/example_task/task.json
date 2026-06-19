@@ -1,0 +1,15 @@
+{
+  "task_id": "example_task",
+  "title": "Example task",
+  "status": "active",
+  "kind": "analysis",
+  "parent_task_id": null,
+  "branch_id": "main",
+  "created_at": "1970-01-01T00:00:00+00:00",
+  "updated_at": "1970-01-01T00:00:00+00:00",
+  "owner": "",
+  "stage": "Intake",
+  "objective_file": "objective.md",
+  "context_manifest": "context_manifest.jsonl",
+  "notes": "Template only; do not copy into active projects unless needed."
+}

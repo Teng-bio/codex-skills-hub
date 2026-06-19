@@ -140,6 +140,7 @@ Codex 选择 skill 时主要依赖每个 `SKILL.md` frontmatter 的 `description
 | Skill | 作用 | 典型触发语 | 位置 |
 |---|---|---|---|
 | `planning-with-files` | 大项目任务内核，用 `task_plan.md`、`findings.md`、`progress.md` 管理当前任务、阶段和进展。已全局安装，workspace 镜像保留为试点来源/对照。 | `继续下一步`、`大项目逐步推进`、`制定计划`、`拆解任务`、`恢复上下文`、`当前进展`、`task_plan.md`、`planning-with-files` | `skills/global/planning-with-files/`；试点镜像：`skills/workspace/pipeline_v2/planning-with-files/` |
+| `research-project-os` | Trellis-style 科研项目 harness：在每个项目内维护 `.project_os/` 工作台、workflow、task 目录、runtime pointer、context manifest、run/result/data indexes，并用 CLI 做 init/validate/task/run/result 登记。 | `research-project-os`、`project harness`、`项目工作台`、`长期科研项目管理`、`run provenance`、`current_task`、`continue 当前任务`、`结果版本管理`、`release workflow` | `skills/local/research-project-os/` |
 | `project-state-maintainer` | 维护“薄” `PROJECT_STATE.md`，只记录当前共识、关键入口和下一步；细节拆到 `RESULTS_INDEX.md`、`DECISIONS.md`、`DATA_ASSETS.md`、`RUNS_INDEX.tsv` 和 `RUN_MANIFEST.json`。 | `记录项目状态`、`更新项目状态文档`、`总结当前进展`、`下一步是什么`、`项目文档太大`、`拆分项目文档`、`handoff`、`resume state` | `skills/global/project-state-maintainer/` |
 | `project-flow-guard` | 事前防乱：formal run 只作 provenance，使用 `RUN_MANIFEST.json` 和 `RUNS_INDEX.tsv` 记录来源；accepted/candidate 结果通过 `RESULTS_INDEX.md` 和 `current/` 发现。branch/workstream 只在长期方向且用户确认后创建。 | `重跑`、`重新生成`、`保留这个版本`、`设为当前版本`、`release`、`打包`、`开分支`、`snapshot`、`清理旧版本`、`RUN_MANIFEST.json` | `skills/global/project-flow-guard/` |
 | `project-version-curator` | 事后整理：对已经混乱的目录做 inventory、版本冲突检测、cleanup/release dry-run；优先信任 `RESULTS_INDEX.md` / registry，`final/current` 文件名只作线索。 | `整理结果`、`太混乱了`、`清理目录`、`版本混乱`、`final/current/v1/v2 很多`、`生成 inventory`、`dry-run cleanup`、`release planning` | `skills/global/project-version-curator/` |
@@ -151,6 +152,8 @@ project-state-maintainer  # 当前共识入口：薄 PROJECT_STATE.md + companio
 project-flow-guard        # 未来运行防乱：runs 只作 provenance，current/index 才是入口
 project-version-curator   # 既有混乱整理：inventory/conflict audit/release dry-run
 ```
+
+`research-project-os` 是比三层模型更上层的项目工作台：它不替代这些已有 skills，而是把 workflow/task/runtime/context manifest/indexes 落在 `.project_os/`，并在需要时调用或遵守 `project-state-maintainer`、`project-flow-guard`、`project-version-curator` 的边界。
 
 维护文档的 canonical source 固定为：
 

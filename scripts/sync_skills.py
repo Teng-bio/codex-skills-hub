@@ -165,7 +165,7 @@ def write_inventory(items: list[dict[str, str]], *, apply: bool, actions: list[A
     tsv_lines = []
     from io import StringIO
     buf = StringIO()
-    writer = csv.DictWriter(buf, fieldnames=fields, delimiter='\t')
+    writer = csv.DictWriter(buf, fieldnames=fields, delimiter='\t', lineterminator='\n')
     writer.writeheader()
     for item in sorted(items, key=lambda x: (x['scope'], x['name'], x['source_id'])):
         writer.writerow({k: item.get(k, '') for k in fields})

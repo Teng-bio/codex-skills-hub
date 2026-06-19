@@ -1,0 +1,16 @@
+schema_version: 1
+project_os_dir: .project_os
+run_roots:
+  - runs
+  - analysis_runs
+human_entry_files:
+  - PROJECT_STATE.md
+  - DATA_ASSETS.md
+  - RESULTS_INDEX.md
+  - RUNS_INDEX.tsv
+  - DECISIONS.md
+promotion_requires_user_approval: true
+adapters:
+  codex: true
+  claude_code: false
+  opencode: false

@@ -62,12 +62,24 @@
 
 默认原则：能判断就直接选，不要求用户说具体 skill 名；只有“分析还是写作”会导致高风险误判时才追问。
 
+### 1.2 长期项目工作台请求
+
+当用户的问题不是具体生信分析/写作，而是“多个长期项目如何继续、run/result/data 怎么追踪、continue 到底继续哪个分支、如何做项目 harness/工作台”时，优先触发 `research-project-os`，不要用 `planning-with-files` 新建第二套主计划。
+
+| 用户说法 | 默认路线 | 原因 |
+|---|---|---|
+| “做一个 research-project-os harness” | `research-project-os` | 需要 `.project_os/` workflow/task/runtime/indexes |
+| “长期科研项目管理太乱了” | `research-project-os` + 只读 inventory | 先建立项目工作台和索引，不直接清理 |
+| “continue 当前任务但别猜分支” | `research-project-os` | 读取 `runtime/current_task`/`current_run` |
+| “run provenance 和结果采用状态怎么管” | `research-project-os`，必要时叠加 `project-flow-guard` | harness 管结构，flow-guard 管新 run/promotion 护栏 |
+
 ---
 
 ## 2. 一级路由表
 
 | 用户请求类型 | 优先触发 | 可叠加 | 不应触发 |
 |---|---|---|---|
+| 长期科研项目 harness / `.project_os` / runtime pointer / run-result-data 索引 | `research-project-os` | `project-state-maintainer`, `project-flow-guard`, `project-version-curator` | `planning-with-files` unless user explicitly asks for separate planning files |
 | 生信数据库事实查询 | `tooluniverse` | `pubmed-database`, `tooluniverse-sequence-retrieval`, `tooluniverse-protein-structure-retrieval` | `bio-paper-writing` |
 | PubMed/MeSH 文献检索 | `pubmed-database` | `auto-deep-research`, `tooluniverse-literature-deep-research` | `bio-polishing` |
 | 文献深度调研 | `tooluniverse-literature-deep-research` | `research-orchestrator`, `scientific-critical-thinking` | `bio-results-writing` |
