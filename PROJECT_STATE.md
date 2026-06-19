@@ -7,6 +7,7 @@ Personal GitHub-backed skill library for Codex/agent skills. It mirrors global a
 Maintain a structured local skill library for research workflows, with a clear two-lane bioinformatics architecture: evidence/analysis orchestration and manuscript-writing support.
 
 ## Current Status
+- 2026-06-19: Committed and pushed `research-project-os` to GitHub at commit `b7d5077` (`feat(skills): add research project os harness`).
 - 2026-06-19: Installed `research-project-os` into `/home/teng/.codex/skills/research-project-os` and refreshed the hub mirror, so fresh Codex sessions should be able to discover it after skill metadata reload.
 - 2026-06-19: Real-project adoption smoke test completed in `/home/teng/pingtai_final_20260430`: `.project_os/` was initialized with an active task `20260619_nmr_gcf_poc`, context manifest linked to the existing NMR-GCF planning hierarchy, indexes were refreshed, and `project_os.py validate` passed with 0 errors / 0 warnings.
 - 2026-06-19: Implemented `skills/local/research-project-os/` Milestone 1: concise router `SKILL.md`, schema/policy references, `.project_os` templates, and stdlib Python CLI covering init/status/validate/create-task/set-current-task/create-run/close-run/register-result/promote-result/refresh-indexes. Smoke test on a temporary project passed with 0 validation errors and 0 warnings.
@@ -81,13 +82,13 @@ Maintain a structured local skill library for research workflows, with a clear t
 - Ran validation, dry-run sync, apply sync, second validation, and registry grep checks.
 
 ## Open Problems
-- `research-project-os` is implemented, installed to the global Codex skill directory, and smoke-tested, but is not yet committed/pushed or packaged as a plugin.
+- `research-project-os` is implemented, installed to the global Codex skill directory, smoke-tested, committed, and pushed; it is not yet packaged as a plugin.
 - No real-project smoke test has yet been run through the full `EVIDENCE_PACK.md -> writing skill` handoff.
 - The current active Codex session's listed skills may remain stale until a fresh session reloads local/global skill metadata.
 - The background auto-upload service is documented but not currently enabled by default.
 
 ## Next Step
-- Commit/push the hub changes, then start a fresh Codex session later to confirm `research-project-os` appears in the available skill list.
+- Start a fresh Codex session later to confirm `research-project-os` appears in the available skill list; plugin packaging remains optional future work.
 - Commit the auto-routing enhancement if accepted.
 - In a fresh Codex session, test natural prompts for boundary routing:
   - “这些结果能不能写文章” -> `bio-research-auto-router` -> `bioinfo-evidence-orchestrator`
@@ -98,4 +99,4 @@ Maintain a structured local skill library for research workflows, with a clear t
   - “审稿人质疑batch effect怎么回” -> `bio-reviewer-response`
 
 ## Resume Prompt
-Bioinformatics skill refactor is implemented in `codex-skills-hub`: natural-language auto-router, evidence orchestrator, and seven writing-line skills. `research-project-os` Milestone 1 is implemented under `skills/local/research-project-os/`, installed to `/home/teng/.codex/skills/research-project-os`, mirrored under `skills/global/research-project-os/`, and both temp-project and `/home/teng/pingtai_final_20260430` smoke adoption pass validation. Next step is commit/push and then verify in a fresh session that the skill auto-loads.
+Bioinformatics skill refactor is implemented in `codex-skills-hub`: natural-language auto-router, evidence orchestrator, and seven writing-line skills. `research-project-os` Milestone 1 is implemented under `skills/local/research-project-os/`, installed to `/home/teng/.codex/skills/research-project-os`, mirrored under `skills/global/research-project-os/`, smoke-tested on temp and real projects, and pushed to GitHub at commit `b7d5077`. Next step is verifying in a fresh session that the skill auto-loads.
