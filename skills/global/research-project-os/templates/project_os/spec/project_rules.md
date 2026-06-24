@@ -1,3 +1,3 @@
 # Project rules
 
-Customize this file for the project. Keep canonical facts in root human entry files and `.project_os/` indexes.
+Link project-specific rules here. Keep canonical machine state in `.project_os/`.

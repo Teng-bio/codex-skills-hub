@@ -1,3 +1,15 @@
 # Release packaging policy
 
-Customize this file for the project. Keep canonical facts in root human entry files and `.project_os/` indexes.
+Release packages should be built from explicit accepted/current result IDs.
+
+Default package layout:
+
+```text
+release/<release_id>/
+  README.md
+  MANIFEST.tsv
+  CHECKSUMS.tsv
+  artifacts/
+```
+
+Use `build-release` as dry-run first, then `--apply --approved` only after the selected results are confirmed.

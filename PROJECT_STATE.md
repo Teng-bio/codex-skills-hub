@@ -4,99 +4,206 @@
 Personal GitHub-backed skill library for Codex/agent skills. It mirrors global and workspace skills, stores locally authored skills, and provides safe sync/validation automation.
 
 ## Current Goal
-Maintain a structured local skill library for research workflows, with a clear two-lane bioinformatics architecture: evidence/analysis orchestration and manuscript-writing support.
+Build the full core `research-project-os` harness according to `docs/RESEARCH_PROJECT_OS_COMPLETE_DEVELOPMENT_PLAN.md`. The canonical plan now includes the review-adopted P0/P1 baseline, branch-first workspace, task/run/result lifecycle, doctor/validate, short-trigger routing, Codex/Claude adapters, status/summarize-state runtime and current-result summaries, direct promotion/release/restore-journal approval gates, generated dashboard graph/session/current-result/promotion-audit views, read-only current-result short-trigger routing, migration hardening, the P2.1 manual report-only hooks dispatcher foundation, the P2.2 sessionized runtime focus slice including pause/resume lifecycle plus report-only session cleanup planning, and the P2.3 report-only recovery inspection planner foundation. Active automatic hooks, plugin packaging, richer editable/dashboard UI, broader adapters, full crash replay/rollback automation, and physical session archive/GC remain deferred extension layers.
 
 ## Current Status
-- 2026-06-19: Committed and pushed `research-project-os` to GitHub at commit `b7d5077` (`feat(skills): add research project os harness`).
-- 2026-06-19: Installed `research-project-os` into `/home/teng/.codex/skills/research-project-os` and refreshed the hub mirror, so fresh Codex sessions should be able to discover it after skill metadata reload.
-- 2026-06-19: Real-project adoption smoke test completed in `/home/teng/pingtai_final_20260430`: `.project_os/` was initialized with an active task `20260619_nmr_gcf_poc`, context manifest linked to the existing NMR-GCF planning hierarchy, indexes were refreshed, and `project_os.py validate` passed with 0 errors / 0 warnings.
-- 2026-06-19: Implemented `skills/local/research-project-os/` Milestone 1: concise router `SKILL.md`, schema/policy references, `.project_os` templates, and stdlib Python CLI covering init/status/validate/create-task/set-current-task/create-run/close-run/register-result/promote-result/refresh-indexes. Smoke test on a temporary project passed with 0 validation errors and 0 warnings.
-- 2026-06-19: Added a researched implementation plan for `research-project-os` as a Trellis-style repository-local harness plus small skill suite, rather than one oversized skill. The plan incorporates Trellis workflow/task/runtime ideas, Codex official skill/plugin/AGENTS/hooks/subagent boundaries, and scientific run provenance / FAIR / RO-Crate principles.
-- Hub validation reports 68 skills, 0 errors, and 11 known credential-word warnings from existing mirrored skills only.
-- `nature-skills` is clean and is no longer used as the implementation target for this refactor.
-- Natural-language auto routing is implemented as `skills/local/bio-research-auto-router/`.
-- Bioinformatics evidence line is implemented as `skills/local/bioinfo-evidence-orchestrator/`.
-- Bioinformatics writing line is implemented as:
-  - `bio-paper-writing`
-  - `bio-results-writing`
-  - `bio-methods-writing`
-  - `bio-polishing`
-  - `bio-reviewer-response`
-  - `bio-data-code-availability`
-  - `bio-paper2ppt`
-- Added natural-language routing so users can write vague prompts without naming skills.
-- The bio routing/writing skills have also been installed to `/home/teng/.codex/skills` and `/home/teng/.agents/skills` for future-session auto-triggering.
-- Registry files have been refreshed with `python3 scripts/sync_skills.py --apply`.
+- 2026-06-24: Re-ran the disposable `research-project-os` E2E smoke after coverage/state documentation updates: 119 commands, 7 expected approval-gate failures, main fixture validate 0 errors / 0 warnings, external asset roles backup/mirror/primary.
+- 2026-06-24: Added an explicit E2E coverage audit for `research-project-os`: `smoke_project_os_e2e.py` now covers all 80 public `project_os.py` subcommands, including approval-gate negative paths and no-hardlink/no-symlink external asset checks.
+- 2026-06-24: Implemented the external asset portability slice for `research-project-os`: added `asset_locations.tsv`, `external_assets` config, `list-asset-locations`, `plan-externalize-assets`, `externalize-asset`, and `verify-external-assets`, plus router/integrity/dashboard/view integration.
+- 2026-06-24: Locked the externalization design to a portable contract: hard links are forbidden, symlinks are optional non-canonical compatibility only, and canonical recovery must resolve via `asset_id + .project_os/indexes/asset_locations.tsv`.
+- 2026-06-24: Externalization behavior is now `copy/move + checksum verify + asset/location registration + old-path mapping report`; it does not create hardlinks, does not create symlinks, and does not auto-rewrite scripts/run manifests/root docs.
+- 2026-06-24: Temporary-project smoke for externalization passed end-to-end: `plan-externalize-assets`, `externalize-asset` dry-run/apply, `verify-external-assets --checksum`, `list-asset-locations`, `doctor`, and `validate` all behaved as intended.
+- 2026-06-24: Post-smoke consistency fix landed in `_assets.py`: CLI-supplied external roots now propagate into `asset_locations.tsv` `storage_root`, and `refresh-assets` / primary-location sync no longer overwrite richer primary-location notes produced by `externalize-asset`.
+- 2026-06-24: Non-destructive pilot inspection for `/home/teng/BGCdetection/target_BGC_mining/typeII_pks` found that the project has no `.project_os/` harness yet, the target 9.1G FAA exists at `/media/teng/HP_P900/bgcdetecttion/typeiipks/target_all_faa.renamed_for_Chen2022_HMMER.faa`, there are 49 basename references to the FAA, 8 exact old absolute-path references to the older in-project run input copy, and 1 broken symlink pointing at the missing in-project FAA path.
+- 2026-06-23: `docs/RESEARCH_PROJECT_OS_COMPLETE_DEVELOPMENT_PLAN.md` remains the canonical roadmap with review-adopted P0/P1/P2 decisions.
+- 2026-06-23: Implemented the first P0 branch-first CLI vertical slice in `skills/local/research-project-os/scripts/project_os.py`.
+- 2026-06-23: `new-project` / `init` now create `.project_os/project.json`, `.project_os/journals/events.jsonl`, `.project_os/branches/main/`, `runs/main/`, `current/branches/main/`, and branch-aware indexes.
+- 2026-06-23: Added branch commands, branch-local task creation, branch-aware run creation, result registration/promotion, Codex+Claude thin adapters, and branch-aware start/status/doctor/validate/list/show commands.
+- 2026-06-23: Temporary-project P0 smoke passed through branch -> task -> run -> result -> promotion -> refresh -> start -> doctor -> validate; validate returned 0 errors.
+- 2026-06-23: Added P1/P0-adjacent asset registry, run provenance appenders, decision/handoff commands, and release packaging commands.
+- 2026-06-23: Temporary-project smoke for asset -> run input -> accepted result -> release package -> decision/handoff -> validate/doctor passed with 0 validate errors.
+- 2026-06-23: Added result lifecycle helpers, task/context helpers, `update-run`, and guarded flat -> branch-first migration command; migration smoke passed after legacy task default patching.
+- 2026-06-23: Added integrity hardening: `doctor --repair-plan`, derived-view drift checks, dependency/replacement DAG checks, event reference checks, advisory write lock, task dependency commands, and run close `RUN_SUMMARY.md`.
+- 2026-06-23: Added run parameter/environment capture and migration index-upgrade support for old `tasks.tsv` / `runs.tsv` / `results.tsv` headers.
+- 2026-06-23: Added a deterministic short-trigger planning surface: `project_os.py route` / `explain-trigger` now maps compact phrases such as `开工`, `新建分支`, `开始运行`, `记录结果`, and `设为当前结果` to intents, missing fields, safety gates, planned CLI commands, and verification commands without directly editing files.
+- 2026-06-23: Started P1.11 code splitting by extracting the short-trigger router into `skills/local/research-project-os/scripts/_router.py`.
+- 2026-06-23: Added `export-dashboard` generated views: `.project_os/exports/dashboard.json`, `.project_os/exports/dashboard.html`, and optional `.project_os/exports/dashboard.sqlite`; these remain derived, non-canonical outputs.
+- 2026-06-23: Continued P1.11 splitting by extracting dashboard/export implementation to `skills/local/research-project-os/scripts/_export.py` while keeping `project_os.py export-dashboard` as the public CLI.
+- 2026-06-23: Hardened flat -> branch-first migration: old run manifest required fields, task link-table headers, result branch/task/run backfill, and migrated artifact path rewriting now pass migration smoke with validate 0 errors / 0 warnings.
+- 2026-06-23: Continued P1.11 module splitting by extracting shared schema/constants/templates into `skills/local/research-project-os/scripts/_schema.py`; core and migration smoke still pass after the split.
+- 2026-06-23: Continued P1.11 module splitting by extracting path helpers to `skills/local/research-project-os/scripts/_paths.py` and IO/event/pointer/lock helpers to `skills/local/research-project-os/scripts/_project_io.py`; avoided Python built-in `_io` name collision.
+- 2026-06-23: Continued P1.11 module splitting by extracting integrity/repair-plan helpers to `skills/local/research-project-os/scripts/_integrity.py` and derived human-view generators to `skills/local/research-project-os/scripts/_views.py`; validate/doctor/refresh-indexes smoke still pass.
+- 2026-06-23: Added the hooks reservation contract without implementing an active dispatcher: `references/hooks_contract.md`, template `.project_os/spec/hooks.md`, and a default-disabled `hooks:` config block now define future hook boundaries.
+- 2026-06-23: Continued P1.11 command-group splitting by extracting result lifecycle and release packaging commands into `skills/local/research-project-os/scripts/_result_release.py`; result promotion and release smoke still passes.
+- 2026-06-23: Continued P1.11 command-group splitting by extracting task lifecycle and run provenance commands into `skills/local/research-project-os/scripts/_task_run.py`; full task/run/result/release smoke passed with validate 0 errors / 0 warnings and doctor `ok=true`.
+- 2026-06-23: Continued P1.11 command-group splitting by extracting asset registry/checksum/usage commands and helpers into `skills/local/research-project-os/scripts/_assets.py`; asset split smoke passed with validate 0 errors / 0 warnings and doctor `ok=true`.
+- 2026-06-23: Continued P1.11 command-group splitting by extracting decision journal, handoff, and state summary commands into `skills/local/research-project-os/scripts/_decision_handoff.py`; decision/handoff smoke passed with validate 0 errors / 0 warnings and doctor `ok=true`.
+- 2026-06-23: Continued P1.11 command-group splitting by extracting project bootstrap, status/start, adapter installation, refresh-indexes, and branch commands into `skills/local/research-project-os/scripts/_project_branch.py`; bootstrap/branch/adapter smoke passed with validate 0 errors / 0 warnings and doctor `ok=true`.
+- 2026-06-23: Continued P1.11 command-group splitting by extracting flat -> branch-first adoption/migration logic into `skills/local/research-project-os/scripts/_migration.py`; dry-run diagnostics now expose summary/conflicts/warnings/`safe_to_apply` before apply.
+- 2026-06-23: Continued P1.11 command-group splitting by extracting `validate` / `doctor` command bodies into `skills/local/research-project-os/scripts/_health.py`; health smoke passed with validate 0 errors / 0 warnings and doctor `ok=true`.
+- 2026-06-23: Enhanced current/result derived views: `show-current --scope all|project|branch --audit` now separates project-level and branch-level current targets and reports basic promotion audit warnings; `RESULTS_INDEX.md` includes Current views.
+- 2026-06-23: Integrated promotion audit into `validate` / `doctor --repair-plan`; missing current targets, duplicate current targets, and unscoped current rows are now surfaced as health warnings with repair-plan guidance.
+- 2026-06-23: Enhanced `export-dashboard` with a derived graph view: dashboard JSON/HTML/SQLite now include task/run/result/current-target/asset/release nodes and provenance edges while remaining non-canonical generated output.
+- 2026-06-23: Added journal/current snapshot audit to `validate` / `doctor --repair-plan`: event references to missing objects and non-legacy snapshot rows without lifecycle event coverage now surface as non-destructive warnings.
+- 2026-06-23: Final post-split checks passed: `python3 -m py_compile` for the CLI/modules, `python3 scripts/validate_skills.py` returned 70 skills / 0 errors / 11 existing warnings, and `python3 scripts/sync_skills.py --dry-run` reported total 679 / ok 592 / skip 65 / update 20 / write 2.
+- 2026-06-24: Completed P1 run lifecycle provenance enhancement: `capture-run-env --pip-freeze --freeze-file` writes a run-local freeze file and records `environment.package_capture`; `close-run` now writes a detailed generated `RUN_SUMMARY.md`.
+- 2026-06-24: Real legacy harness adoption dogfood found and fixed a migration blocker for old flat `.project_os` projects missing branch-first scaffold; dry-run now reports scaffold/branch repairs and copied real-project migration validates cleanly.
+- 2026-06-24: Extended migration/adoption scaffold hardening for partially migrated legacy harnesses: `migrate-branch-first` can now plan/apply missing `.project_os/spec/*.md`, root entry files, runtime/current/release directories, branch subdirectories, and incomplete branch manifests; partial synthetic dogfood and a copied real-project migration both validate with 0 errors / 0 warnings.
+- 2026-06-24: Hardened migration diagnostics for hand-edited legacy manifests: dry-run now blocks on malformed task/run/branch manifests, task/run ID mismatches, task/run branch mismatches, and duplicate result IDs; it also warns when result/task/run provenance cannot be inferred, while still allowing external artifact paths when task-local result links provide `run_id`.
+- 2026-06-24: Continued real-project migration dogfood for repeated migration `target_exists` / `--replace`, `--mode move`, and `analysis_runs/` unusual roots; fixed legacy run manifest provenance preservation so old dict/string/list `inputs`, `commands`, `outputs`, `promoted`, and `key_results` are normalized and retained instead of dropped, with dry-run `manifest_repairs` exposing the normalization.
+- 2026-06-24: Added explicit cross-branch legacy migration mode: `migrate-branch-first --preserve-manifest-branches` now preserves trustworthy legacy manifest `branch_id` values, plans `planned_branches`, creates per-branch physical directories, and rewrites run/result/link paths per branch; default mode remains conservative and blocks branch mismatches.
+- 2026-06-24: Hardened short-trigger routing after P1 dogfood: `route` / `explain-trigger` now pass `--pip-freeze` / `--freeze-file` through to `capture-run-env`, and promotion/release `route --apply` plans remain non-ready unless paired with explicit `--approved`.
+- 2026-06-24: Completed a P1 documentation/template contract convergence pass: `harness_contract.md` now separates canonical machine state from root human derived/handoff views; `project_adoption.md` now routes fresh init vs flat/partial/mixed harness migration explicitly; `_schema.py` built-in spec templates now match `templates/project_os/spec/*.md` so new projects receive current run/current/journal audit policies.
+- 2026-06-24: Updated routing-facing docs (`docs/SKILL_ROUTING_MATRIX.md` and README recommended workflow) so long project prompts route to branch-first `research-project-os`, `project_os.py route`, canonical indexes, and derived root views instead of manual root-index edits.
+- 2026-06-24: Cleaned the residual bioinfo/writing routing doc so long-running project workbench / continuation / provenance routes to `research-project-os` or `project-skeleton`, while `planning-with-files` remains for temporary multi-step tasks without `.project_os`.
+- 2026-06-24: Final non-destructive validation after the routing cleanup passed: py_compile for `research-project-os` scripts, `git diff --check`, `validate_skills.py` with 70 skills / 0 errors / 11 existing warnings, and `sync_skills.py --dry-run` total 679 / ok 592 / skip 65 / update 20 / write 2.
+- 2026-06-24: Implemented the P2.2 sessionized runtime focus slice: `.project_os/runtime/current_session`, `.project_os/runtime/sessions/<session_id>/current_branch|current_task|current_run`, session manifests, session CLI commands, session-aware pointer reads/writes, session validation, dashboard session summary, and short-trigger routes for `新建会话` / `切会话`.
+- 2026-06-24: Final non-destructive validation after session documentation sync passed: `python3 -m py_compile skills/local/research-project-os/scripts/*.py`, `git diff --check`, `python3 scripts/validate_skills.py` with 70 skills / 0 errors / 11 existing warnings, and `python3 scripts/sync_skills.py --dry-run` total 679 / ok 592 / skip 65 / update 20 / write 2.
+- 2026-06-24: Implemented the P2.1 manual report-only hooks dispatcher foundation: `_hooks.py`, `list-hooks`, `dispatch-hooks`, generated hook reports under `.project_os/exports/hooks/`, hook short-trigger routes, and updated hooks/event-journal docs; active automatic hooks remain disabled and do not execute suggested commands or write canonical state.
+- 2026-06-24: Updated the complete development plan, `short_trigger_router.md`, `docs/SKILL_ROUTING_MATRIX.md`, `lifecycle_events.md`, hooks templates, `_schema.py`, `progress.md`, `findings.md`, and `task_plan.md` so P2.1 is documented as manual/report-only rather than merely reserved.
+- 2026-06-24: Final non-destructive validation after manual hooks dispatcher documentation sync passed: `python3 -m py_compile skills/local/research-project-os/scripts/*.py`, `git diff --check`, `python3 scripts/validate_skills.py` with 70 skills / 0 errors / 11 existing warnings, and `python3 scripts/sync_skills.py --dry-run` total 679 / ok 592 / skip 65 / update 20 / write 2.
+- 2026-06-24: Hardened the `hook提醒` short-trigger route so it plans `dispatch-hooks --kind reminder` by default; targeted route smoke passed.
+- 2026-06-24: Final non-destructive validation after the `hook提醒` route consistency fix passed: targeted route smoke, `python3 -m py_compile skills/local/research-project-os/scripts/*.py`, `git diff --check`, `python3 scripts/validate_skills.py` with 70 skills / 0 errors / 11 existing warnings, and `python3 scripts/sync_skills.py --dry-run` total 679 / ok 592 / skip 65 / update 20 / write 2.
+- 2026-06-24: Hardened hooks short-trigger route parameter parity: `route` / `explain-trigger` can now plan `dispatch-hooks` with `--event-index`, `--event`, `--limit`, `--kind`, `--write-report`, and `--output` while preserving the manual/report-only and generated-view-only safety boundary.
+- 2026-06-24: Final non-destructive validation after hooks route parameter parity passed: targeted route smoke, `python3 -m py_compile skills/local/research-project-os/scripts/*.py`, `git diff --check`, `python3 scripts/validate_skills.py` with 70 skills / 0 errors / 11 existing warnings, and `python3 scripts/sync_skills.py --dry-run` total 679 / ok 592 / skip 65 / update 20 / write 2.
+- 2026-06-24: Extended P2.2 session lifecycle with `pause-session` and `resume-session`, `session.paused` / `session.resumed` events, route support for `暂停会话` / `恢复会话`, and validation that `current_session` cannot point to a paused or closed session.
+- 2026-06-24: Final non-destructive validation after session pause/resume lifecycle passed: targeted session lifecycle smoke, `python3 -m py_compile skills/local/research-project-os/scripts/*.py`, `git diff --check`, `python3 scripts/validate_skills.py` with 70 skills / 0 errors / 11 existing warnings, and `python3 scripts/sync_skills.py --dry-run` total 679 / ok 592 / skip 65 / update 20 / write 2.
+- 2026-06-24: Enhanced generated dashboard session focus views: dashboard JSON now includes `session_focus`, graph includes session nodes plus focus edges, HTML renders session cards/status counts, and SQLite exports `session_focus` / `sessions` tables while staying generated-only.
+- 2026-06-24: Added a report-only session archive/GC planner: `plan-session-cleanup` lists closed/paused session cleanup candidates, supports status/age/current filters and optional generated JSON reports under `.project_os/exports/session_cleanup/`, and is exposed through the `会话清理` short-trigger route without deleting, moving, or rewriting session directories.
+- 2026-06-24: Extended generated dashboard and doctor advisory surfaces for session cleanup: `export-dashboard` now includes `session_cleanup` JSON/HTML/SQLite candidate views, and `doctor --repair-plan` can suggest report-only `plan-session-cleanup --write-report` when closed session candidates exist.
+- 2026-06-24: Hardened hooks generated/advisory surfaces: `export-dashboard` now includes hooks status/config/event-source/report-count views and SQLite `hooks_status` / `hooks_allowed_kinds`; `validate` / `doctor --repair-plan` warn on accidental active dispatcher config, unknown hook kinds, or missing event source without enabling automatic hooks.
+- 2026-06-24: Dogfooded `migrate-branch-first` on `/tmp` copies of real project `/home/teng/pingtai_final_20260430`; dry-run/copy/move/repeated target_exists/`--replace` scenarios passed, migrated copies validate with 0 errors / 0 warnings and `start` resumes `main` / `20260619_nmr_gcf_poc`.
+- 2026-06-24: Hardened migration JSON output by mirroring `summary`, `conflicts`, `warnings`, and `safe_to_apply` at the top level of dry-run/apply payloads; `doctor --repair-plan` now suggests concrete `install-adapters --platforms codex|claude --apply` commands for missing adapters.
+- 2026-06-24: Added `restore-journal` as a minimal, approval-gated missing event-journal repair entry; `doctor --repair-plan` and short trigger `恢复事件日志` now route to it, while historical lifecycle reconstruction remains manual/provenance review only.
+- 2026-06-24: Added `plan-recovery` as the P2.3 report-only recovery inspection foundation; it reports stale locks, tmp leftovers, malformed journals, missing paths, pointer/index drift, and stale generated views without replay/rollback/delete/lock removal.
+- 2026-06-24: Enhanced P2.4 generated dashboard exports with `current_results` current/project/branch result views and promotion audit summaries in JSON/HTML/SQLite; SQLite now includes `current_results_status`, `current_results`, `current_result_branch_counts`, and `promotion_audit` as derived inspection tables only.
+- 2026-06-24: Added a read-only current-result short-trigger route: `当前结果` / `查看当前结果` resolves to `show-current --scope <all|project|branch> --audit` and remains distinct from approval-gated `设为当前结果` promotion.
+- 2026-06-24: Aligned `summarize-state` with sessionized runtime focus and current-result inspection: it now reports `runtime_focus` plus read-only `current_results` counts/rows/audit-warning counts derived from `results.tsv` and `current/` targets.
+- 2026-06-24: Hardened `status` as a read-only operational snapshot: it now reports session-aware `runtime_focus`, active/open/last run summary, candidate/accepted/current result summary, current branch/project result rows, and promotion-audit warning counts without refreshing indexes or writing canonical state.
+- 2026-06-24: Hardened direct promotion/release/restore-journal approval gates: `promote-result --apply` and `build-release --apply` now require explicit `--approved`, while dry-runs remain approval-free and router planned commands carry `--approved` when ready.
+- 2026-06-24: Extended direct approval-gate hardening to `restore-journal --apply`: direct CLI now requires `--approved`, router planned commands pass `--approved`, and doctor/recovery missing-journal suggestions now include `--apply --approved`.
 
 ## Key Paths
-- /home/teng/.codex/skills/research-project-os/
-- skills/global/research-project-os/
+- docs/RESEARCH_PROJECT_OS_COMPLETE_DEVELOPMENT_PLAN.md
+- docs/RESEARCH_PROJECT_OS_PLAN_REVIEW.md
+- docs/RESEARCH_PROJECT_OS_REVIEW.md
 - docs/RESEARCH_PROJECT_OS_HARNESS_IMPLEMENTATION_PLAN.md
+- docs/RESEARCH_PROJECT_OS_BRANCH_FIRST_ARCHITECTURE.md
+- docs/RESEARCH_PROJECT_OS_BRANCH_FIRST_SCHEMAS.md
+- docs/RESEARCH_PROJECT_OS_E2E_COVERAGE.md
+- task_plan.md
+- findings.md
+- progress.md
 - skills/local/research-project-os/SKILL.md
 - skills/local/research-project-os/references/
 - skills/local/research-project-os/templates/project_os/
 - skills/local/research-project-os/scripts/project_os.py
-- docs/BIOINFO_WRITING_REFACTOR_PLAN.md
-- docs/SKILL_ROUTING_MATRIX.md
-- task_plan.md
-- findings.md
-- progress.md
-- skills/local/bio-research-auto-router/SKILL.md
-- skills/local/bioinfo-evidence-orchestrator/SKILL.md
-- skills/local/bio-paper-writing/SKILL.md
-- skills/local/bio-results-writing/SKILL.md
-- skills/local/bio-methods-writing/SKILL.md
-- skills/local/bio-polishing/SKILL.md
-- skills/local/bio-reviewer-response/SKILL.md
-- skills/local/bio-data-code-availability/SKILL.md
-- skills/local/bio-paper2ppt/SKILL.md
+- skills/local/research-project-os/scripts/smoke_project_os_e2e.py
+- skills/local/research-project-os/scripts/_recovery.py
+- skills/local/research-project-os/scripts/_export.py
+- skills/local/research-project-os/scripts/_router.py
+- skills/local/project-skeleton/SKILL.md
+- README.md
 - registry/SKILL_INVENTORY.tsv
 - registry/skills.json
 
 ## Decisions
-- `research-project-os` should be implemented as a repository-local harness/workspace under `.project_os/` plus a concise `research-project-os` router skill and deterministic CLI/scripts; project facts belong in `.project_os/` and root human entry files, not in a giant `SKILL.md`.
-- Initial implementation should start with one thin router skill plus references/templates/scripts, then split into `project-os-run/result/data/release/profile` subskills only after real-project smoke tests stabilize the boundaries.
-- 生信 Agent 负责事实和证据，不写论文。
-- 写作 Skill 负责表达和投稿材料，不跑分析。
-- `EVIDENCE_PACK.md` is the handoff contract between the evidence line and writing line.
-- Existing `tooluniverse-*`, `pubmed-database`, `literature-method-data-miner`, `scientific-critical-thinking`, visualization, and reproduction skills remain the analysis/database layer; new bio skills do not duplicate them.
-- Writing tasks are split by product type to avoid one oversized manuscript-writing skill.
+- Use `docs/RESEARCH_PROJECT_OS_COMPLETE_DEVELOPMENT_PLAN.md` as the canonical roadmap; older harness/branch/schema docs and `task_plan.md` are historical/detailed references only.
+- Adopt project-wide unique `task_id`, `run_id`, and `result_id`; keep `branch_id` in every row for ownership, not as a composite primary key.
+- Treat `.project_os/indexes/*.tsv` as canonical machine registries; root `RUNS_INDEX.tsv`, `RESULTS_INDEX.md`, and `DATA_ASSETS.md` are derived human views.
+- Add `.project_os/project.json` as the project identity/schema anchor and `.project_os/journals/events.jsonl` as the append-only lifecycle event journal.
+- Large-asset canonical recovery must be portable: do not depend on hard links, inode/device semantics, mount layout, or symlink presence; recover through `asset_id + asset_locations.tsv`.
+- Runtime focus now supports both legacy global pointers and optional session pointers: when `.project_os/runtime/current_session` is empty, commands use global `current_branch/current_task/current_run`; when set, commands read/write `.project_os/runtime/sessions/<session_id>/current_*`. Session lifecycle states are `active`, `paused`, and `closed`; paused/closed sessions cannot become the active current session.
+- Hooks are not discarded: current implementation has event-source/config/spec interfaces plus a manual report-only dispatcher (`list-hooks` / `dispatch-hooks`); active automatic handlers remain disabled until after more real-project dogfooding and explicit opt-in design.
+- Crash/recovery automation is not enabled: current implementation has only a report-only `plan-recovery` inspection layer; full WAL replay, rollback, tmp deletion, and lock removal remain deferred and must be explicitly designed/gated.
+- Implement Codex and Claude thin adapters first; plugin packaging and broader adapters are later distribution/integration layers.
 
 ## Recent Changes
-- Installed `research-project-os` to `/home/teng/.codex/skills/` and re-ran `scripts/sync_skills.py --apply`, adding the global mirror entry under `skills/global/research-project-os/`.
-- Fixed `scripts/sync_skills.py` to generate `registry/SKILL_INVENTORY.tsv` with LF line endings instead of csv default CRLF, removing `git diff --check` trailing-whitespace warnings from generated TSV diffs.
-- Real-adopted `research-project-os` into `/home/teng/pingtai_final_20260430` without replacing that project's `AGENTS.md`, `PROJECT_STATE.md`, or authoritative NMR-GCF plans; the project harness now has runtime pointers, task context, `RUNS_INDEX.tsv`, and `RESULTS_INDEX.md`.
-- Created `research-project-os` local skill with 44 files and refreshed `registry/SKILL_INVENTORY.tsv` / `registry/skills.json` via `python3 scripts/sync_skills.py --apply`.
-- Added README and `docs/SKILL_ROUTING_MATRIX.md` entries for `research-project-os` routing and its boundary with `planning-with-files`, `project-state-maintainer`, `project-flow-guard`, and `project-version-curator`.
-- Added `docs/RESEARCH_PROJECT_OS_HARNESS_IMPLEMENTATION_PLAN.md`, covering target `.project_os/` layout, schemas, CLI commands, Codex/Claude/OpenCode adapter policy, implementation milestones, and the planned workflow in `/home/teng/claude_code/codex-skills-hub`.
-- Added planning documents for the bioinformatics/writing refactor.
-- Added `bioinfo-evidence-orchestrator` plus an evidence-pack template.
-- Added `bio-paper-writing` plus references for evidence-pack intake, article types, and section workflows.
-- Added six specialized bio writing skills with one-level references where useful.
-- Added `bio-research-auto-router` for vague natural-language task selection.
-- Installed the bio skill suite into global user skill directories for automatic selection in future sessions.
-- Updated `README.md` so the GitHub landing page documents the bio auto-router, evidence line, writing line, and natural-language routing examples.
-- Fixed `scripts/new_skill.py` to use the running Python interpreter instead of assuming `python` exists.
-- Clarified that auto-upload requires either explicit `sync_skills.py --apply --commit --push` or an installed user service.
-- Updated planning/progress/findings files.
-- Ran validation, dry-run sync, apply sync, second validation, and registry grep checks.
+- Rewrote `skills/local/research-project-os/scripts/project_os.py` around branch-first schema, project identity, event journal, and core lifecycle commands.
+- Updated project_os templates (`workflow.md`, `config.yaml`, spec files, example task) to match the branch-first runtime contract.
+- Updated `research-project-os/SKILL.md` and `lifecycle_events.md` to reflect branch context loading, Codex+Claude adapters, and journal-backed lifecycle events.
+- Ran full temporary P0 smoke with promoted current result and verified doctor/validate success.
+- Extended `project_os.py` with `register-asset`, `add-run-input`, decision/handoff, and release package commands; generated `DATA_ASSETS.md`, `asset_usage.tsv`, release `MANIFEST.tsv`, `CHECKSUMS.tsv`, and release `README.md`.
+- Added `accept-result`, `supersede-result`, `show-current`, `update-task-stage`, `close-task`, `add-context`, `remove-context`, `update-run`, and `migrate-branch-first`.
+- Added `update-task`, `add-dependency`, `remove-dependency`, `doctor --repair-plan`, `.project_os/runtime/lock` advisory locking, `references/integrity_rules.md`, and run close summary generation.
+- Added `add-run-parameter`, `capture-run-env`, and migration patching for old index headers / missing branch-aware result fields.
+- Added `route` / `explain-trigger` as the CLI-backed short-trigger router and documented it in `short_trigger_router.md`, `SKILL.md`, the complete plan, `project-skeleton`, and README.
+- Extracted route planning implementation to `_router.py`, dashboard/export implementation to `_export.py`, shared schema/constants/templates to `_schema.py`, path helpers to `_paths.py`, IO/event/pointer/lock helpers to `_project_io.py`, integrity/repair-plan helpers to `_integrity.py`, derived view generation to `_views.py`, result/release command logic to `_result_release.py`, task/run command logic to `_task_run.py`, and asset command/helper logic to `_assets.py`; `project_os.py` remains the stable CLI facade.
+- Extracted decision/handoff/state summary command logic to `_decision_handoff.py`; `project_os.py` still owns argparse and stable public dispatch.
+- Extracted project/bootstrap/branch/adapter command logic to `_project_branch.py`; route/export wrappers still receive `project_os.py` as compatibility context and public CLI behavior remains unchanged.
+- Extracted migration/adoption command logic to `_migration.py`; dry-run migration now reports blocking conflicts, warnings, summary counts, and `safe_to_apply`.
+- Extracted validate/doctor command logic to `_health.py`; `_integrity.py` remains the reusable helper layer for integrity checks and repair-plan construction.
+- Enhanced `show-current` and generated `RESULTS_INDEX.md` with branch/project/all current views and basic promotion audit reporting while keeping `results.tsv` canonical.
+- Added promotion-audit warnings to health checks so current-target drift can be found without active hooks.
+- Enhanced `export-dashboard` graph output in `_export.py`: generated JSON exposes `graph.nodes` / `graph.edges`, HTML renders graph summary/tables, and SQLite exports `graph_nodes` / `graph_edges`.
+- Added journal/current snapshot coverage checks in `_integrity.py`, with legacy adoption handling and non-destructive repair-plan guidance.
+- Hardened `migrate-branch-first` to rewrite legacy run/result paths and normalize task link tables / run manifests during adoption.
+- Added hooks interface reservation docs/templates/config while keeping active hook execution out of P0/P1.
+- Enhanced run lifecycle provenance in `_task_run.py`: package freeze capture is persisted under the run directory, manifest metadata records capture details, and `RUN_SUMMARY.md` is now a detailed human handoff over the manifest.
+- Enhanced `_migration.py` after real-project dogfood: old flat harnesses lacking `project.json`, `events.jsonl`, branch workspace, and new index files/headers are now planned as scaffold/index repairs; legacy timezone-naive timestamps no longer crash journal snapshot comparison.
+- Enhanced `_migration.py` again after partial-migration dogfood: adoption scaffolding now covers spec templates, root human entry files, current/project and release directories, branch helper directories/files, and incomplete branch manifests so apply can pass strict `validate` without a separate `init --apply`.
+- Enhanced `_migration.py` hand-edited manifest diagnostics: dry-run now reports blocking conflicts for task/run ID or branch mismatch and malformed task/run/branch manifests, adds provenance warnings for unresolved result task/run links or run manifests pointing to missing tasks, and uses task-local `result_links.tsv` to backfill run provenance for artifacts outside `runs/`.
+- Enhanced `_migration.py` legacy provenance normalization: older run manifests that store dict inputs/outputs, scalar command lists, `promoted`, or `key_results` now preserve that information in current structured fields during migration; dry-run reports the normalization categories before apply.
+- Added `migrate-branch-first --preserve-manifest-branches` so flat legacy projects with multiple manifest branch IDs can be adopted into multiple branch-first physical workspaces without silently merging workstreams.
+- Recorded these implementation slices in `progress.md` and `findings.md`.
+- Updated `docs/RESEARCH_PROJECT_OS_COMPLETE_DEVELOPMENT_PLAN.md`, `project_adoption.md`, `task_plan.md`, `progress.md`, and `findings.md` with current migration/run lifecycle/adoption status.
+- Cleaned `docs/BIOINFO_WRITING_REFACTOR_PLAN.md` so it no longer describes `planning-with-files` as the default big-project kernel; the long-term harness boundary now matches README and `docs/SKILL_ROUTING_MATRIX.md`.
+- Updated `docs/RESEARCH_PROJECT_OS_COMPLETE_DEVELOPMENT_PLAN.md`, `progress.md`, and `findings.md` with the routing-boundary cleanup and final non-destructive validation results.
+- Added `_sessions.py` plus session-aware runtime pointer helpers in `_project_io.py`; exposed `create-session`, `set-current-session`, `list-sessions`, `show-session`, `set-session-focus`, and `close-session` through `project_os.py`; updated `research-project-os` / `project-skeleton` docs, templates, references, README, routing matrix, and the complete plan for sessionized focus.
+- Added `_hooks.py` and exposed `list-hooks` / `dispatch-hooks` through `project_os.py`; hooks consume `events.jsonl` and emit report-only session summary, reminder, opt-in maintenance, and guard-placeholder reports without writing canonical state.
+- Updated `short_trigger_router.md`, `docs/SKILL_ROUTING_MATRIX.md`, `lifecycle_events.md`, hooks templates, `_schema.py`, the complete development plan, `progress.md`, `findings.md`, and `task_plan.md` for the manual hooks dispatcher boundary.
+- Recorded final non-destructive validation results for the manual hooks dispatcher documentation sync; `sync_skills.py --dry-run` was not applied.
+- Adjusted `_router.py` so `hook提醒` maps to reminder-specific manual hook reports without requiring the user to pass `--kind reminder`.
+- Recorded final validation after the `hook提醒` route consistency fix; `sync_skills.py --dry-run` was not applied.
+- Extended route/explain-trigger argparse and `_router.py` so hook short triggers can target specific event journal lines/events and optionally plan generated hook report output without executing hooks or writing canonical state.
+- Recorded final non-destructive validation after hooks route parameter parity; `sync_skills.py --dry-run` was not applied.
+- Added `pause-session` / `resume-session` to `_sessions.py` and `project_os.py`; updated session short-trigger routes, lifecycle events, templates, README, routing matrix, and the complete plan for the paused/resumed session lifecycle boundary.
+- Recorded final non-destructive validation after session pause/resume lifecycle; `sync_skills.py --dry-run` was not applied.
+- Enhanced `_export.py` dashboard output so session focus is visible in JSON/HTML/SQLite and graph relationships without becoming editable or canonical state.
+- Added `plan-session-cleanup` to `_sessions.py` and `project_os.py`; updated session templates, route planning, README/routing docs, harness contract, complete plan, progress, and findings so session archive/GC starts as dry-run/report-only rather than physical cleanup.
+- Extended `_export.py`, `_health.py`, and `_integrity.py` so session cleanup candidates are visible in generated dashboard JSON/HTML/SQLite and as a warning-level doctor repair-plan suggestion without changing health success or physical session state.
+- Extended `_export.py`, `_health.py`, and `_integrity.py` so manual hooks status/config are visible in generated dashboard JSON/HTML/SQLite and as warning-level doctor/validate advisories while active automatic hooks remain disabled.
+- Final non-destructive validation after hooks dashboard/doctor advisory hardening passed: targeted clean/negative hooks smokes, `python3 -m py_compile skills/local/research-project-os/scripts/*.py`, `git diff --check`, `python3 scripts/validate_skills.py` with 70 skills / 0 errors / 11 existing warnings, and `python3 scripts/sync_skills.py --dry-run` total 679 / ok 592 / skip 65 / update 20 / write 2.
+- Dogfooded migration on `/tmp` copies of `/home/teng/pingtai_final_20260430`: dry-run showed safe top-level diagnostics, copy/move apply validated cleanly, repeated target-exists behaved correctly, and `start` resumed the branch-first task.
+- Updated `_migration.py` to mirror diagnostics at output top level and `_integrity.py` repair-plan logic so adapter warnings point to actionable `install-adapters` commands.
+- Updated `project_adoption.md`, README, `research-project-os/SKILL.md`, complete development plan, `progress.md`, `findings.md`, and `task_plan.md` for the real migration dogfood and diagnostics hardening.
+- Final non-destructive validation after real migration dogfood hardening passed: py_compile, `git diff --check`, `validate_skills.py` with 70 skills / 0 errors / 11 existing warnings, and `sync_skills.py --dry-run` total 679 / ok 592 / skip 65 / update 20 / write 2.
+- Added `restore-journal` to `_project_branch.py` / `project_os.py`; updated `_integrity.py`, `_health.py`, `_router.py`, and `_hooks.py` so missing default `events.jsonl` gets a precise repair-plan/route/hook-reminder path without enabling active hooks or crash replay.
+- Added `_recovery.py` and `project_os.py plan-recovery`; updated `_router.py`, `_health.py`, `_integrity.py`, `_export.py`, templates, references, README, routing matrix, and complete plan so recovery inspection is available as report-only generated output without mutating canonical state.
+- Enhanced `_export.py` so `export-dashboard` reuses current-result and promotion-audit helpers from `_views.py`, exposing current/project/branch results and audit warnings in generated JSON/HTML/SQLite without changing result promotion semantics or canonical state.
+- Added `show_current_results` short-trigger routing in `_router.py` / `project_os.py` and synchronized README, routing matrix, complete plan, `progress.md`, `findings.md`, and `task_plan.md`; the route is read-only and does not promote, repair, or write canonical state.
+- Updated `_decision_handoff.py` `summarize-state` output and synchronized the complete development plan, README, routing matrix, `research-project-os/SKILL.md`, `progress.md`, `findings.md`, and `task_plan.md` for session-aware runtime focus plus read-only current-result/audit summary.
+- Updated `_project_branch.py` `status` output and synchronized the complete development plan, README, routing matrix, `research-project-os/SKILL.md`, `PROJECT_STATE.md`, `progress.md`, `findings.md`, and `task_plan.md` for read-only runtime/run/result summary hardening.
+- Updated `project_os.py`, `_result_release.py`, and `_router.py` so direct promotion/release apply paths and route-planned promotion/release commands consistently require/pass `--approved`; synchronized specs/templates and user-facing docs.
+- Updated `project_os.py`, `_project_branch.py`, `_router.py`, `_integrity.py`, `_health.py`, and `_recovery.py` so direct `restore-journal --apply`, route-planned journal restoration, and missing-journal repair/recovery suggestions consistently require/pass `--approved`; synchronized docs/templates/state records.
+- Added portable externalization helpers and commands in `_assets.py` / `project_os.py`: `list-asset-locations`, `plan-externalize-assets`, `externalize-asset`, and `verify-external-assets`.
+- Updated external-asset schema/config/docs/templates/router/integrity/dashboard/view layers so `asset_locations.tsv` and `external_assets` are part of the harness contract.
+- Dogfooded externalization on temporary projects, then hardened `_assets.py` so configured-or-CLI external roots are preserved in `storage_root` metadata and primary-location notes survive later `refresh-assets` sync.
+- Performed a non-destructive pilot inspection for `/home/teng/BGCdetection/target_BGC_mining/typeII_pks`; the project still needs harness adoption before report-only `plan-externalize-assets` can be run in place.
+- Added `skills/local/research-project-os/scripts/smoke_project_os_e2e.py` as the repeatable disposable release smoke and recorded its CLI coverage in `docs/RESEARCH_PROJECT_OS_E2E_COVERAGE.md`; current audit shows 80/80 public subcommands covered.
 
 ## Open Problems
-- `research-project-os` is implemented, installed to the global Codex skill directory, smoke-tested, committed, and pushed; it is not yet packaged as a plugin.
-- No real-project smoke test has yet been run through the full `EVIDENCE_PACK.md -> writing skill` handoff.
-- The current active Codex session's listed skills may remain stale until a fresh session reloads local/global skill metadata.
-- The background auto-upload service is documented but not currently enabled by default.
+- Full objective is not complete: more real-project dogfooding, richer dashboard/UI polish, active automatic hooks dispatcher, plugin packaging, broader adapters, full crash replay/rollback automation, physical session archive/GC, and remaining P2 extensions remain.
+- The real pilot project `/home/teng/BGCdetection/target_BGC_mining/typeII_pks` is not yet adopted into `.project_os/`, so externalization there is currently limited to inspection plus harness-init/adoption dry-run planning.
+- The real pilot also contains pre-existing symlink-based convenience paths, including one broken FAA symlink; this confirms the design choice that recovery cannot rely on symlink presence.
+- Migration/adoption now passes synthetic normal/conflict-path/scaffold smokes, one partial-migrated synthetic trial, hand-edited manifest negative smoke, external artifact positive smoke, repeated target-exists/replace dogfood, `analysis_runs/` unusual-root dogfood, cross-branch legacy manifest dogfood, and copied real legacy project trials including `/home/teng/pingtai_final_20260430`; still needs more real project samples, especially real cross-branch old data or more heavily hand-edited manifests.
+- Need to keep detailed reference/schema docs synchronized with implementation as new changes land; the latest pass removed the main canonical/derived ambiguity, aligned `_schema.py` built-in spec templates with template files, and documented session runtime focus.
+- Need to keep `project_os.py` as a thin public CLI facade while avoiding over-splitting; most major command groups are now extracted and further splits should be dogfood-driven.
+- Need to keep unrelated global mirror sync changes separate from harness development commits.
 
 ## Next Step
-- Start a fresh Codex session later to confirm `research-project-os` appears in the available skill list; plugin packaging remains optional future work.
-- Commit the auto-routing enhancement if accepted.
-- In a fresh Codex session, test natural prompts for boundary routing:
-  - “这些结果能不能写文章” -> `bio-research-auto-router` -> `bioinfo-evidence-orchestrator`
-  - “帮我整理这个GSE数据写论文前的证据包” -> `bioinfo-evidence-orchestrator`
-  - “根据这个EVIDENCE_PACK写abstract” -> `bio-paper-writing`
-  - “根据这些图写Results” -> `bio-results-writing`
-  - “写Methods，材料如下” -> `bio-methods-writing`
-  - “审稿人质疑batch effect怎么回” -> `bio-reviewer-response`
+- Do a non-destructive adoption-first pilot for `/home/teng/BGCdetection/target_BGC_mining/typeII_pks`: keep `new-project`/`init` as dry-run only until explicitly approved, then run report-only externalization planning against the adopted harness.
+- Tighten the externalization adoption/report path so old absolute-path references, missing in-project copies, and broken symlink evidence can be summarized clearly for manual repair without automatic rewriting.
+- Continue dogfooding `migrate-branch-first` on additional real legacy projects beyond `/home/teng/pingtai_final_20260430`, especially real cross-branch old data and more heavily hand-edited manifests.
+- Keep code cleanup dogfood-driven only; major command groups are already split and the public CLI facade should remain stable.
+- Keep active automatic hooks and plugin packaging deferred; maintain the current hooks contract plus manual report-only dispatcher until CLI/file behavior is stable across more real projects.
+- Keep session archive/GC physical cleanup deferred; use `plan-session-cleanup` reports for review only.
+- If no more real project samples are available, do only small consistency hardening or generated-view/documentation alignment rather than adding new large features.
+- After restore-journal hardening, keep any further event-journal work limited to provenance review/reporting unless explicit full crash replay/recovery design is requested.
+- After hooks dashboard/doctor advisory hardening, continue with additional real-project migration/adoption dogfooding or similarly small consistency fixes; do not expand into active automatic hooks/plugin packaging yet.
+- After report-only recovery planner hardening, keep crash/recovery work limited to inspection/advisory unless explicit full WAL/replay/rollback design is requested.
+- After status/summarize-state current-result alignment, continue with additional real-project migration/adoption dogfooding or small consistency hardening; keep active hooks, plugin packaging, full WAL replay/rollback, and physical cleanup deferred.
+- After restore-journal direct approval-gate alignment, continue with real-project migration/adoption dogfooding or small consistency hardening; do not expand journal repair into historical reconstruction or crash replay.
 
 ## Resume Prompt
-Bioinformatics skill refactor is implemented in `codex-skills-hub`: natural-language auto-router, evidence orchestrator, and seven writing-line skills. `research-project-os` Milestone 1 is implemented under `skills/local/research-project-os/`, installed to `/home/teng/.codex/skills/research-project-os`, mirrored under `skills/global/research-project-os/`, smoke-tested on temp and real projects, and pushed to GitHub at commit `b7d5077`. Next step is verifying in a fresh session that the skill auto-loads.
+Continue `research-project-os` from the branch-first P0/P1 baseline plus manual hooks/session/dashboard/recovery/current-result slices and the new portable externalization layer; `status` and `summarize-state` now include session-aware runtime focus and read-only run/current-result/audit summaries, direct promotion/release/restore-journal apply paths require `--approved`, and large-asset recovery must resolve through `asset_id + asset_locations.tsv` rather than hardlinks/symlinks. Active automatic hooks, plugin packaging, full WAL replay/rollback, and physical cleanup remain deferred; next priority is adoption-first externalization dogfooding on real projects or similarly small consistency hardening.

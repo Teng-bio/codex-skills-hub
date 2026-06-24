@@ -84,7 +84,7 @@ python3 scripts/sync_skills.py --watch --apply --commit --push --interval 300
 
 ```
 /implement-paper
-/planning-with-files
+/research-project-os
 /bio-paper-writing
 /auto-deep-research
 /skill-library-publisher
@@ -97,7 +97,7 @@ codex-skills-hub/
 ├── skills/
 │   ├── global/           # 从 ~/.codex/skills 和 ~/.claude/skills 镜像
 │   │   ├── bio-*/        # 生信相关 skills
-│   │   ├── planning-with-files/
+│   │   ├── research-project-os/
 │   │   ├── auto-deep-research/
 │   │   └── ...
 │   ├── local/            # 本仓库原创 skills（优先创建位置）
@@ -116,7 +116,7 @@ codex-skills-hub/
 
 - **生信研究 skills**: bio-*, tooluniverse-*
 - **文献和论文 skills**: paper-*, literature-*, implement-paper
-- **通用开发 skills**: planning-with-files, project-*, grill-me
+- **通用开发 skills**: research-project-os, project-*, grill-me
 - **搜索和研究 skills**: auto-deep-research, answers, systematic-literature-review
 
 **注意**: CCG 相关的 skills 已被移除，因为它们是 Claude Code 特定的工具套件，不适合共享。

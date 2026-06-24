@@ -11,7 +11,7 @@ https://github.com/Teng-bio/codex-skills-hub.git
 ## 这个仓库解决什么问题
 
 - 把 `~/.codex/skills` 中的全局 skill 版本化备份。
-- 把全局 skill 和项目级 workspace skill 都纳入同一个 inventory；`planning-with-files` 已从试点 workspace 版本提升为全局 skill。
+- 把全局 skill 和项目级 workspace skill 纳入同一个 inventory；当前以 TypeII PKS / `.project_os/` 长期项目工作台为主，已移除会抢占路由的旧规划/状态/系统发育专项 skill。
 - 所有新写的自定义 skill 先放到 `skills/local/`，通过统一标准验证、同步、提交、推送。
 - 生成机器可读和人可读的 skill 清单：
   - `registry/SKILL_INVENTORY.tsv`
@@ -67,6 +67,14 @@ skills/local/<skill-name>/SKILL.md
 python3 scripts/validate_skills.py
 python3 scripts/sync_skills.py --apply --commit --push
 ```
+
+`research-project-os` 这种 harness 级 skill 还应运行可重复端到端 smoke：
+
+```bash
+python3 skills/local/research-project-os/scripts/smoke_project_os_e2e.py
+```
+
+该脚本只创建临时项目和临时 external primary/backup roots，覆盖 bootstrap、branch/session/task/run、asset/result/release、hooks/recovery、approval gates、no-hardlink 外置资产和最终 validate。
 
 面向用户可见的新 skill 还必须同步维护：
 
@@ -131,7 +139,7 @@ Codex 选择 skill 时主要依赖每个 `SKILL.md` frontmatter 的 `description
 1. 这个 skill 做什么；
 2. 什么用户意图/关键词应该触发它；
 3. 中文触发词也要写进去；
-4. 复杂项目中，输出应该写回哪里，例如 `task_plan.md`、`findings.md`、`progress.md`、`PROJECT_STATE.md` 或 `.project_flow/`。
+4. 复杂项目中，输出应该写回哪里；已有 `.project_os/` 的项目必须先写回 branch/task/run/result/asset 索引和 derived human views，不能另建并行状态系统。
 
 ## Skill 总览与触发方式
 
@@ -139,22 +147,20 @@ Codex 选择 skill 时主要依赖每个 `SKILL.md` frontmatter 的 `description
 
 | Skill | 作用 | 典型触发语 | 位置 |
 |---|---|---|---|
-| `planning-with-files` | 大项目任务内核，用 `task_plan.md`、`findings.md`、`progress.md` 管理当前任务、阶段和进展。已全局安装，workspace 镜像保留为试点来源/对照。 | `继续下一步`、`大项目逐步推进`、`制定计划`、`拆解任务`、`恢复上下文`、`当前进展`、`task_plan.md`、`planning-with-files` | `skills/global/planning-with-files/`；试点镜像：`skills/workspace/pipeline_v2/planning-with-files/` |
-| `research-project-os` | Trellis-style 科研项目 harness：在每个项目内维护 `.project_os/` 工作台、workflow、task 目录、runtime pointer、context manifest、run/result/data indexes，并用 CLI 做 new-project/start/doctor/init/validate/task/run/result 登记。 | `research-project-os`、`project harness`、`项目骨架`、`新项目骨架`、`搭项目骨架`、`项目工作流骨架`、`项目工作台`、`长期科研项目管理`、`run provenance`、`current_task`、`continue 当前任务`、`结果版本管理`、`release workflow` | `skills/local/research-project-os/` |
-| `project-skeleton` | `research-project-os` 的短入口/触发别名：把“项目骨架/新项目骨架/开工/继续项目”路由到 `.project_os/` bootstrap 或 resume 流程。 | `项目骨架`、`新项目骨架`、`搭项目骨架`、`初始化项目骨架`、`项目工作流骨架`、`研究项目骨架`、`科研项目骨架`、`开工`、`继续项目` | `skills/local/project-skeleton/` |
-| `project-state-maintainer` | 维护“薄” `PROJECT_STATE.md`，只记录当前共识、关键入口和下一步；细节拆到 `RESULTS_INDEX.md`、`DECISIONS.md`、`DATA_ASSETS.md`、`RUNS_INDEX.tsv` 和 `RUN_MANIFEST.json`。 | `记录项目状态`、`更新项目状态文档`、`总结当前进展`、`下一步是什么`、`项目文档太大`、`拆分项目文档`、`handoff`、`resume state` | `skills/global/project-state-maintainer/` |
+| `research-project-os` | TypeII PKS / 长期科研项目的第一路由和唯一主控 harness：在每个项目内维护 `.project_os/` 工作台、branch/task/run/result/asset/release/session/recovery/hooks 索引；所有“继续/计划/状态/运行/结果/绘图/系统发育/大文件外置”先经 `project_os.py route` 或 `start/status` 建立上下文，再执行领域命令并记录 provenance。保留 no-hardlink 外置资产策略，`asset_id + asset_locations.tsv` 为可迁移数据引用；promotion/release/restore-journal apply 均需 `--approved`。旧 `planning-with-files`、`project-state-maintainer`、`tooluniverse-phylogenetics` 的重叠触发词已并入此 skill。 | `research-project-os`、`project harness`、`.project_os`、`项目骨架`、`开工`、`继续项目`、`继续当前任务`、`继续下一步`、`大项目`、`逐步推进`、`当前进展`、`恢复上下文`、`制定计划`、`拆解任务`、`task_plan.md`、`findings.md`、`progress.md`、`项目状态`、`写一个项目状态文档`、`更新项目状态文档`、`总结项目状态`、`开始分析`、`先跑`、`先画`、`绘图`、`画图`、`发育树`、`系统发育`、`进化树`、`Newick`、`FASTA比对`、`PHYLIP`、`Nexus`、`alignment`、`tree`、`parsimony`、`treeness`、`RCV`、`DVMC`、`ortholog`、`同源基因`、`分子进化`、`bootstrap`、`开始运行`、`记录结果`、`当前结果`、`外置数据`、`纳管外置数据`、`release workflow` | `skills/local/research-project-os/` |
+| `project-skeleton` | `research-project-os` 的短入口/触发别名：把“项目骨架/新项目骨架/开工/继续项目/先画/先跑”等路由到 `.project_os/` bootstrap 或 resume 流程。 | `项目骨架`、`新项目骨架`、`搭项目骨架`、`初始化项目骨架`、`项目工作流骨架`、`研究项目骨架`、`科研项目骨架`、`开工`、`继续项目`、`继续下一步`、`当前进展`、`项目状态`、`开始分析`、`先跑`、`先画`、`绘图`、`画图` | `skills/local/project-skeleton/` |
 | `project-flow-guard` | 事前防乱：formal run 只作 provenance，使用 `RUN_MANIFEST.json` 和 `RUNS_INDEX.tsv` 记录来源；accepted/candidate 结果通过 `RESULTS_INDEX.md` 和 `current/` 发现。branch/workstream 只在长期方向且用户确认后创建。 | `重跑`、`重新生成`、`保留这个版本`、`设为当前版本`、`release`、`打包`、`开分支`、`snapshot`、`清理旧版本`、`RUN_MANIFEST.json` | `skills/global/project-flow-guard/` |
 | `project-version-curator` | 事后整理：对已经混乱的目录做 inventory、版本冲突检测、cleanup/release dry-run；优先信任 `RESULTS_INDEX.md` / registry，`final/current` 文件名只作线索。 | `整理结果`、`太混乱了`、`清理目录`、`版本混乱`、`final/current/v1/v2 很多`、`生成 inventory`、`dry-run cleanup`、`release planning` | `skills/global/project-version-curator/` |
 
-项目维护三层模型：
+项目维护模型：
 
 ```text
-project-state-maintainer  # 当前共识入口：薄 PROJECT_STATE.md + companion docs
+research-project-os       # 当前主控：.project_os branch/task/run/result/asset/session/release harness
 project-flow-guard        # 未来运行防乱：runs 只作 provenance，current/index 才是入口
 project-version-curator   # 既有混乱整理：inventory/conflict audit/release dry-run
 ```
 
-`research-project-os` 是比三层模型更上层的项目工作台：它不替代这些已有 skills，而是把 workflow/task/runtime/context manifest/indexes 落在 `.project_os/`，并在需要时调用或遵守 `project-state-maintainer`、`project-flow-guard`、`project-version-curator` 的边界。
+`research-project-os` 现在是已有 `.project_os/` 项目的主控工作台。旧规划、薄状态、系统发育专项 skill 的重叠触发已迁入它；其他领域 skill 只能作为执行/检索辅助，不能绕过 harness 创建第二套状态。
 
 维护文档的 canonical source 固定为：
 
@@ -246,7 +252,6 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 | `tooluniverse-sequence-retrieval` | 从 NCBI/ENA 检索 DNA/RNA/蛋白序列。 | `序列检索`、`FASTA`、`NCBI`、`ENA`、`GenBank`、`RefSeq`、`accession` | `skills/global/tooluniverse-sequence-retrieval/` |
 | `tooluniverse-protein-structure-retrieval` | 检索 PDB/PDBe/AlphaFold 蛋白结构并做质量/元数据整理。 | `蛋白结构`、`PDB`、`PDBe`、`AlphaFold`、`三维结构`、`晶体结构` | `skills/global/tooluniverse-protein-structure-retrieval/` |
 | `tooluniverse-rnaseq-deseq2` | RNA-seq / PyDESeq2 差异表达分析和结果解释。 | `RNA-seq`、`转录组`、`DESeq2`、`差异表达`、`DEG`、`count matrix` | `skills/global/tooluniverse-rnaseq-deseq2/` |
-| `tooluniverse-phylogenetics` | 系统发育、比对、树文件和分子进化指标分析。 | `系统发育`、`进化树`、`Newick`、`ortholog`、`同源基因`、`bootstrap` | `skills/global/tooluniverse-phylogenetics/` |
 | `tooluniverse-gene-enrichment` | GO/KEGG/Reactome/GSEA/ORA 富集和通路分析。 | `基因富集`、`GO富集`、`KEGG`、`Reactome`、`GSEA`、`通路分析` | `skills/global/tooluniverse-gene-enrichment/` |
 | `scientific-critical-thinking` | 科研严谨性、方法学、实验设计、统计有效性和证据质量审查。 | `批判性审读`、`方法学评估`、`统计有效性`、`偏倚`、`混杂`、`证据质量` | `skills/global/scientific-critical-thinking/` |
 | `scientific-visualization` | 期刊级科学图表、多面板图、误差棒、显著性标记和导出格式。 | `科学绘图`、`科研图表`、`期刊级figure`、`多面板图`、`显著性标记` | `skills/global/scientific-visualization/` |
@@ -262,7 +267,7 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 | `做系统综述`、`文献综述`、`related work` | `systematic-literature-review` | 适合多源检索、去重、逐篇评分、主题分组和综述写作。 |
 | `根据这几篇文献有什么想法`、`整合这几篇文献` | `research-orchestrator` + `scientific-critical-thinking` | 多篇文献上传/给出后，先整合，再做方法学和创新点分析。 |
 | `参考文献的做法`、`论文里的实验做法怎么复现` | `literature-method-data-miner`；复现细节缺口时叠加 `paper-context-resolver` | 区分“提取/比较科研方法”和“补齐复现细节”。 |
-| `这个论文代码怎么跑/怎么复现` | `repo-intake-and-plan` → `env-and-assets-bootstrap` → `minimal-run-and-audit` | 和 `planning-with-files` 组合，逐阶段推进，不一次性乱跑。 |
+| `这个论文代码怎么跑/怎么复现` | `repo-intake-and-plan` → `env-and-assets-bootstrap` → `minimal-run-and-audit` | 如果落入已有 `.project_os/` 项目，先经 `research-project-os` 建 task/run，再逐阶段推进。 |
 
 ### 需求澄清 / 拆任务 / 执行辅助
 
@@ -292,12 +297,11 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 
 ### 大项目继续推进
 
-1. `planning-with-files` 读取 active plan。
-2. 需求不清时用 `grill-me`。
-3. 需要拆小步骤时用 `ticket-breakdown`。
-4. 有正式生成型分析、重跑或换参数时用 `project-flow-guard`，创建 `RUN_MANIFEST.json` 并登记 `RUNS_INDEX.tsv`。
-5. 如果结果进入 candidate/accepted/legacy，更新 `RESULTS_INDEX.md`；只有用户确认或明确 promote 时才进入 `current/`。
-6. 结束前用 `project-state-maintainer` 更新薄 `PROJECT_STATE.md`，长细节放入对应 companion docs。
+1. 如果项目已有或需要 `.project_os/`，优先用 `research-project-os` / `project-skeleton`：`开工`、`项目骨架`、`大项目`、`逐步推进`、`继续下一步`、`当前进展`、`制定计划`、`拆解任务`、`task_plan.md`、`项目状态`、`写一个项目状态文档`、`开始分析`、`先跑`、`先画`、`绘图`、`发育树`、`系统发育`、`Newick`、`alignment/tree/parsimony/treeness/RCV`、`新建会话`、`切会话`、`暂停会话`、`恢复会话`、`会话清理`、`恢复检查`、`开始运行`、`记录结果` 等短触发先经 `project_os.py route` 生成计划。
+2. 需求不清时用 `grill-me`；需要拆小步骤时用 `ticket-breakdown`。
+3. 有正式生成型分析、重跑或换参数时，通过 harness 创建 branch/task/run，并把 provenance 写入 `RUN_MANIFEST.json`；`RUNS_INDEX.tsv` 由 canonical `.project_os/indexes/runs.tsv` 单向刷新。
+4. 结果进入 candidate/accepted/current/release 时走 result CLI 和 approval gate；`RESULTS_INDEX.md` 是 derived human view，只有用户确认或明确 promote/release 时才进入 `current/` / `release/`。
+5. 结束前用 `summarize-state` 或 `update-handoff` 更新薄人类入口；长细节放入 branch/task/run/result/asset/release 对应文件。
 
 ### 整理混乱项目结果
 
@@ -305,7 +309,7 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 2. 生成 inventory / conflict audit / `CURATION_PLAN.md`，只做 dry-run，不直接删除。
 3. 不信任文件名里的 `final/current`；以 `RESULTS_INDEX.md`、`current/`、registry 和 `DECISIONS.md` 判断 accepted/candidate/legacy/superseded。
 4. 如需真正 copy/move/archive/release，再交给 `project-flow-guard` 或显式用户确认。
-5. `project-state-maintainer` 最后只记录整理结论、关键入口和下一步。
+5. 最后由 `research-project-os summarize-state` / `update-handoff` 记录整理结论、关键入口和下一步。
 
 ### 新建并上传 skill
 

@@ -1,5 +1,9 @@
 # research-project-os harness implementation plan
 
+> Status: superseded by `docs/RESEARCH_PROJECT_OS_COMPLETE_DEVELOPMENT_PLAN.md`
+> Retained as historical context / detailed reference only. If it conflicts with the complete plan, follow the complete plan.
+
+
 Date: 2026-06-19
 
 ## 1. Conclusion
@@ -534,4 +538,3 @@ Start with:
 5. one smoke adoption in `pingtai_final_20260430`.
 
 This gives a real harness, not a giant skill, while keeping the implementation small enough to validate quickly.
-

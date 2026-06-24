@@ -1,8 +1,8 @@
-# Skill Routing Matrix for Bioinformatics Agent and Writing Skills
+# Skill Routing Matrix for Bioinformatics, Writing, and Project Harness Skills
 
-更新日期：2026-05-25
+更新日期：2026-06-24
 
-用途：定义用户请求应触发哪个 skill，避免“生信分析”和“论文写作”混在一起。
+用途：定义用户请求应触发哪个 skill，避免“生信分析”“论文写作”和“长期项目 harness/工作台”混在一起。
 
 ---
 
@@ -36,7 +36,8 @@
 ```text
 分析、验证、数据库、QC、复现、证据整理 -> 生信 Agent / 已有生信工具 skill
 论文段落、润色、审稿回复、PPT、投稿材料 -> 写作 skill
-复杂多阶段项目 -> planning-with-files 作为任务内核
+长期项目工作台 / run-result-data provenance / 项目 continuation -> research-project-os
+已有 .project_os 项目里的计划/状态/绘图/系统发育/运行请求（含旧 planning/state/phylogeny 触发词） -> research-project-os first
 ```
 
 禁止混淆：
@@ -64,13 +65,41 @@
 
 ### 1.2 长期项目工作台请求
 
-当用户的问题不是具体生信分析/写作，而是“多个长期项目如何继续、run/result/data 怎么追踪、continue 到底继续哪个分支、如何做项目 harness/工作台”时，优先触发 `research-project-os`，不要用 `planning-with-files` 新建第二套主计划。
+当用户的问题不是具体生信分析/写作，而是“多个长期项目如何继续、run/result/data 怎么追踪、continue 到底继续哪个分支、如何做项目 harness/工作台”时，优先触发 `research-project-os`，不要新建第二套主计划。
+
+`research-project-os` 当前是 **harness-first** 工作台入口：
+
+- branch/workstream 是物理目录：`.project_os/branches/<branch_id>/`。
+- formal run 默认进入 `runs/<branch_id>/<run_id>/`。
+- canonical machine state 是 `.project_os/indexes/*.tsv`、`.project_os/project.json`、`.project_os/journals/events.jsonl`。
+- `PROJECT_STATE.md`、`RESULTS_INDEX.md`、`DATA_ASSETS.md`、`RUNS_INDEX.tsv` 是 human handoff / derived views。
+- `runtime/current_session` 为空时使用全局 current branch/task/run；非空时使用 `.project_os/runtime/sessions/<session_id>/current_*`，session 只切换 runtime focus，不创建第二套 branch/task/run 身份；paused/closed session 不能成为当前会话；`plan-session-cleanup` / `会话清理` 只生成 closed/paused session cleanup candidate report，不删除、不移动 session 目录；dashboard 与 doctor repair-plan 也只显示 advisory/generated cleanup candidate view。
+- `show-current --audit` 与 `export-dashboard` 都只生成 current-result / promotion-audit 派生视图；dashboard JSON/HTML/SQLite 可展示 current/project/branch result 与 audit warning，但不成为 result/current 的写入入口。
+- `status` 是只读 operational snapshot：会输出 session-aware runtime focus、counts、active/last run summary、candidate/current result summary 与 promotion-audit warning counts；它不刷新索引、不写 journal、不 promote、不 repair `current/`。
+- `summarize-state` 是只读 handoff/status payload，会同时输出 session-aware runtime focus 与 current-result/audit 派生摘要；它不 promote、不 repair、不写 result/current canonical state。
+- 短触发 `当前结果` / `查看当前结果` 只路由到只读 `show-current --audit`；它不等同于 `设为当前结果`，不会 promote、repair、改写 `results.tsv` 或改动 `current/`。
+- 短触发词先走 `project_os.py route` / `explain-trigger` 生成计划，不直接改文件。
+- promotion/release 的直接 CLI 与短触发 `--apply` 都需要显式 `--approved`；dry-run 仍可无 approval 先审查计划。
+- hooks 当前是 manual report-only 层：`list-hooks` / `dispatch-hooks` 只读 `events.jsonl` 并生成报告/建议命令，不自动执行、不写 canonical state；dashboard/doctor/validate 只暴露 hooks config/status advisory，不启用 active dispatcher。事件日志缺失时走 `restore-journal` dry-run/`--apply --approved`，而不是手工补历史。
 
 | 用户说法 | 默认路线 | 原因 |
 |---|---|---|
-| “做一个 research-project-os harness” | `research-project-os` | 需要 `.project_os/` workflow/task/runtime/indexes |
+| “做一个 research-project-os harness” | `research-project-os` | 需要 `.project_os/` workflow/branch/task/runtime/indexes |
+| “项目骨架 / 新项目骨架 / 搭项目骨架” | `project-skeleton` -> `research-project-os` | bootstrap/resume 的短入口，先 dry-run 或 start |
+| “开工 / 继续项目 / 继续当前任务 / 继续下一步 / 大项目 / 逐步推进 / 恢复上下文” | `research-project-os` route/start | 读取 `runtime/current_branch`、`current_task`、`current_run`；无 harness 时先 dry-run bootstrap |
+| “当前进展 / 项目状态 / 写一个项目状态文档 / 总结项目状态 / 更新项目状态文档” | `research-project-os` route/status/summarize-state | 状态从 `.project_os` indexes/views 派生，不用独立状态 skill |
+| “制定计划 / 拆解任务 / task_plan.md / findings.md / progress.md / plan out / break down” | `research-project-os` route -> task tree/session/handoff | 原 planning-with-files 触发词进入 `.project_os`，不再创建平行 planning-file kernel |
+| “先画 / 画图 / 绘图 / 开始分析 / 先跑” | `research-project-os` route -> task/run | 先建立 branch/task/run，再执行领域命令并记录 provenance |
+| “系统发育 / 发育树 / 进化树 / Newick / FASTA比对 / PHYLIP / Nexus / alignment / tree / parsimony / treeness / RCV / DVMC / ortholog / 同源基因 / 分子进化 / bootstrap” | `research-project-os` route -> task/run/assets/results | 原 phylogeny 触发词先进入 harness，避免绕过 TypeII PKS 项目状态 |
+| “新建分支 / 开一个方向” | `research-project-os` route/create-branch | 创建 branch-first 物理工作区 |
+| “新建会话 / 切会话 / 当前会话 / 暂停会话 / 恢复会话” | `research-project-os` route/session CLI | 在多个 runtime focus 间切换，仍指向 canonical branch/task/run |
+| “会话清理 / 规划会话清理” | `research-project-os` route/session cleanup planner | 只生成 archive/GC candidate report，不做物理删除/移动 |
+| “恢复计划 / 恢复检查 / 崩溃恢复检查” | `research-project-os` route/recovery planner | 只生成 crash/recovery inspection report，不做 replay/rollback/tmp 删除/lock 移除 |
+| “恢复事件日志” | `research-project-os` route/restore-journal | 仅在 `events.jsonl` 缺失时 dry-run/`--apply --approved` 创建 journal 并记录 `journal.restored` |
+| “hook状态 / hook报告 / hook提醒” | `research-project-os` route/hooks CLI | 查看默认禁用的 hook policy 或从 `events.jsonl` 生成 manual report-only 提醒 |
+| “开始运行 / 记录结果 / 设为当前结果” | `research-project-os` route -> run/result CLI | run/result/promotion 走同一套 approval gate |
+| “当前结果 / 查看当前结果” | `research-project-os` route -> `show-current --audit` | 只读 current-result 派生视图，不 promotion、不 repair、不写 canonical state |
 | “长期科研项目管理太乱了” | `research-project-os` + 只读 inventory | 先建立项目工作台和索引，不直接清理 |
-| “continue 当前任务但别猜分支” | `research-project-os` | 读取 `runtime/current_task`/`current_run` |
 | “run provenance 和结果采用状态怎么管” | `research-project-os`，必要时叠加 `project-flow-guard` | harness 管结构，flow-guard 管新 run/promotion 护栏 |
 
 ---
@@ -79,16 +108,16 @@
 
 | 用户请求类型 | 优先触发 | 可叠加 | 不应触发 |
 |---|---|---|---|
-| 长期科研项目 harness / `.project_os` / runtime pointer / run-result-data 索引 | `research-project-os` | `project-state-maintainer`, `project-flow-guard`, `project-version-curator` | `planning-with-files` unless user explicitly asks for separate planning files |
+| 长期科研项目 harness / `.project_os` / branch/task/run/result/data/release 索引 | `research-project-os` | `project-skeleton`, `project-flow-guard`, `project-version-curator` | 已移除的旧规划/状态 skill |
 | 生信数据库事实查询 | `tooluniverse` | `pubmed-database`, `tooluniverse-sequence-retrieval`, `tooluniverse-protein-structure-retrieval` | `bio-paper-writing` |
 | PubMed/MeSH 文献检索 | `pubmed-database` | `auto-deep-research`, `tooluniverse-literature-deep-research` | `bio-polishing` |
 | 文献深度调研 | `tooluniverse-literature-deep-research` | `research-orchestrator`, `scientific-critical-thinking` | `bio-results-writing` |
 | 文献方法/数据挖掘 | `literature-method-data-miner` | `paper-context-resolver`, `auto-deep-research` | 普通摘要类 skill |
 | RNA-seq/DESeq2 分析 | `tooluniverse-rnaseq-deseq2` | `tooluniverse-gene-enrichment`, `scientific-critical-thinking` | `bio-paper-writing` |
 | GO/KEGG/Reactome/GSEA | `tooluniverse-gene-enrichment` | `tooluniverse`, `scientific-visualization` | `bio-paper-writing`/`bio-results-writing` |
-| 序列检索/FASTA | `tooluniverse-sequence-retrieval` | `tooluniverse-phylogenetics` | `bio-paper-writing` |
+| 序列检索/FASTA | `tooluniverse-sequence-retrieval`；若在 `.project_os` 项目内先 `research-project-os` | `tooluniverse` | `bio-paper-writing` |
 | 蛋白结构/PDB/AlphaFold | `tooluniverse-protein-structure-retrieval` | `tooluniverse` | `bio-polishing` |
-| 系统发育 | `tooluniverse-phylogenetics` | `tooluniverse-sequence-retrieval` | `bio-paper-writing` |
+| 系统发育 | `research-project-os` first | `tooluniverse-sequence-retrieval`, `scientific-visualization` | standalone phylogeny skill |
 | 论文代码复现 | `repo-intake-and-plan` | `env-and-assets-bootstrap`, `minimal-run-and-audit`, `paper-context-resolver` | `bio-paper-writing` |
 | 科研严谨性/统计/偏倚审查 | `scientific-critical-thinking` | `tooluniverse-*`, `pubmed-database` | `bio-polishing` unless prose is provided |
 | 科学绘图 | `scientific-visualization` | `nature-figure` | `bio-paper-writing` |
