@@ -1,6 +1,6 @@
 ---
 name: literature-method-data-miner
-description: "Interpret short Chinese literature-method prompts as a request to mine research methods and data from papers. Use when the user says 文献是怎么做的、这篇文献怎么做的、这些文献怎么做的、参考文献是怎么做的、文献里的方法、文献方法、参考文献的做法、从文献找科研方法、从文献收集数据、正文和附录数据、补充材料数据、根据文献找实验设计, even when papers were not provided and should be found through deep research first. Works as a planning-with-files router for literature discovery, main-text/supplement data extraction, method comparison, and idea generation."
+description: "Interpret short Chinese literature-method prompts as a request to mine research methods and data from papers. Use when the user says 文献是怎么做的、这篇文献怎么做的、这些文献怎么做的、参考文献是怎么做的、文献里的方法、文献方法、参考文献的做法、从文献找科研方法、从文献收集数据、正文和附录数据、补充材料数据、根据文献找实验设计, even when papers were not provided and should be found through deep research first. In `.project_os` projects, route through research-project-os before recording literature findings."
 ---
 
 # Literature Method Data Miner
@@ -25,7 +25,7 @@ Only ask a short clarification if **no topic/papers/project context exists at al
 
 Use this as a router, not a replacement for other skills:
 
-- Use `planning-with-files` when the task has multiple papers, supplements, or several extraction rounds.
+- In an existing `.project_os` project, use `research-project-os` for task/run/result context before recording multi-paper findings.
 - Use `auto-deep-research` when papers are not provided and need to be found.
 - Use `pubmed-database` / `tooluniverse-literature-deep-research` for biomedical or life-science literature discovery.
 - Use `read-arxiv-paper` for arXiv URLs or TeX-source reading.

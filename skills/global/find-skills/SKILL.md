@@ -1,6 +1,6 @@
 ---
 name: find-skills
-description: "Helps users discover, compare, and install agent skills. Use when the user asks how to do X with a skill, says find a skill / is there a skill, wants tools/templates/workflows, or in Chinese asks 搜索skill, 找skill, 找一下有没有, 有没有skill, 安装skill, 管理skill, 管理 skill 库, skill库, skill 库, 补全skill生态, 自动触发skill, or wants to extend agent capabilities. In a planning-with-files ecosystem, use this as the discovery layer and record candidates/decisions in findings.md and SKILL_INVENTORY.md."
+description: "Helps users discover, compare, and install agent skills. Use when the user asks how to do X with a skill, says find a skill / is there a skill, wants tools/templates/workflows, or in Chinese asks 搜索skill, 找skill, 找一下有没有, 有没有skill, 安装skill, 管理skill, 管理 skill 库, skill库, skill 库, 补全skill生态, 自动触发skill, or wants to extend agent capabilities. In a research-project-os ecosystem, use this as the discovery layer; when `.project_os/` exists, record decisions through the harness instead of parallel planning files."
 ---
 
 # Find Skills

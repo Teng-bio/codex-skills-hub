@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project State Maintainer"
-  short_description: "Maintain a durable PROJECT_STATE.md handoff file."
-  default_prompt: "Use $project-state-maintainer to initialize or update PROJECT_STATE.md; in Chinese, treat “写一个项目状态文档” and “更新项目状态文档” as the same intent."

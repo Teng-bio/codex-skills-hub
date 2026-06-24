@@ -37,11 +37,11 @@ If the user asks for both analysis and writing, first complete the evidence pack
 | GO/KEGG/Reactome/GSEA/ORA/gene-set analysis | `tooluniverse-gene-enrichment` |
 | DNA/RNA/protein sequence, FASTA, GenBank, RefSeq, ENA | `tooluniverse-sequence-retrieval` |
 | Protein structures, PDB, PDBe, AlphaFold | `tooluniverse-protein-structure-retrieval` |
-| Phylogeny, alignments, Newick, orthologs, molecular evolution | `tooluniverse-phylogenetics` |
+| Phylogeny, alignments, Newick, orthologs, molecular evolution | `research-project-os` first in `.project_os` projects; then execute with project scripts or general tools |
 | Code repository reproduction or README-first paper repo intake | `repo-intake-and-plan` -> `env-and-assets-bootstrap` -> `minimal-run-and-audit` |
 | Methodology, statistics, bias, confounding, evidence quality | `scientific-critical-thinking` |
 | Publication figures from existing data | `scientific-visualization` or `nature-figure`; keep figure prose separate |
-| Multi-step project with durable state | `planning-with-files`, plus `project-state-maintainer` and `project-flow-guard` when outputs/versions matter |
+| Multi-step project with durable state | `research-project-os` for branch/task/run/result/asset provenance; `project-flow-guard` only for extra output/version guardrails |
 
 ## Workflow
 

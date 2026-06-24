@@ -1,8 +1,8 @@
 # 科研 / 生物信息 Skill 补充候选清单
 
-更新时间：2026-05-07
+更新时间：2026-06-24
 
-目标：围绕 `planning-with-files` 构建科研工作流，而不是让单个 skill 单独承担全部任务。复杂科研任务仍以 `task_plan.md` / `findings.md` / `progress.md` 作为任务内核，下面的 science/bioinfo skills 作为阶段性工具层自动触发。
+目标：围绕 TypeII PKS / `.project_os/` 项目 harness 构建科研工作流，而不是让单个专项 skill 单独承担全部状态。长期科研项目、run/result/data provenance、continuation、计划/进展/状态和系统发育类执行现在优先使用 `research-project-os`。
 
 当前状态：推荐安装批次 A 已安装到 `~/.agents/skills`，并复制到 `~/.codex/skills` 以确保 Codex 可自动触发；所有新增 `SKILL.md` description 已补充中文触发词。
 
@@ -19,15 +19,15 @@
 
 | 层级 | 已有 skill | 用途 |
 |---|---|---|
-| 任务内核 | `planning-with-files` | 大项目逐步推进、阶段计划、进度恢复 |
-| 项目状态 | `project-state-maintainer` | 每个项目的 durable state |
+| 项目 harness | `research-project-os`, `project-skeleton` | 长期项目工作台、branch/task/run/result/data/release provenance、短触发 bootstrap/resume |
+| 项目任务/状态内核 | `research-project-os` | 已吸收继续下一步、当前进展、恢复上下文、制定计划、拆解任务、状态总结等触发 |
 | 版本/结果守护 | `project-flow-guard`, `project-version-curator` | 重跑、current/baseline/release、混乱目录盘点 |
 | 通用调研 | `auto-deep-research`, `web-search`, `llm-context`, `research-orchestrator` | 搜索、网页上下文、报告合并核验 |
 | 复现/调试基础 | `bug-repro-plan`, `log-summarizer`, `ci-failure-triage` | 最小复现、日志和 CI triage |
 
 ## 选择原则
 
-1. **不要重复替代 `planning-with-files`**：新 skill 只负责某个阶段，例如 PubMed 检索、序列检索、论文复现环境、科学批判性审读。
+1. **不要重复替代项目状态工具**：长期项目工作台使用 `research-project-os`；新 skill 只负责某个阶段，例如 PubMed 检索、序列检索、论文复现环境、科学批判性审读。
 2. **优先安装自动触发清晰的 skill**：description 中包含生信、论文、文献综述、复现、PubMed、sequence、RNA-seq、phylogenetics 等触发意图。
 3. **先装高价值低冲突批次**：先覆盖文献检索、论文阅读/复现、生信数据库/组学分析、科学审稿/可视化；小众/重叠 skill 后续按项目需要补。
 4. **安装后必须同步到 hub**：安装到 `~/.codex/skills` 后运行 `scripts/sync_skills.py --apply --commit --push`。
@@ -51,7 +51,7 @@
 | 序列检索 | `tooluniverse-sequence-retrieval` | `mims-harvard/tooluniverse` | skills find 显示约 1.4K installs | 从 NCBI/ENA 检索 DNA/RNA/蛋白序列，处理 accession/gene 消歧 | 序列、FASTA、NCBI、ENA、accession |
 | 蛋白结构检索 | `tooluniverse-protein-structure-retrieval` | `mims-harvard/tooluniverse` | ToolUniverse 生信专项 | PDB/AlphaFold 等结构相关检索 | 蛋白结构、PDB、AlphaFold |
 | RNA-seq/DESeq2 | `tooluniverse-rnaseq-deseq2` | `mims-harvard/tooluniverse` | ToolUniverse 组学专项 | bulk RNA-seq 差异表达、DESeq2 结果解释 | RNA-seq、DESeq2、差异表达 |
-| 系统发育 | `tooluniverse-phylogenetics` | `mims-harvard/tooluniverse` | ToolUniverse 生信专项 | 系统发育、同源、树、进化分析 | phylogeny、系统发育、ortholog、进化 |
+| 系统发育 | `research-project-os` first | local project harness | 已有 `.project_os` 项目中先建立任务/运行/结果 provenance，再用项目脚本或通用工具执行 | phylogeny、系统发育、发育树、进化树、ortholog、进化、Newick、FASTA比对、PHYLIP、Nexus、alignment、tree、parsimony、treeness、RCV、DVMC、bootstrap |
 | 富集解释 | `tooluniverse-gene-enrichment` | `mims-harvard/tooluniverse` | ToolUniverse pathway 专项 | GO/pathway/gene set enrichment 解释 | GO 富集、pathway、gene set |
 | 科学批判性审读 | `scientific-critical-thinking` | `davila7/claude-code-templates` | GitHub stars 约 26K；SkillForge science 高排名 | 系统检查方法学、统计、实验设计 | 批判性审读、方法学问题、统计有效性 |
 | 科学可视化 | `scientific-visualization` | `davila7/claude-code-templates` | 同源高 stars | 期刊级图表、多面板科学图 | 科学绘图、figure、多面板图 |
@@ -67,7 +67,6 @@ GIT_CONFIG_GLOBAL=/dev/null npx skills add mims-harvard/tooluniverse -g -y --cop
 GIT_CONFIG_GLOBAL=/dev/null npx skills add mims-harvard/tooluniverse -g -y --copy --skill tooluniverse-sequence-retrieval
 GIT_CONFIG_GLOBAL=/dev/null npx skills add mims-harvard/tooluniverse -g -y --copy --skill tooluniverse-protein-structure-retrieval
 GIT_CONFIG_GLOBAL=/dev/null npx skills add mims-harvard/tooluniverse -g -y --copy --skill tooluniverse-rnaseq-deseq2
-GIT_CONFIG_GLOBAL=/dev/null npx skills add mims-harvard/tooluniverse -g -y --copy --skill tooluniverse-phylogenetics
 GIT_CONFIG_GLOBAL=/dev/null npx skills add mims-harvard/tooluniverse -g -y --copy --skill tooluniverse-gene-enrichment
 
 GIT_CONFIG_GLOBAL=/dev/null npx skills add sickn33/antigravity-awesome-skills -g -y --copy --skill pubmed-database
@@ -108,19 +107,19 @@ git push
 | 多维论文阅读 | `multi-dimensional-paper-reader` | 功能有吸引力，但当前 installs/stars 较低，建议先观察或本地二次改造 |
 | peer review | `peer-review`, `academic-paper-reviewer` | 与 `scientific-critical-thinking` 有重叠，后续按写稿/审稿需求补 |
 
-## 与 planning-with-files 的组合模板
+## 与 research-project-os 的组合模板
 
 ### 论文阅读 / 总结
 
-1. `planning-with-files` 建立 `task_plan.md`。
+1. 在已有 `.project_os/` 项目中，`research-project-os` 建立/切换 task。
 2. `pubmed-database` / `read-arxiv-paper` 获取文献与结构化材料。
 3. `tooluniverse-literature-deep-research` 写证据分级 findings。
 4. `scientific-critical-thinking` 审查方法学与统计。
-5. 输出进入 `findings.md` 和 `progress.md`。
+5. 输出进入 `.project_os` task context / result index / handoff。
 
 ### 论文复现
 
-1. `planning-with-files` 建立复现阶段计划。
+1. `research-project-os` 建立复现 task/run。
 2. `paper-context-resolver` 补齐数据、split、checkpoint、metric。
 3. `env-and-assets-bootstrap` 准备环境与资源。
 4. `repo-intake-and-plan` 读入 repo 并拆复现步骤。
@@ -130,8 +129,8 @@ git push
 
 ### 生信分析
 
-1. `planning-with-files` 固定分析问题和输入输出。
-2. `tooluniverse` 路由到专项，例如 sequence / protein / RNA-seq / phylogenetics / enrichment。
-3. 关键数据库证据写入 `findings.md`。
+1. `research-project-os` 固定分析问题、输入资产、task/run。
+2. `tooluniverse` 路由到专项，例如 sequence / protein / RNA-seq / enrichment；系统发育先保持在 harness 下执行。
+3. 关键数据库证据写入 `.project_os` context/result/asset 索引。
 4. 中间表和图由 `project-flow-guard` 管控版本。
 5. 最终报告/图表可用 `scientific-visualization`、`scientific-slides`。

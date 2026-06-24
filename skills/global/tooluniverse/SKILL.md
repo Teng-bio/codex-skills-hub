@@ -187,7 +187,7 @@ When answering scientific questions:
 | "**electron microscopy**", "cryo-EM", "TEM", "SEM", "EMPIAR", "EMDB" | `Skill(skill="tooluniverse-electron-microscopy")` |
 | "**cell line**", "cell line profiling", "DepMap", "CCLE", "cell line sensitivity" | `Skill(skill="tooluniverse-cell-line-profiling")` |
 | "**clinical data integration**", "clinical phenotype", "EHR analysis", "clinical cohort" | `Skill(skill="tooluniverse-clinical-data-integration")` |
-| "**phylogenetics**", "phylogenetic tree", "sequence alignment", "evolutionary analysis" | `Skill(skill="tooluniverse-phylogenetics")` |
+| "**phylogenetics**", "phylogenetic tree", "sequence alignment", "evolutionary analysis" | If `.project_os/` exists, route through `research-project-os` first; otherwise use general sequence/tree analysis strategies rather than invoking a removed phylogenetics skill. |
 | "**statistical modeling**", "regression analysis", "logistic regression", "survival analysis", "Cox" | `Skill(skill="tooluniverse-statistical-modeling")` |
 | "**metabolomics analysis**", "LC-MS analysis", "metabolite quantification", "metabolic flux" | `Skill(skill="tooluniverse-metabolomics-analysis")` |
 | "**functional genomics screen**", "CRISPR library", "shRNA screen", "barcode screen" | `Skill(skill="tooluniverse-functional-genomics-screens")` |

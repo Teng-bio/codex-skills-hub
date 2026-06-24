@@ -35,13 +35,14 @@
 | GO/KEGG/Reactome/GSEA | `tooluniverse-gene-enrichment` | 直接复用，作为富集分析工具 |
 | DNA/RNA/蛋白序列检索 | `tooluniverse-sequence-retrieval` | 直接复用 |
 | 蛋白结构检索 | `tooluniverse-protein-structure-retrieval` | 直接复用 |
-| 系统发育 | `tooluniverse-phylogenetics` | 直接复用 |
+| 系统发育 | `research-project-os` first | 已有 `.project_os/` 项目中先建立 branch/task/run/result provenance，再调用项目脚本或通用工具执行 |
 | 科研严谨性审查 | `scientific-critical-thinking` | 作为证据质量和方法学审计层 |
 | 科学绘图 | `scientific-visualization` | 复用为通用绘图层；生信图可另建轻量包装 |
 | 科研 slides | `scientific-slides` | 复用为通用科学汇报层 |
 | 论文代码复现 | `repo-intake-and-plan`, `env-and-assets-bootstrap`, `minimal-run-and-audit`, `paper-context-resolver` | 直接复用，构成复现阶段工具链 |
-| 大项目任务内核 | `planning-with-files` | 对复杂调研/分析/写作项目作为项目内核 |
-| 版本和产物守护 | `project-flow-guard`, `project-version-curator`, `project-state-maintainer` | 对重跑、版本、状态记录进行守护 |
+| 长期项目工作台 | `research-project-os`, `project-skeleton` | 对需要 `.project_os/`、branch/task/run/result/data provenance、continuation 的长期项目作为 harness 入口 |
+| 项目任务/状态内核 | `research-project-os` | 对 `.project_os/` 项目承接继续下一步、当前进展、制定计划、拆解任务、状态总结等触发 |
+| 版本和产物守护 | `project-flow-guard`, `project-version-curator` | 对重跑、版本、结果整理进行守护 |
 
 ### 1.2 写作层已有能力
 
@@ -196,10 +197,11 @@ bio-paper2ppt
 | GO/KEGG/Reactome/GSEA/ORA | `tooluniverse-gene-enrichment` |
 | 序列、FASTA、GenBank、RefSeq | `tooluniverse-sequence-retrieval` |
 | 蛋白结构、PDB、AlphaFold | `tooluniverse-protein-structure-retrieval` |
-| 系统发育、Newick、ortholog | `tooluniverse-phylogenetics` |
+| 系统发育、Newick、ortholog | `research-project-os` first |
 | 方法学、统计、偏倚、证据质量审查 | `scientific-critical-thinking` |
 | 论文代码复现 | `repo-intake-and-plan` -> `env-and-assets-bootstrap` -> `minimal-run-and-audit` |
-| 需要项目级多阶段推进 | `planning-with-files` |
+| 需要长期项目工作台、run/result/data provenance、继续当前分支/任务 | `research-project-os` / `project-skeleton` |
+| 需要多阶段推进/当前进展/恢复上下文 | `research-project-os`（已有 `.project_os` 时） |
 
 ### 4.2 `bio-paper-writing` 应继承/参考的已有 skill
 
