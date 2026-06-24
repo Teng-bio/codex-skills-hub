@@ -8,7 +8,7 @@
     "files": "1",
     "bytes": "9458",
     "description": "USE FOR AI-grounded answers via OpenAI-compatible /chat/completions. Two modes: single-search (fast) or deep research (enable_research=true, thorough multi-search). Streaming/blocking. Citations.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "answers",
@@ -19,7 +19,7 @@
     "files": "1",
     "bytes": "9458",
     "description": "USE FOR AI-grounded answers via OpenAI-compatible /chat/completions. Two modes: single-search (fast) or deep research (enable_research=true, thorough multi-search). Streaming/blocking. Citations.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "auto-deep-research",
@@ -30,7 +30,7 @@
     "files": "3",
     "bytes": "15166",
     "description": "Automatically orchestrates web search, raw web context, and deep research for requests to search, 查资料, 搜资料, 深度搜索, 调研, 文献综述, 找论文/资料/来源, look up, research, gather sources, compare current tools, or verify online claims. Use when the user asks for search/research without naming a specific search skill; it routes only through Brave spellcheck, autosuggest, web search, LLM context, and local report orchestration. 中文追加触发词：寻找参考文献、搜索文献、查参考文献、找相关论文、找几篇论文、文献搜索、论文搜索、参考文献怎么找、根据文献找来源。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "auto-deep-research",
@@ -41,7 +41,7 @@
     "files": "3",
     "bytes": "15166",
     "description": "Automatically orchestrates web search, raw web context, and deep research for requests to search, 查资料, 搜资料, 深度搜索, 调研, 文献综述, 找论文/资料/来源, look up, research, gather sources, compare current tools, or verify online claims. Use when the user asks for search/research without naming a specific search skill; it routes only through Brave spellcheck, autosuggest, web search, LLM context, and local report orchestration. 中文追加触发词：寻找参考文献、搜索文献、查参考文献、找相关论文、找几篇论文、文献搜索、论文搜索、参考文献怎么找、根据文献找来源。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-data-code-availability",
@@ -52,7 +52,7 @@
     "files": "2",
     "bytes": "4688",
     "description": "Prepare or audit Data Availability and Code Availability statements for bioinformatics manuscripts. Use for 生信数据可用性, 代码可用性, GEO/SRA/ENA/BioProject/BioSample/PRIDE/Zenodo/GitHub accession, FAIR清单, source data. Do not invent repository records, accessions, DOIs, licences, embargo dates, or access restrictions.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-data-code-availability",
@@ -63,7 +63,7 @@
     "files": "2",
     "bytes": "4688",
     "description": "Prepare or audit Data Availability and Code Availability statements for bioinformatics manuscripts. Use for 生信数据可用性, 代码可用性, GEO/SRA/ENA/BioProject/BioSample/PRIDE/Zenodo/GitHub accession, FAIR清单, source data. Do not invent repository records, accessions, DOIs, licences, embargo dates, or access restrictions.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-methods-writing",
@@ -74,7 +74,7 @@
     "files": "2",
     "bytes": "3942",
     "description": "Draft reproducible bioinformatics Methods from workflow provenance, commands, configs, EVIDENCE_PACK.md, software lists, and author notes. Use for 生信Methods, 材料与方法, workflow写法, 可复现方法, RNA-seq/富集/单细胞/系统发育方法写作. Do not run or debug analyses, infer missing parameters, or fabricate versions, genome builds, accessions, or thresholds.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-methods-writing",
@@ -85,7 +85,7 @@
     "files": "2",
     "bytes": "3942",
     "description": "Draft reproducible bioinformatics Methods from workflow provenance, commands, configs, EVIDENCE_PACK.md, software lists, and author notes. Use for 生信Methods, 材料与方法, workflow写法, 可复现方法, RNA-seq/富集/单细胞/系统发育方法写作. Do not run or debug analyses, infer missing parameters, or fabricate versions, genome builds, accessions, or thresholds.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-paper-writing",
@@ -96,7 +96,7 @@
     "files": "4",
     "bytes": "9746",
     "description": "Draft or restructure bioinformatics manuscripts from EVIDENCE_PACK.md, figures, tables, analysis summaries, or Chinese notes. Use for 生信论文, 写abstract, 写introduction, 写Results, 写Discussion, 根据结果写论文, 中文实验记录写英文论文. Do not run analyses, validate accessions, or fabricate datasets, statistics, software versions, mechanisms, or citations.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-paper-writing",
@@ -107,7 +107,7 @@
     "files": "4",
     "bytes": "9746",
     "description": "Draft or restructure bioinformatics manuscripts from EVIDENCE_PACK.md, figures, tables, analysis summaries, or Chinese notes. Use for 生信论文, 写abstract, 写introduction, 写Results, 写Discussion, 根据结果写论文, 中文实验记录写英文论文. Do not run analyses, validate accessions, or fabricate datasets, statistics, software versions, mechanisms, or citations.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-paper2ppt",
@@ -118,7 +118,7 @@
     "files": "2",
     "bytes": "4265",
     "description": "Create Chinese presentation plans or PPTX decks from bioinformatics papers, EVIDENCE_PACK.md, figures, tables, abstracts, or reading notes. Use for 生信论文转PPT, 组会汇报, journal club, 多组学/单细胞/算法论文汇报. Focus on story, workflow, evidence figures, limitations, and discussion questions; do not run analyses or fabricate results.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-paper2ppt",
@@ -129,7 +129,7 @@
     "files": "2",
     "bytes": "4265",
     "description": "Create Chinese presentation plans or PPTX decks from bioinformatics papers, EVIDENCE_PACK.md, figures, tables, abstracts, or reading notes. Use for 生信论文转PPT, 组会汇报, journal club, 多组学/单细胞/算法论文汇报. Focus on story, workflow, evidence figures, limitations, and discussion questions; do not run analyses or fabricate results.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-polishing",
@@ -140,7 +140,7 @@
     "files": "2",
     "bytes": "4002",
     "description": "Polish, restructure, or translate bioinformatics manuscript prose while preserving evidence boundaries. Use for 生信论文润色, 中译英, SCI润色, Results润色, Discussion润色, 摘要润色, 术语统一, overclaim检查. Do not add new analyses, citations, statistics, accessions, software versions, or biological mechanisms not supplied by the user.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-polishing",
@@ -151,7 +151,7 @@
     "files": "2",
     "bytes": "4002",
     "description": "Polish, restructure, or translate bioinformatics manuscript prose while preserving evidence boundaries. Use for 生信论文润色, 中译英, SCI润色, Results润色, Discussion润色, 摘要润色, 术语统一, overclaim检查. Do not add new analyses, citations, statistics, accessions, software versions, or biological mechanisms not supplied by the user.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-research-auto-router",
@@ -162,7 +162,7 @@
     "files": "2",
     "bytes": "5076",
     "description": "Broad auto-router for vague Chinese or English bioinformatics, life-science research, omics, manuscript, paper-writing, reviewer-response, data-availability, PPT, literature-method, accession, GEO/SRA, RNA-seq, enrichment, workflow, or evidence-pack tasks when the user does not name a specific skill. Use for prompts like 帮我看看这些结果, 这个能不能写文章, 下一步怎么做, 整理一下生信结果, 写论文, 改文章, 审稿意见怎么回, 做组会PPT. Routes to bioinfo-evidence-orchestrator, bio-paper-writing, bio-results-writing, bio-methods-writing, bio-polishing, bio-reviewer-response, bio-data-code-availability, bio-paper2ppt, literature-method-data-miner, and existing tooluniverse/pubmed/reproduction skills.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-research-auto-router",
@@ -173,7 +173,7 @@
     "files": "2",
     "bytes": "5076",
     "description": "Broad auto-router for vague Chinese or English bioinformatics, life-science research, omics, manuscript, paper-writing, reviewer-response, data-availability, PPT, literature-method, accession, GEO/SRA, RNA-seq, enrichment, workflow, or evidence-pack tasks when the user does not name a specific skill. Use for prompts like 帮我看看这些结果, 这个能不能写文章, 下一步怎么做, 整理一下生信结果, 写论文, 改文章, 审稿意见怎么回, 做组会PPT. Routes to bioinfo-evidence-orchestrator, bio-paper-writing, bio-results-writing, bio-methods-writing, bio-polishing, bio-reviewer-response, bio-data-code-availability, bio-paper2ppt, literature-method-data-miner, and existing tooluniverse/pubmed/reproduction skills.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-results-writing",
@@ -184,7 +184,7 @@
     "files": "2",
     "bytes": "3925",
     "description": "Write bioinformatics Results sections from figures, tables, EVIDENCE_PACK.md, analysis summaries, and Chinese result notes. Use for 生信Results, 根据图表写结果, RNA-seq结果写作, 富集结果写作, 单细胞/多组学结果段落. Do not run analyses, change statistics, or fabricate p values, FDR, sample sizes, figure panels, or mechanisms.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-results-writing",
@@ -195,7 +195,7 @@
     "files": "2",
     "bytes": "3925",
     "description": "Write bioinformatics Results sections from figures, tables, EVIDENCE_PACK.md, analysis summaries, and Chinese result notes. Use for 生信Results, 根据图表写结果, RNA-seq结果写作, 富集结果写作, 单细胞/多组学结果段落. Do not run analyses, change statistics, or fabricate p values, FDR, sample sizes, figure panels, or mechanisms.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-reviewer-response",
@@ -206,7 +206,7 @@
     "files": "2",
     "bytes": "4713",
     "description": "Draft, audit, or revise point-by-point reviewer responses for bioinformatics manuscripts. Use for 生信审稿回复, 逐点回复, 大修回复, reviewer质疑batch effect/FDR/外部验证/数据泄露/样本量/方法可复现. Do not claim analyses, revisions, citations, line numbers, figures, or validations were completed unless supplied by the author.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-reviewer-response",
@@ -217,7 +217,7 @@
     "files": "2",
     "bytes": "4713",
     "description": "Draft, audit, or revise point-by-point reviewer responses for bioinformatics manuscripts. Use for 生信审稿回复, 逐点回复, 大修回复, reviewer质疑batch effect/FDR/外部验证/数据泄露/样本量/方法可复现. Do not claim analyses, revisions, citations, line numbers, figures, or validations were completed unless supplied by the author.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bioinfo-evidence-orchestrator",
@@ -226,9 +226,9 @@
     "source_path": "/home/teng/.claude/skills/bioinfo-evidence-orchestrator",
     "repo_path": "skills/global/bioinfo-evidence-orchestrator",
     "files": "2",
-    "bytes": "7419",
+    "bytes": "7516",
     "description": "Bioinformatics evidence orchestration skill. Use when the user asks to analyze, validate, reproduce, inspect, organize, or prepare evidence from bioinformatics datasets, omics results, gene lists, workflows, database records, accessions, papers, or figures before writing. Routes to existing skills such as tooluniverse, pubmed-database, literature-method-data-miner, tooluniverse-rnaseq-deseq2, tooluniverse-gene-enrichment, sequence/protein/phylogenetics skills, scientific-critical-thinking, and reproduction skills. Produces EVIDENCE_PACK.md, risk tables, figure inventories, and missing-information lists. Do not use for manuscript prose drafting, polishing, reviewer responses, or PPT writing. 中文触发词：生信分析、组学分析、数据库查证、GEO、SRA、accession、QC、富集分析、RNA-seq、DESeq2、整理证据、写论文前整理结果、复现生信流程。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bioinfo-evidence-orchestrator",
@@ -237,9 +237,9 @@
     "source_path": "/home/teng/.codex/skills/bioinfo-evidence-orchestrator",
     "repo_path": "skills/global/bioinfo-evidence-orchestrator",
     "files": "2",
-    "bytes": "7419",
+    "bytes": "7516",
     "description": "Bioinformatics evidence orchestration skill. Use when the user asks to analyze, validate, reproduce, inspect, organize, or prepare evidence from bioinformatics datasets, omics results, gene lists, workflows, database records, accessions, papers, or figures before writing. Routes to existing skills such as tooluniverse, pubmed-database, literature-method-data-miner, tooluniverse-rnaseq-deseq2, tooluniverse-gene-enrichment, sequence/protein/phylogenetics skills, scientific-critical-thinking, and reproduction skills. Produces EVIDENCE_PACK.md, risk tables, figure inventories, and missing-information lists. Do not use for manuscript prose drafting, polishing, reviewer responses, or PPT writing. 中文触发词：生信分析、组学分析、数据库查证、GEO、SRA、accession、QC、富集分析、RNA-seq、DESeq2、整理证据、写论文前整理结果、复现生信流程。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bug-repro-plan",
@@ -250,7 +250,7 @@
     "files": "1",
     "bytes": "1003",
     "description": "Create a minimal repeatable bug reproduction plan with environment, steps, expected vs actual behavior, and evidence checklist. Use when the user asks 复现 bug, 最小复现, reproduce issue, bug repro, 问题复现步骤, or before debugging an unclear failure.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bug-repro-plan",
@@ -261,7 +261,7 @@
     "files": "1",
     "bytes": "1003",
     "description": "Create a minimal repeatable bug reproduction plan with environment, steps, expected vs actual behavior, and evidence checklist. Use when the user asks 复现 bug, 最小复现, reproduce issue, bug repro, 问题复现步骤, or before debugging an unclear failure.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "ci-failure-triage",
@@ -272,7 +272,7 @@
     "files": "1",
     "bytes": "809",
     "description": "Diagnose CI/build/test pipeline failures and separate deterministic failures from flakes. Use when the user mentions CI 失败, pipeline failed, GitHub Actions, build failed, test failed in CI, flaky CI, 构建失败, or wants CI failure triage.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "ci-failure-triage",
@@ -283,7 +283,7 @@
     "files": "1",
     "bytes": "809",
     "description": "Diagnose CI/build/test pipeline failures and separate deterministic failures from flakes. Use when the user mentions CI 失败, pipeline failed, GitHub Actions, build failed, test failed in CI, flaky CI, 构建失败, or wants CI failure triage.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "config-file-explainer",
@@ -294,7 +294,7 @@
     "files": "1",
     "bytes": "802",
     "description": "Explain a configuration file and its key options, risks, and safe changes. Use when the user asks 解释配置, 看一下 config, config.toml, yaml/json/toml 配置, 配置项什么意思, 哪些配置可以改, configuration file explainer.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "config-file-explainer",
@@ -305,7 +305,7 @@
     "files": "1",
     "bytes": "802",
     "description": "Explain a configuration file and its key options, risks, and safe changes. Use when the user asks 解释配置, 看一下 config, config.toml, yaml/json/toml 配置, 配置项什么意思, 哪些配置可以改, configuration file explainer.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "edit-article",
@@ -316,7 +316,7 @@
     "files": "1",
     "bytes": "721",
     "description": "Edit and improve articles by restructuring sections, improving clarity, and tightening prose. Use when user wants to edit, revise, or improve an article draft.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "edit-article",
@@ -327,7 +327,7 @@
     "files": "1",
     "bytes": "721",
     "description": "Edit and improve articles by restructuring sections, improving clarity, and tightening prose. Use when user wants to edit, revise, or improve an article draft.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "env-and-assets-bootstrap",
@@ -338,7 +338,7 @@
     "files": "8",
     "bytes": "19056",
     "description": "Environment and assets sub-skill for README-first AI repo reproduction. Use when the task is specifically to prepare a conservative conda-first environment, checkpoint and dataset path assumptions, cache location hints, and setup notes before any run on a README-documented repository. Do not use for repo scanning, full orchestration, paper interpretation, final run reporting, or generic environment setup that is not tied to a specific reproduction target.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "env-and-assets-bootstrap",
@@ -349,7 +349,7 @@
     "files": "8",
     "bytes": "19207",
     "description": "Environment and assets sub-skill for README-first AI repo reproduction. Use when the task is specifically to prepare a conservative conda-first environment, checkpoint and dataset path assumptions, cache location hints, and setup notes before any run on a README-documented repository. Do not use for repo scanning, full orchestration, paper interpretation, final run reporting, or generic environment setup that is not tied to a specific reproduction target. 中文触发词：复现环境、论文复现环境、conda环境、依赖安装、checkpoint路径、dataset路径、cache目录、复现准备。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "find-skills",
@@ -358,9 +358,9 @@
     "source_path": "/home/teng/.claude/skills/find-skills",
     "repo_path": "skills/global/find-skills",
     "files": "1",
-    "bytes": "5680",
-    "description": "Helps users discover, compare, and install agent skills. Use when the user asks how to do X with a skill, says find a skill / is there a skill, wants tools/templates/workflows, or in Chinese asks 搜索skill, 找skill, 找一下有没有, 有没有skill, 安装skill, 管理skill, 管理 skill 库, skill库, skill 库, 补全skill生态, 自动触发skill, or wants to extend agent capabilities. In a planning-with-files ecosystem, use this as the discovery layer and record candidates/decisions in findings.md and SKILL_INVENTORY.md.",
-    "synced_at": "2026-06-19T22:27:29"
+    "bytes": "5711",
+    "description": "Helps users discover, compare, and install agent skills. Use when the user asks how to do X with a skill, says find a skill / is there a skill, wants tools/templates/workflows, or in Chinese asks 搜索skill, 找skill, 找一下有没有, 有没有skill, 安装skill, 管理skill, 管理 skill 库, skill库, skill 库, 补全skill生态, 自动触发skill, or wants to extend agent capabilities. In a research-project-os ecosystem, use this as the discovery layer; when `.project_os/` exists, record decisions through the harness instead of parallel planning files.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "find-skills",
@@ -369,9 +369,9 @@
     "source_path": "/home/teng/.codex/skills/find-skills",
     "repo_path": "skills/global/find-skills",
     "files": "1",
-    "bytes": "5680",
-    "description": "Helps users discover, compare, and install agent skills. Use when the user asks how to do X with a skill, says find a skill / is there a skill, wants tools/templates/workflows, or in Chinese asks 搜索skill, 找skill, 找一下有没有, 有没有skill, 安装skill, 管理skill, 管理 skill 库, skill库, skill 库, 补全skill生态, 自动触发skill, or wants to extend agent capabilities. In a planning-with-files ecosystem, use this as the discovery layer and record candidates/decisions in findings.md and SKILL_INVENTORY.md.",
-    "synced_at": "2026-06-19T22:27:29"
+    "bytes": "5711",
+    "description": "Helps users discover, compare, and install agent skills. Use when the user asks how to do X with a skill, says find a skill / is there a skill, wants tools/templates/workflows, or in Chinese asks 搜索skill, 找skill, 找一下有没有, 有没有skill, 安装skill, 管理skill, 管理 skill 库, skill库, skill 库, 补全skill生态, 自动触发skill, or wants to extend agent capabilities. In a research-project-os ecosystem, use this as the discovery layer; when `.project_os/` exists, record decisions through the harness instead of parallel planning files.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "grill-me",
@@ -382,7 +382,7 @@
     "files": "1",
     "bytes": "828",
     "description": "Interview the user one question at a time to clarify a plan, requirement, research design, workflow, or implementation approach before execution. Use when the user wants to discuss/完善方案/商量方案/先别写代码/先不要写代码/先定流程/先完善流程/先问清楚/先规划/需求澄清/方案评审/风险梳理/把思路问透, or when they ask to stress-test a plan without immediately doing the task.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "grill-me",
@@ -393,7 +393,7 @@
     "files": "1",
     "bytes": "828",
     "description": "Interview the user one question at a time to clarify a plan, requirement, research design, workflow, or implementation approach before execution. Use when the user wants to discuss/完善方案/商量方案/先别写代码/先不要写代码/先定流程/先完善流程/先问清楚/先规划/需求澄清/方案评审/风险梳理/把思路问透, or when they ask to stress-test a plan without immediately doing the task.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "implement-paper",
@@ -404,7 +404,7 @@
     "files": "3",
     "bytes": "9393",
     "description": "Implement a research paper as an interactive marimo notebook together with the user. Start by understanding what the user wants to explore, fetch the paper via alphaxiv, then build a focused notebook.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "implement-paper",
@@ -415,7 +415,7 @@
     "files": "3",
     "bytes": "9531",
     "description": "Implement a research paper as an interactive marimo notebook together with the user. Start by understanding what the user wants to explore, fetch the paper via alphaxiv, then build a focused notebook. 中文触发词：实现论文、论文变代码、paper to code、交互式notebook、marimo、复现方法、教学演示notebook。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "literature-method-data-miner",
@@ -424,9 +424,9 @@
     "source_path": "/home/teng/.claude/skills/literature-method-data-miner",
     "repo_path": "skills/global/literature-method-data-miner",
     "files": "2",
-    "bytes": "4893",
-    "description": "Interpret short Chinese literature-method prompts as a request to mine research methods and data from papers. Use when the user says 文献是怎么做的、这篇文献怎么做的、这些文献怎么做的、参考文献是怎么做的、文献里的方法、文献方法、参考文献的做法、从文献找科研方法、从文献收集数据、正文和附录数据、补充材料数据、根据文献找实验设计, even when papers were not provided and should be found through deep research first. Works as a planning-with-files router for literature discovery, main-text/supplement data extraction, method comparison, and idea generation.",
-    "synced_at": "2026-06-19T22:27:29"
+    "bytes": "4877",
+    "description": "Interpret short Chinese literature-method prompts as a request to mine research methods and data from papers. Use when the user says 文献是怎么做的、这篇文献怎么做的、这些文献怎么做的、参考文献是怎么做的、文献里的方法、文献方法、参考文献的做法、从文献找科研方法、从文献收集数据、正文和附录数据、补充材料数据、根据文献找实验设计, even when papers were not provided and should be found through deep research first. In `.project_os` projects, route through research-project-os before recording literature findings.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "literature-method-data-miner",
@@ -435,9 +435,9 @@
     "source_path": "/home/teng/.codex/skills/literature-method-data-miner",
     "repo_path": "skills/global/literature-method-data-miner",
     "files": "2",
-    "bytes": "4893",
-    "description": "Interpret short Chinese literature-method prompts as a request to mine research methods and data from papers. Use when the user says 文献是怎么做的、这篇文献怎么做的、这些文献怎么做的、参考文献是怎么做的、文献里的方法、文献方法、参考文献的做法、从文献找科研方法、从文献收集数据、正文和附录数据、补充材料数据、根据文献找实验设计, even when papers were not provided and should be found through deep research first. Works as a planning-with-files router for literature discovery, main-text/supplement data extraction, method comparison, and idea generation.",
-    "synced_at": "2026-06-19T22:27:29"
+    "bytes": "4877",
+    "description": "Interpret short Chinese literature-method prompts as a request to mine research methods and data from papers. Use when the user says 文献是怎么做的、这篇文献怎么做的、这些文献怎么做的、参考文献是怎么做的、文献里的方法、文献方法、参考文献的做法、从文献找科研方法、从文献收集数据、正文和附录数据、补充材料数据、根据文献找实验设计, even when papers were not provided and should be found through deep research first. In `.project_os` projects, route through research-project-os before recording literature findings.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "llm-context",
@@ -448,7 +448,7 @@
     "files": "1",
     "bytes": "11442",
     "description": "USE FOR RAG/LLM grounding. Returns pre-extracted web content (text, tables, code) optimized for LLMs. GET + POST. Adjust max_tokens/count based on complexity. Supports Goggles, local/POI. For AI answers use answers. Recommended for anyone building AI/agentic applications.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "llm-context",
@@ -459,7 +459,7 @@
     "files": "1",
     "bytes": "11442",
     "description": "USE FOR RAG/LLM grounding. Returns pre-extracted web content (text, tables, code) optimized for LLMs. GET + POST. Adjust max_tokens/count based on complexity. Supports Goggles, local/POI. For AI answers use answers. Recommended for anyone building AI/agentic applications.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "log-summarizer",
@@ -470,7 +470,7 @@
     "files": "1",
     "bytes": "832",
     "description": "Summarize noisy logs, errors, command output, or run logs into likely causes and next steps. Use when the user provides 日志, 报错, error output, traceback, CI logs, run logs, 长任务失败日志, or asks 分析日志 / 看报错 / 找失败原因.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "log-summarizer",
@@ -481,7 +481,7 @@
     "files": "1",
     "bytes": "832",
     "description": "Summarize noisy logs, errors, command output, or run logs into likely causes and next steps. Use when the user provides 日志, 报错, error output, traceback, CI logs, run logs, 长任务失败日志, or asks 分析日志 / 看报错 / 找失败原因.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "minimal-run-and-audit",
@@ -492,7 +492,7 @@
     "files": "5",
     "bytes": "13512",
     "description": "Trusted-lane execution and reporting skill for README-first AI repo reproduction. Use when the task is specifically to capture or normalize evidence from the selected smoke test or documented inference or evaluation command and write standardized `repro_outputs/` files, including patch notes when repository files changed. Do not use for training execution, initial repo intake, generic environment setup, paper lookup, target selection, or end-to-end orchestration by itself.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "minimal-run-and-audit",
@@ -503,7 +503,7 @@
     "files": "5",
     "bytes": "13656",
     "description": "Trusted-lane execution and reporting skill for README-first AI repo reproduction. Use when the task is specifically to capture or normalize evidence from the selected smoke test or documented inference or evaluation command and write standardized `repro_outputs/` files, including patch notes when repository files changed. Do not use for training execution, initial repo intake, generic environment setup, paper lookup, target selection, or end-to-end orchestration by itself. 中文触发词：最小复现运行、smoke test、复现实验审计、运行证据、repro_outputs、评估命令、复现失败记录。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "paper-context-resolver",
@@ -514,7 +514,7 @@
     "files": "3",
     "bytes": "3625",
     "description": "Optional narrow helper skill for README-first AI repo reproduction. Use only when the README and repository files leave a narrow reproduction-critical gap and the task is to resolve a specific paper detail such as dataset split, preprocessing, evaluation protocol, checkpoint mapping, or runtime assumption from primary paper sources while recording conflicts. Do not use for general paper summary, repo scanning, environment setup, command execution, title-only paper lookup, or replacing README guidance by default.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "paper-context-resolver",
@@ -525,29 +525,7 @@
     "files": "3",
     "bytes": "3982",
     "description": "Optional narrow helper skill for README-first AI repo reproduction. Use only when the README and repository files leave a narrow reproduction-critical gap and the task is to resolve a specific paper detail such as dataset split, preprocessing, evaluation protocol, checkpoint mapping, or runtime assumption from primary paper sources while recording conflicts. Do not use for general paper summary, repo scanning, environment setup, command execution, title-only paper lookup, or replacing README guidance by default. 中文触发词：论文复现、复现细节、数据集版本、dataset split、预处理、评估协议、checkpoint映射、runtime假设、README缺口。 中文追加触发词：参考文献的做法、论文里的实验做法、论文方法怎么复现、文献方法细节、数据集split怎么做、metric怎么做、checkpoint怎么对应。",
-    "synced_at": "2026-06-19T22:27:29"
-  },
-  {
-    "name": "planning-with-files",
-    "source_id": "global_claude_skills",
-    "scope": "global",
-    "source_path": "/home/teng/.claude/skills/planning-with-files",
-    "repo_path": "skills/global/planning-with-files",
-    "files": "17",
-    "bytes": "76670",
-    "description": "Implements Manus-style file-based planning to organize and track progress on complex tasks. Creates task_plan.md, findings.md, and progress.md. Use when asked to plan out, break down, or organize a multi-step project, research task, or any work requiring 5+ tool calls. In Chinese, trigger on 大项目, 逐步推进, 继续下一步, 制定计划, 拆解任务, 当前进展, 恢复上下文, task_plan.md, findings.md, progress.md, planning-with-files. Supports automatic session recovery after /clear and works as the task kernel for phase-routed helper skills.",
-    "synced_at": "2026-06-19T22:27:29"
-  },
-  {
-    "name": "planning-with-files",
-    "source_id": "global_codex_skills",
-    "scope": "global",
-    "source_path": "/home/teng/.codex/skills/planning-with-files",
-    "repo_path": "skills/global/planning-with-files",
-    "files": "17",
-    "bytes": "76670",
-    "description": "Implements Manus-style file-based planning to organize and track progress on complex tasks. Creates task_plan.md, findings.md, and progress.md. Use when asked to plan out, break down, or organize a multi-step project, research task, or any work requiring 5+ tool calls. In Chinese, trigger on 大项目, 逐步推进, 继续下一步, 制定计划, 拆解任务, 当前进展, 恢复上下文, task_plan.md, findings.md, progress.md, planning-with-files. Supports automatic session recovery after /clear and works as the task kernel for phase-routed helper skills.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "ppt-image-first",
@@ -558,7 +536,7 @@
     "files": "23",
     "bytes": "33972855",
     "description": "Build presentation plans for PPT / slides / decks through a conversation-first workflow, then propose multiple visual directions with preview images before writing deck specs. Use when the user asks to create a PPT, presentation, deck, 答辩稿, 路演 deck, 产品介绍 PPT, 汇报 PPT, or when the user has only a topic or rough materials and needs help clarifying structure, style, and page planning before generation.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "ppt-image-first",
@@ -569,7 +547,7 @@
     "files": "23",
     "bytes": "33972855",
     "description": "Build presentation plans for PPT / slides / decks through a conversation-first workflow, then propose multiple visual directions with preview images before writing deck specs. Use when the user asks to create a PPT, presentation, deck, 答辩稿, 路演 deck, 产品介绍 PPT, 汇报 PPT, or when the user has only a topic or rough materials and needs help clarifying structure, style, and page planning before generation.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "project-flow-guard",
@@ -580,7 +558,7 @@
     "files": "5",
     "bytes": "40757",
     "description": "Development-time project flow/version guard for Codex across any project. Use to prevent version confusion when work creates or regenerates nontrivial artifacts, promotes accepted outputs, branches long-lived directions, packages releases, or reorganizes files. It treats runs as provenance, not the human result entry point, and prefers md/tsv/json ledgers such as `RESULTS_INDEX.md`, `RUNS_INDEX.tsv`/`.project_flow/RUNS.tsv`, and `RUN_MANIFEST.json`. Trigger on 重跑, 重新生成, 重新绘图, 再生成一版, 改一版, 调整一下, 换参数, 换参考, 基于这版, 保留这个版本, 就用这个, 设为当前版本, make current, accept, promote, 冻结当前版本, 保存当前状态, snapshot, baseline, seal, 开分支, 新分析方向, 基于这个版本继续, branch, same data new analysis, release, 投稿, 打包, 清理旧版本, 整理目录, delete old versions, or similar.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "project-flow-guard",
@@ -591,7 +569,18 @@
     "files": "5",
     "bytes": "40836",
     "description": "Development-time project flow/version guard for Codex across any project. Use to prevent version confusion when work creates or regenerates nontrivial artifacts, promotes accepted outputs, branches long-lived directions, packages releases, or reorganizes files. It treats runs as provenance, not the human result entry point, and prefers md/tsv/json ledgers such as `RESULTS_INDEX.md`, `RUNS_INDEX.tsv`/`.project_flow/RUNS.tsv`, and `RUN_MANIFEST.json`. Trigger on 重跑, 重新生成, 重新绘图, 再生成一版, 改一版, 调整一下, 换参数, 换参考, 基于这版, 保留这个版本, 就用这个, 设为当前版本, make current, accept, promote, 冻结当前版本, 保存当前状态, snapshot, baseline, seal, 开分支, 新分析方向, 基于这个版本继续, branch, same data new analysis, release, 投稿, 打包, 清理旧版本, 整理目录, delete old versions, or similar.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
+  },
+  {
+    "name": "project-skeleton",
+    "source_id": "global_claude_skills",
+    "scope": "global",
+    "source_path": "/home/teng/.claude/skills/project-skeleton",
+    "repo_path": "skills/global/project-skeleton",
+    "files": "1",
+    "bytes": "2627",
+    "description": "Thin Chinese trigger/alias for bootstrapping or resuming a `.project_os/` research project harness. Use when the user says 项目骨架, 新项目骨架, 搭项目骨架, 初始化项目骨架, 项目工作流骨架, 研究项目骨架, 科研项目骨架, 开工, 继续项目, 继续下一步, 大项目, 逐步推进, 制定计划, 拆解任务, 当前进展, 恢复上下文, task_plan.md, findings.md, progress.md, 项目状态, 写一个项目状态文档, 开始分析, 先跑, 先画, 绘图, or 画图 in a durable project; then defer to research-project-os.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "project-skeleton",
@@ -600,31 +589,9 @@
     "source_path": "/home/teng/.codex/skills/project-skeleton",
     "repo_path": "skills/global/project-skeleton",
     "files": "1",
-    "bytes": "1294",
-    "description": "Thin Chinese trigger/alias for bootstrapping or resuming a repository project workflow skeleton. Use when the user says 项目骨架, 新项目骨架, 搭项目骨架, 初始化项目骨架, 项目工作流骨架, 研究项目骨架, 科研项目骨架, 开工, 继续项目, or asks to scaffold a durable research/project harness.",
-    "synced_at": "2026-06-19T22:27:29"
-  },
-  {
-    "name": "project-state-maintainer",
-    "source_id": "global_claude_skills",
-    "scope": "global",
-    "source_path": "/home/teng/.claude/skills/project-state-maintainer",
-    "repo_path": "skills/global/project-state-maintainer",
-    "files": "4",
-    "bytes": "15593",
-    "description": "Maintain a thin canonical `PROJECT_STATE.md` plus optional md/tsv/json companion docs so work can be resumed from the project folder instead of chat history. Use when creating/adopting/resuming a project, making meaningful changes or decisions, handing work off, summarizing status/progress/next steps, or when project docs risk becoming too large and need splitting into `RESULTS_INDEX.md`, `DECISIONS.md`, `DATA_ASSETS.md`, or run/result registries. In Chinese, also trigger when the user says `写一个项目状态文档`, `更新项目状态文档`, `总结项目状态`, `记录当前项目进度`, `整理项目当前进展`, `项目文档太大`, `拆分项目文档`, or similar.",
-    "synced_at": "2026-06-19T22:27:29"
-  },
-  {
-    "name": "project-state-maintainer",
-    "source_id": "global_codex_skills",
-    "scope": "global",
-    "source_path": "/home/teng/.codex/skills/project-state-maintainer",
-    "repo_path": "skills/global/project-state-maintainer",
-    "files": "4",
-    "bytes": "15629",
-    "description": "Maintain a thin canonical `PROJECT_STATE.md` plus optional md/tsv/json companion docs so work can be resumed from the project folder instead of chat history. Use when creating/adopting/resuming a project, making meaningful changes or decisions, handing work off, summarizing status/progress/next steps, or when project docs risk becoming too large and need splitting into `RESULTS_INDEX.md`, `DECISIONS.md`, `DATA_ASSETS.md`, or run/result registries. In Chinese, also trigger when the user says `写一个项目状态文档`, `更新项目状态文档`, `总结项目状态`, `记录当前项目进度`, `整理项目当前进展`, `项目文档太大`, `拆分项目文档`, or similar.",
-    "synced_at": "2026-06-19T22:27:29"
+    "bytes": "2627",
+    "description": "Thin Chinese trigger/alias for bootstrapping or resuming a `.project_os/` research project harness. Use when the user says 项目骨架, 新项目骨架, 搭项目骨架, 初始化项目骨架, 项目工作流骨架, 研究项目骨架, 科研项目骨架, 开工, 继续项目, 继续下一步, 大项目, 逐步推进, 制定计划, 拆解任务, 当前进展, 恢复上下文, task_plan.md, findings.md, progress.md, 项目状态, 写一个项目状态文档, 开始分析, 先跑, 先画, 绘图, or 画图 in a durable project; then defer to research-project-os.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "project-version-curator",
@@ -635,7 +602,7 @@
     "files": "3",
     "bytes": "21782",
     "description": "Post-hoc audit, cleanup planning, and release/staging preparation for already messy project directories where many dated, v1/v2/v3, final/current, intermediate, figure, table, and script files are mixed together. Use when Codex is asked to audit existing version clutter, generate an inventory, detect duplicate/conflicting historical files, map files to accepted/candidate/legacy status using project indexes, or create a dry-run cleanup/release plan after the fact. For active development-time guardrails, new runs, promotion, baselines, or branching, use project-flow-guard instead.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "project-version-curator",
@@ -646,7 +613,7 @@
     "files": "3",
     "bytes": "21847",
     "description": "Post-hoc audit, cleanup planning, and release/staging preparation for already messy project directories where many dated, v1/v2/v3, final/current, intermediate, figure, table, and script files are mixed together. Use when Codex is asked to audit existing version clutter, generate an inventory, detect duplicate/conflicting historical files, map files to accepted/candidate/legacy status using project indexes, or create a dry-run cleanup/release plan after the fact. For active development-time guardrails, new runs, promotion, baselines, or branching, use project-flow-guard instead.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "pubmed-database",
@@ -657,7 +624,7 @@
     "files": "1",
     "bytes": "15602",
     "description": "Direct REST API access to PubMed. Advanced Boolean/MeSH queries, E-utilities API, batch processing, citation management. For Python workflows, prefer biopython (Bio.Entrez). Use this for direct HTTP/REST work or custom API implementations.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "pubmed-database",
@@ -668,7 +635,7 @@
     "files": "1",
     "bytes": "15914",
     "description": "Direct REST API access to PubMed. Advanced Boolean/MeSH queries, E-utilities API, batch processing, citation management. For Python workflows, prefer biopython (Bio.Entrez). Use this for direct HTTP/REST work or custom API implementations. 中文触发词：PubMed、医学文献、MeSH、E-utilities、布尔检索、批量文献检索、citation、生命科学论文搜索。 中文追加触发词：寻找参考文献、搜索文献、查参考文献、找PubMed文献、检索生物医学文献、按MeSH找论文、生命科学参考文献。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "read-arxiv-paper",
@@ -679,7 +646,7 @@
     "files": "1",
     "bytes": "1973",
     "description": "Use this skill when asked to read an arxiv paper given an arxiv URL",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "read-arxiv-paper",
@@ -690,7 +657,7 @@
     "files": "1",
     "bytes": "2245",
     "description": "Use this skill when asked to read an arxiv paper given an arxiv URL 中文触发词：读arXiv论文、arXiv URL、arxiv源码、TeX源、论文公式、解析论文结构、下载论文源文件。 中文追加触发词：读这篇论文、分析这篇arXiv、提取论文公式、看论文源码、根据这篇arXiv有什么想法。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "repo-intake-and-plan",
@@ -701,7 +668,7 @@
     "files": "5",
     "bytes": "15108",
     "description": "Narrow helper skill for README-first AI repo reproduction. Use when the task is specifically to scan a repository, read the README and common project files, extract documented commands, classify inference, evaluation, and training candidates, and return the smallest trustworthy reproduction plan to the main orchestrator. Do not use for environment setup, asset download, command execution, final reporting, paper lookup, or end-to-end orchestration. 中文触发词：论文代码仓库、复现仓库、README扫描、复现计划、仓库结构、推理/评估/训练命令提取、最小可信复现计划。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "repo-intake-and-plan",
@@ -712,7 +679,7 @@
     "files": "5",
     "bytes": "15108",
     "description": "Narrow helper skill for README-first AI repo reproduction. Use when the task is specifically to scan a repository, read the README and common project files, extract documented commands, classify inference, evaluation, and training candidates, and return the smallest trustworthy reproduction plan to the main orchestrator. Do not use for environment setup, asset download, command execution, final reporting, paper lookup, or end-to-end orchestration. 中文触发词：论文代码仓库、复现仓库、README扫描、复现计划、仓库结构、推理/评估/训练命令提取、最小可信复现计划。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "research-orchestrator",
@@ -723,7 +690,7 @@
     "files": "5",
     "bytes": "19896",
     "description": "Orchestrate, compare, verify, and merge multiple deep research reports into a single authoritative document. Use this skill whenever the user uploads 2+ research reports/documents and wants them compared, verified, merged, deduplicated, fact-checked, or synthesized into one. Also trigger when the user says 'compare research', 'merge reports', 'verify links in my research', 'combine deep research', 'check sources', 'fact-check these documents', 'create unified report', 'best of all research', or mentions having multiple deep research outputs. Trigger even if the user just uploads several long documents and asks to 'make one good version'. Do NOT use for single-document editing, simple summaries, or non-research content. 中文触发词：根据这几篇文献有什么想法、整合这几篇文献、比较这几篇论文、合并多篇文献、核验这些文献来源、从多篇文献提炼结论、综合多个研究报告。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "research-orchestrator",
@@ -734,7 +701,18 @@
     "files": "5",
     "bytes": "19896",
     "description": "Orchestrate, compare, verify, and merge multiple deep research reports into a single authoritative document. Use this skill whenever the user uploads 2+ research reports/documents and wants them compared, verified, merged, deduplicated, fact-checked, or synthesized into one. Also trigger when the user says 'compare research', 'merge reports', 'verify links in my research', 'combine deep research', 'check sources', 'fact-check these documents', 'create unified report', 'best of all research', or mentions having multiple deep research outputs. Trigger even if the user just uploads several long documents and asks to 'make one good version'. Do NOT use for single-document editing, simple summaries, or non-research content. 中文触发词：根据这几篇文献有什么想法、整合这几篇文献、比较这几篇论文、合并多篇文献、核验这些文献来源、从多篇文献提炼结论、综合多个研究报告。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
+  },
+  {
+    "name": "research-project-os",
+    "source_id": "global_claude_skills",
+    "scope": "global",
+    "source_path": "/home/teng/.claude/skills/research-project-os",
+    "repo_path": "skills/global/research-project-os",
+    "files": "72",
+    "bytes": "649665",
+    "description": "Primary repository-local research project harness under `.project_os/` and first router for TypeII PKS/long-running analysis projects. Use for research-project-os, project harness, 项目骨架, 开工, 继续项目, 继续当前任务, 继续下一步, 大项目, 逐步推进, 当前进展, 恢复上下文, 制定计划, 拆解任务, plan out, break down, organize multi-step work, task_plan.md, findings.md, progress.md, 开始分析, 先跑, 先画, 绘图, 画图, 生成结果, 开始运行, 记录结果, 当前结果, run provenance, RESULTS_INDEX, DATA_ASSETS, current_task, result promotion, release workflow, 外置数据, 恢复检查. In any `.project_os/` project, also use before 系统发育, 发育树, 进化树, Newick, FASTA比对, PHYLIP, Nexus, alignment/tree/parsimony/treeness/RCV, ortholog, 同源基因, 分子进化, bootstrap, and before 项目状态/写一个项目状态文档/更新项目状态文档/总结项目状态/记录当前项目进度/项目文档太大/拆分项目文档; establishes branch/task/run/result/assets first.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "research-project-os",
@@ -742,10 +720,10 @@
     "scope": "global",
     "source_path": "/home/teng/.codex/skills/research-project-os",
     "repo_path": "skills/global/research-project-os",
-    "files": "44",
-    "bytes": "67704",
-    "description": "Operate and bootstrap a repository-local research project harness under `.project_os/` for long-running scientific or analysis projects. Use when the user asks for research-project-os, project harness, 项目骨架, 新项目骨架, 搭项目骨架, 初始化项目骨架, 研究项目骨架, 科研项目骨架, 项目工作流骨架, 项目工作台, 长期科研项目管理, run provenance, RESULTS_INDEX, DATA_ASSETS, current_task, continue 当前任务, task/runtime pointers, result promotion, or release workflow.",
-    "synced_at": "2026-06-19T22:27:29"
+    "files": "72",
+    "bytes": "649665",
+    "description": "Primary repository-local research project harness under `.project_os/` and first router for TypeII PKS/long-running analysis projects. Use for research-project-os, project harness, 项目骨架, 开工, 继续项目, 继续当前任务, 继续下一步, 大项目, 逐步推进, 当前进展, 恢复上下文, 制定计划, 拆解任务, plan out, break down, organize multi-step work, task_plan.md, findings.md, progress.md, 开始分析, 先跑, 先画, 绘图, 画图, 生成结果, 开始运行, 记录结果, 当前结果, run provenance, RESULTS_INDEX, DATA_ASSETS, current_task, result promotion, release workflow, 外置数据, 恢复检查. In any `.project_os/` project, also use before 系统发育, 发育树, 进化树, Newick, FASTA比对, PHYLIP, Nexus, alignment/tree/parsimony/treeness/RCV, ortholog, 同源基因, 分子进化, bootstrap, and before 项目状态/写一个项目状态文档/更新项目状态文档/总结项目状态/记录当前项目进度/项目文档太大/拆分项目文档; establishes branch/task/run/result/assets first.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "scientific-critical-thinking",
@@ -756,7 +734,7 @@
     "files": "7",
     "bytes": "103946",
     "description": "Evaluate research rigor. Assess methodology, experimental design, statistical validity, biases, confounding, evidence quality (GRADE, Cochrane ROB), for critical analysis of scientific claims.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "scientific-critical-thinking",
@@ -767,7 +745,7 @@
     "files": "7",
     "bytes": "104325",
     "description": "Evaluate research rigor. Assess methodology, experimental design, statistical validity, biases, confounding, evidence quality (GRADE, Cochrane ROB), for critical analysis of scientific claims. 中文触发词：批判性审读、科研严谨性、方法学评估、实验设计、统计有效性、偏倚、混杂、证据质量、同行评审。 中文追加触发词：根据这几篇文献有什么想法、这些文献说明什么、参考文献的做法、论文方法借鉴、比较文献方法、评估文献质量、从文献提出研究思路、找创新点。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "scientific-slides",
@@ -778,7 +756,7 @@
     "files": "17",
     "bytes": "325829",
     "description": "Build slide decks and presentations for research talks. Use this for making PowerPoint slides, conference presentations, seminar talks, research presentations, thesis defense slides, or any scientific talk. Provides slide structure, design templates, timing guidance, and visual validation. Works with PowerPoint and LaTeX Beamer.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "scientific-slides",
@@ -789,7 +767,7 @@
     "files": "17",
     "bytes": "325956",
     "description": "Build slide decks and presentations for research talks. Use this for making PowerPoint slides, conference presentations, seminar talks, research presentations, thesis defense slides, or any scientific talk. Provides slide structure, design templates, timing guidance, and visual validation. Works with PowerPoint and LaTeX Beamer. 中文触发词：科研汇报、论文slides、会议报告、seminar、答辩PPT、scientific talk、PowerPoint、Beamer。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "scientific-visualization",
@@ -800,7 +778,7 @@
     "files": "11",
     "bytes": "104440",
     "description": "Create publication figures with matplotlib/seaborn/plotly. Multi-panel layouts, error bars, significance markers, colorblind-safe, export PDF/EPS/TIFF, for journal-ready scientific plots.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "scientific-visualization",
@@ -811,7 +789,7 @@
     "files": "11",
     "bytes": "104589",
     "description": "Create publication figures with matplotlib/seaborn/plotly. Multi-panel layouts, error bars, significance markers, colorblind-safe, export PDF/EPS/TIFF, for journal-ready scientific plots. 中文触发词：科学绘图、科研图表、期刊级figure、多面板图、误差棒、显著性标记、色盲友好、导出PDF/EPS/TIFF。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "skill-library-publisher",
@@ -822,7 +800,7 @@
     "files": "1",
     "bytes": "2620",
     "description": "Manage a GitHub-backed Codex skill library and publish newly created or updated skills using the user's standard repository workflow. Use when the user says 创建skill, 新建skill, 写skill, 更新skill, 上传skill, 同步skill库, 发布skill到GitHub, 自动上传skill, skill仓库, skill库入库, or wants future skills validated, inventoried, committed, and pushed to the skills repository.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "skill-library-publisher",
@@ -833,7 +811,7 @@
     "files": "1",
     "bytes": "2620",
     "description": "Manage a GitHub-backed Codex skill library and publish newly created or updated skills using the user's standard repository workflow. Use when the user says 创建skill, 新建skill, 写skill, 更新skill, 上传skill, 同步skill库, 发布skill到GitHub, 自动上传skill, skill仓库, skill库入库, or wants future skills validated, inventoried, committed, and pushed to the skills repository.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "small-script-generator",
@@ -844,7 +822,7 @@
     "files": "1",
     "bytes": "828",
     "description": "Generate a small safe helper script or automation snippet for repetitive local tasks. Use when the user asks to 写个小脚本, 生成脚本, 批量处理, 文件转换, 自动化处理, dry-run script, helper script, or needs a minimal Python/Bash/R script with safe defaults.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "small-script-generator",
@@ -855,7 +833,7 @@
     "files": "1",
     "bytes": "828",
     "description": "Generate a small safe helper script or automation snippet for repetitive local tasks. Use when the user asks to 写个小脚本, 生成脚本, 批量处理, 文件转换, 自动化处理, dry-run script, helper script, or needs a minimal Python/Bash/R script with safe defaults.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "systematic-literature-review",
@@ -866,7 +844,7 @@
     "files": "74",
     "bytes": "6097496",
     "description": "当用户明确要求\"做系统综述/文献综述/related work/相关工作/文献调研\"时使用。AI 自定检索词，多源检索→去重→AI 逐篇阅读并评分（1–10分语义相关性与子主题分组）→按高分优先比例选文→自动生成\"综/述\"字数预算→资深领域专家自由写作（固定摘要/引言/子主题/讨论/展望/结论），保留正文字数与参考文献数硬校验，强制导出 PDF 与 Word。支持多语言翻译与智能编译（en/zh/ja/de/fr/es）。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "systematic-literature-review",
@@ -877,7 +855,7 @@
     "files": "74",
     "bytes": "6097841",
     "description": "当用户明确要求\\\\\\\"做系统综述/文献综述/related work/相关工作/文献调研\\\\\\\"时使用。AI 自定检索词，多源检索→去重→AI 逐篇阅读并评分（1–10分语义相关性与子主题分组）→按高分优先比例选文→自动生成\\\\\\\"综/述\\\\\\\"字数预算→资深领域专家自由写作（固定摘要/引言/子主题/讨论/展望/结论），保留正文字数与参考文献数硬校验，强制导出 PDF 与 Word。支持多语言翻译与智能编译（en/zh/ja/de/fr/es）。 中文触发词：系统综述、文献综述、related work、相关工作、文献调研、多源检索、去重、逐篇评分、综述写作。 中文追加触发词：寻找参考文献、搜索文献、参考文献整理、系统找文献、批量筛选文献、根据文献写综述、文献评分、related work素材。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "ticket-breakdown",
@@ -886,9 +864,9 @@
     "source_path": "/home/teng/.claude/skills/ticket-breakdown",
     "repo_path": "skills/global/ticket-breakdown",
     "files": "1",
-    "bytes": "934",
-    "description": "Break a task, ticket, issue, or current frontier problem into small ordered steps with acceptance checks. Use when the user asks to 拆任务, 拆步骤, 分解任务, 制定小计划, 把当前问题拆小, 把当前任务拆成更小的验收步骤, 验收步骤, 验收条件, ticket breakdown, issue breakdown, or when a planning-with-files task_plan.md needs concrete steps.",
-    "synced_at": "2026-06-19T22:27:29"
+    "bytes": "952",
+    "description": "Break a standalone non-.project_os task, ticket, issue, or frontier problem into small ordered steps with acceptance checks. Use when the user asks to 拆任务, 拆步骤, 分解任务, 制定小计划, 把当前问题拆小, 把当前任务拆成更小的验收步骤, 验收步骤, 验收条件, ticket breakdown, or issue breakdown. In `.project_os` projects, research-project-os routes first.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "ticket-breakdown",
@@ -897,9 +875,9 @@
     "source_path": "/home/teng/.codex/skills/ticket-breakdown",
     "repo_path": "skills/global/ticket-breakdown",
     "files": "1",
-    "bytes": "934",
-    "description": "Break a task, ticket, issue, or current frontier problem into small ordered steps with acceptance checks. Use when the user asks to 拆任务, 拆步骤, 分解任务, 制定小计划, 把当前问题拆小, 把当前任务拆成更小的验收步骤, 验收步骤, 验收条件, ticket breakdown, issue breakdown, or when a planning-with-files task_plan.md needs concrete steps.",
-    "synced_at": "2026-06-19T22:27:29"
+    "bytes": "952",
+    "description": "Break a standalone non-.project_os task, ticket, issue, or frontier problem into small ordered steps with acceptance checks. Use when the user asks to 拆任务, 拆步骤, 分解任务, 制定小计划, 把当前问题拆小, 把当前任务拆成更小的验收步骤, 验收步骤, 验收条件, ticket breakdown, or issue breakdown. In `.project_os` projects, research-project-os routes first.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse",
@@ -908,9 +886,9 @@
     "source_path": "/home/teng/.claude/skills/tooluniverse",
     "repo_path": "skills/global/tooluniverse",
     "files": "5",
-    "bytes": "57160",
+    "bytes": "57293",
     "description": "Router for ToolUniverse tasks. Routes to 105+ specialized skills (disease/drug/target research, genomics, proteomics, clinical decision support, etc.) or uses 2300+ scientific tools. Covers tool discovery, multi-hop queries, workflows, and report generation. Use for scientific research, biological data, drug/target/disease relationships, or any biology/medicine/chemistry question. Verifies facts against databases (UniProt, PubMed, ChEMBL, ClinVar, GWAS Catalog).",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse",
@@ -919,9 +897,9 @@
     "source_path": "/home/teng/.codex/skills/tooluniverse",
     "repo_path": "skills/global/tooluniverse",
     "files": "5",
-    "bytes": "57244",
+    "bytes": "57377",
     "description": "Router for ToolUniverse life-science and biomedical database work. Use for biology, medicine, chemistry, pharmacology, genes, proteins, diseases, drugs, compounds, sequences, variants, pathways, and scientific fact checking against databases such as UniProt, PubMed, ChEMBL, ClinVar, GWAS, PDB, and Ensembl. Also use when the user asks 生物、医学、生命科学、基因、蛋白、疾病、药物、化合物、序列、突变、通路、数据库查证、科学事实核验, or when unsure and a real database lookup is better than memory.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse-gene-enrichment",
@@ -932,7 +910,7 @@
     "files": "10",
     "bytes": "186654",
     "description": "Perform comprehensive gene enrichment and pathway analysis using gseapy (ORA and GSEA), PANTHER, STRING, Reactome, and 40+ ToolUniverse tools. Supports GO enrichment (BP, MF, CC), KEGG, Reactome, WikiPathways, MSigDB Hallmark, and 220+ Enrichr libraries. Handles multiple ID types (gene symbols, Ensembl, Entrez, UniProt), multiple organisms (human, mouse, rat, fly, worm, yeast), customizable backgrounds, and multiple testing correction (BH, Bonferroni). Use when users ask about gene enrichment, pathway analysis, GO term enrichment, KEGG pathway analysis, GSEA, over-representation analysis, functional annotation, or gene set analysis.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse-gene-enrichment",
@@ -943,7 +921,7 @@
     "files": "10",
     "bytes": "186784",
     "description": "Perform comprehensive gene enrichment and pathway analysis using gseapy (ORA and GSEA), PANTHER, STRING, Reactome, and 40+ ToolUniverse tools. Supports GO enrichment (BP, MF, CC), KEGG, Reactome, WikiPathways, MSigDB Hallmark, and 220+ Enrichr libraries. Handles multiple ID types (gene symbols, Ensembl, Entrez, UniProt), multiple organisms (human, mouse, rat, fly, worm, yeast), customizable backgrounds, and multiple testing correction (BH, Bonferroni). Use when users ask about gene enrichment, pathway analysis, GO term enrichment, KEGG pathway analysis, GSEA, over-representation analysis, functional annotation, or gene set analysis. 中文触发词：基因富集、GO富集、KEGG、Reactome、GSEA、ORA、pathway、功能注释、gene set、通路分析。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse-literature-deep-research",
@@ -954,7 +932,7 @@
     "files": "7",
     "bytes": "85548",
     "description": "Comprehensive literature deep research across any academic domain using 120+ ToolUniverse tools. Conducts subject disambiguation, systematic literature search with citation network expansion, evidence grading (T1-T4), and structured theme extraction. Produces detailed reports with mandatory completeness checklists, integrated models, and testable hypotheses. Use when users need thorough literature reviews, target/drug/disease profiles, topic deep-dives, claim verification, or systematic evidence synthesis. Supports biomedical (genes, proteins, drugs, diseases), computer science, social science, and general academic topics. For single factoid questions, uses a fast verification mode with inline answer.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse-literature-deep-research",
@@ -965,29 +943,7 @@
     "files": "7",
     "bytes": "85965",
     "description": "Comprehensive literature deep research across any academic domain using 120+ ToolUniverse tools. Conducts subject disambiguation, systematic literature search with citation network expansion, evidence grading (T1-T4), and structured theme extraction. Produces detailed reports with mandatory completeness checklists, integrated models, and testable hypotheses. Use when users need thorough literature reviews, target/drug/disease profiles, topic deep-dives, claim verification, or systematic evidence synthesis. Supports biomedical (genes, proteins, drugs, diseases), computer science, social science, and general academic topics. For single factoid questions, uses a fast verification mode with inline answer. 中文触发词：文献深度调研、科研调研、研究进展、机制证据、证据分级、基因/蛋白/药物/疾病综述、系统证据综合。 中文追加触发词：寻找参考文献、搜索文献、查参考文献、找相关论文、根据这几篇文献有什么想法、基于几篇文献提出想法、参考文献的做法、文献方法对比、从文献找方法、论文思路启发。",
-    "synced_at": "2026-06-19T22:27:29"
-  },
-  {
-    "name": "tooluniverse-phylogenetics",
-    "source_id": "global_claude_skills",
-    "scope": "global",
-    "source_path": "/home/teng/.claude/skills/tooluniverse-phylogenetics",
-    "repo_path": "skills/global/tooluniverse-phylogenetics",
-    "files": "10",
-    "bytes": "168481",
-    "description": "Production-ready phylogenetics and sequence analysis skill for alignment processing, tree analysis, and evolutionary metrics. Computes treeness, RCV, treeness/RCV, parsimony informative sites, evolutionary rate, DVMC, tree length, alignment gap statistics, GC content, and bootstrap support using PhyKIT, Biopython, and DendroPy. Performs NJ/UPGMA/parsimony tree construction, Robinson-Foulds distance, Mann-Whitney U tests, and batch analysis across gene families. Integrates with ToolUniverse for sequence retrieval (NCBI, UniProt, Ensembl) and tree annotation. Use when processing FASTA/PHYLIP/Nexus/Newick files, computing phylogenetic metrics, comparing taxa groups, or answering questions about alignments, trees, parsimony, or molecular evolution.",
-    "synced_at": "2026-06-19T22:27:29"
-  },
-  {
-    "name": "tooluniverse-phylogenetics",
-    "source_id": "global_codex_skills",
-    "scope": "global",
-    "source_path": "/home/teng/.codex/skills/tooluniverse-phylogenetics",
-    "repo_path": "skills/global/tooluniverse-phylogenetics",
-    "files": "10",
-    "bytes": "168623",
-    "description": "Production-ready phylogenetics and sequence analysis skill for alignment processing, tree analysis, and evolutionary metrics. Computes treeness, RCV, treeness/RCV, parsimony informative sites, evolutionary rate, DVMC, tree length, alignment gap statistics, GC content, and bootstrap support using PhyKIT, Biopython, and DendroPy. Performs NJ/UPGMA/parsimony tree construction, Robinson-Foulds distance, Mann-Whitney U tests, and batch analysis across gene families. Integrates with ToolUniverse for sequence retrieval (NCBI, UniProt, Ensembl) and tree annotation. Use when processing FASTA/PHYLIP/Nexus/Newick files, computing phylogenetic metrics, comparing taxa groups, or answering questions about alignments, trees, parsimony, or molecular evolution. 中文触发词：系统发育、进化树、Newick、FASTA比对、PHYLIP、Nexus、ortholog、同源基因、分子进化、bootstrap。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse-protein-structure-retrieval",
@@ -998,7 +954,7 @@
     "files": "3",
     "bytes": "13311",
     "description": "Retrieves protein structure data from RCSB PDB, PDBe, and AlphaFold with protein disambiguation, quality assessment, and comprehensive structural profiles. Creates detailed structure reports with experimental metadata, ligand information, and download links. Use when users need protein structures, 3D models, crystallography data, or mention PDB IDs (4-character codes like 1ABC) or UniProt accessions.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse-protein-structure-retrieval",
@@ -1009,7 +965,7 @@
     "files": "3",
     "bytes": "13438",
     "description": "Retrieves protein structure data from RCSB PDB, PDBe, and AlphaFold with protein disambiguation, quality assessment, and comprehensive structural profiles. Creates detailed structure reports with experimental metadata, ligand information, and download links. Use when users need protein structures, 3D models, crystallography data, or mention PDB IDs (4-character codes like 1ABC) or UniProt accessions. 中文触发词：蛋白结构、PDB、PDBe、AlphaFold、三维结构、晶体结构、结构检索、UniProt accession。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse-rnaseq-deseq2",
@@ -1020,7 +976,7 @@
     "files": "15",
     "bytes": "162142",
     "description": "Production-ready RNA-seq differential expression analysis using PyDESeq2. Performs DESeq2 normalization, dispersion estimation, Wald testing, LFC shrinkage, and result filtering. Handles multi-factor designs, multiple contrasts, batch effects, and integrates with gene enrichment (gseapy) and ToolUniverse annotation tools (UniProt, Ensembl, OpenTargets). Supports CSV/TSV/H5AD input formats and any organism. Use when analyzing RNA-seq count matrices, identifying DEGs, performing differential expression with statistical rigor, or answering questions about gene expression changes.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse-rnaseq-deseq2",
@@ -1031,7 +987,7 @@
     "files": "15",
     "bytes": "162285",
     "description": "Production-ready RNA-seq differential expression analysis using PyDESeq2. Performs DESeq2 normalization, dispersion estimation, Wald testing, LFC shrinkage, and result filtering. Handles multi-factor designs, multiple contrasts, batch effects, and integrates with gene enrichment (gseapy) and ToolUniverse annotation tools (UniProt, Ensembl, OpenTargets). Supports CSV/TSV/H5AD input formats and any organism. Use when analyzing RNA-seq count matrices, identifying DEGs, performing differential expression with statistical rigor, or answering questions about gene expression changes. 中文触发词：RNA-seq、转录组、DESeq2、差异表达、DEG、count matrix、批次效应、多因素设计、基因表达变化。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse-sequence-retrieval",
@@ -1042,7 +998,7 @@
     "files": "3",
     "bytes": "10412",
     "description": "Retrieves biological sequences (DNA, RNA, protein) from NCBI and ENA with gene disambiguation, accession type handling, and comprehensive sequence profiles. Creates detailed reports with sequence metadata, cross-database references, and download options. Use when users need nucleotide sequences, protein sequences, genome data, or mention GenBank, RefSeq, EMBL accessions.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "tooluniverse-sequence-retrieval",
@@ -1053,7 +1009,7 @@
     "files": "3",
     "bytes": "10558",
     "description": "Retrieves biological sequences (DNA, RNA, protein) from NCBI and ENA with gene disambiguation, accession type handling, and comprehensive sequence profiles. Creates detailed reports with sequence metadata, cross-database references, and download options. Use when users need nucleotide sequences, protein sequences, genome data, or mention GenBank, RefSeq, EMBL accessions. 中文触发词：序列检索、DNA/RNA/蛋白序列、FASTA、NCBI、ENA、GenBank、RefSeq、EMBL、accession、登录号、基因序列。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "web-search",
@@ -1064,7 +1020,7 @@
     "files": "1",
     "bytes": "14768",
     "description": "USE FOR web search. Returns ranked results with snippets, URLs, thumbnails. Supports freshness filters, SafeSearch, Goggles for custom ranking, pagination. Primary search endpoint.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "web-search",
@@ -1075,7 +1031,7 @@
     "files": "1",
     "bytes": "14768",
     "description": "USE FOR web search. Returns ranked results with snippets, URLs, thumbnails. Supports freshness filters, SafeSearch, Goggles for custom ranking, pagination. Primary search endpoint.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "write-a-skill",
@@ -1086,7 +1042,7 @@
     "files": "1",
     "bytes": "3056",
     "description": "Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new skill.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "write-a-skill",
@@ -1097,7 +1053,7 @@
     "files": "1",
     "bytes": "3056",
     "description": "Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new skill.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-data-code-availability",
@@ -1108,7 +1064,7 @@
     "files": "2",
     "bytes": "4688",
     "description": "Prepare or audit Data Availability and Code Availability statements for bioinformatics manuscripts. Use for 生信数据可用性, 代码可用性, GEO/SRA/ENA/BioProject/BioSample/PRIDE/Zenodo/GitHub accession, FAIR清单, source data. Do not invent repository records, accessions, DOIs, licences, embargo dates, or access restrictions.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-methods-writing",
@@ -1119,7 +1075,7 @@
     "files": "2",
     "bytes": "3942",
     "description": "Draft reproducible bioinformatics Methods from workflow provenance, commands, configs, EVIDENCE_PACK.md, software lists, and author notes. Use for 生信Methods, 材料与方法, workflow写法, 可复现方法, RNA-seq/富集/单细胞/系统发育方法写作. Do not run or debug analyses, infer missing parameters, or fabricate versions, genome builds, accessions, or thresholds.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-paper-writing",
@@ -1130,7 +1086,7 @@
     "files": "4",
     "bytes": "9746",
     "description": "Draft or restructure bioinformatics manuscripts from EVIDENCE_PACK.md, figures, tables, analysis summaries, or Chinese notes. Use for 生信论文, 写abstract, 写introduction, 写Results, 写Discussion, 根据结果写论文, 中文实验记录写英文论文. Do not run analyses, validate accessions, or fabricate datasets, statistics, software versions, mechanisms, or citations.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-paper2ppt",
@@ -1141,7 +1097,7 @@
     "files": "2",
     "bytes": "4265",
     "description": "Create Chinese presentation plans or PPTX decks from bioinformatics papers, EVIDENCE_PACK.md, figures, tables, abstracts, or reading notes. Use for 生信论文转PPT, 组会汇报, journal club, 多组学/单细胞/算法论文汇报. Focus on story, workflow, evidence figures, limitations, and discussion questions; do not run analyses or fabricate results.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-polishing",
@@ -1152,7 +1108,7 @@
     "files": "2",
     "bytes": "4002",
     "description": "Polish, restructure, or translate bioinformatics manuscript prose while preserving evidence boundaries. Use for 生信论文润色, 中译英, SCI润色, Results润色, Discussion润色, 摘要润色, 术语统一, overclaim检查. Do not add new analyses, citations, statistics, accessions, software versions, or biological mechanisms not supplied by the user.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-research-auto-router",
@@ -1163,7 +1119,7 @@
     "files": "2",
     "bytes": "5076",
     "description": "Broad auto-router for vague Chinese or English bioinformatics, life-science research, omics, manuscript, paper-writing, reviewer-response, data-availability, PPT, literature-method, accession, GEO/SRA, RNA-seq, enrichment, workflow, or evidence-pack tasks when the user does not name a specific skill. Use for prompts like 帮我看看这些结果, 这个能不能写文章, 下一步怎么做, 整理一下生信结果, 写论文, 改文章, 审稿意见怎么回, 做组会PPT. Routes to bioinfo-evidence-orchestrator, bio-paper-writing, bio-results-writing, bio-methods-writing, bio-polishing, bio-reviewer-response, bio-data-code-availability, bio-paper2ppt, literature-method-data-miner, and existing tooluniverse/pubmed/reproduction skills.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-results-writing",
@@ -1174,7 +1130,7 @@
     "files": "2",
     "bytes": "3925",
     "description": "Write bioinformatics Results sections from figures, tables, EVIDENCE_PACK.md, analysis summaries, and Chinese result notes. Use for 生信Results, 根据图表写结果, RNA-seq结果写作, 富集结果写作, 单细胞/多组学结果段落. Do not run analyses, change statistics, or fabricate p values, FDR, sample sizes, figure panels, or mechanisms.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bio-reviewer-response",
@@ -1185,7 +1141,7 @@
     "files": "2",
     "bytes": "4713",
     "description": "Draft, audit, or revise point-by-point reviewer responses for bioinformatics manuscripts. Use for 生信审稿回复, 逐点回复, 大修回复, reviewer质疑batch effect/FDR/外部验证/数据泄露/样本量/方法可复现. Do not claim analyses, revisions, citations, line numbers, figures, or validations were completed unless supplied by the author.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "bioinfo-evidence-orchestrator",
@@ -1194,9 +1150,9 @@
     "source_path": "/home/teng/claude_code/codex-skills-hub/skills/local/bioinfo-evidence-orchestrator",
     "repo_path": "skills/local/bioinfo-evidence-orchestrator",
     "files": "2",
-    "bytes": "7419",
+    "bytes": "7516",
     "description": "Bioinformatics evidence orchestration skill. Use when the user asks to analyze, validate, reproduce, inspect, organize, or prepare evidence from bioinformatics datasets, omics results, gene lists, workflows, database records, accessions, papers, or figures before writing. Routes to existing skills such as tooluniverse, pubmed-database, literature-method-data-miner, tooluniverse-rnaseq-deseq2, tooluniverse-gene-enrichment, sequence/protein/phylogenetics skills, scientific-critical-thinking, and reproduction skills. Produces EVIDENCE_PACK.md, risk tables, figure inventories, and missing-information lists. Do not use for manuscript prose drafting, polishing, reviewer responses, or PPT writing. 中文触发词：生信分析、组学分析、数据库查证、GEO、SRA、accession、QC、富集分析、RNA-seq、DESeq2、整理证据、写论文前整理结果、复现生信流程。",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "literature-method-data-miner",
@@ -1205,9 +1161,9 @@
     "source_path": "/home/teng/claude_code/codex-skills-hub/skills/local/literature-method-data-miner",
     "repo_path": "skills/local/literature-method-data-miner",
     "files": "2",
-    "bytes": "4893",
-    "description": "Interpret short Chinese literature-method prompts as a request to mine research methods and data from papers. Use when the user says 文献是怎么做的、这篇文献怎么做的、这些文献怎么做的、参考文献是怎么做的、文献里的方法、文献方法、参考文献的做法、从文献找科研方法、从文献收集数据、正文和附录数据、补充材料数据、根据文献找实验设计, even when papers were not provided and should be found through deep research first. Works as a planning-with-files router for literature discovery, main-text/supplement data extraction, method comparison, and idea generation.",
-    "synced_at": "2026-06-19T22:27:29"
+    "bytes": "4877",
+    "description": "Interpret short Chinese literature-method prompts as a request to mine research methods and data from papers. Use when the user says 文献是怎么做的、这篇文献怎么做的、这些文献怎么做的、参考文献是怎么做的、文献里的方法、文献方法、参考文献的做法、从文献找科研方法、从文献收集数据、正文和附录数据、补充材料数据、根据文献找实验设计, even when papers were not provided and should be found through deep research first. In `.project_os` projects, route through research-project-os before recording literature findings.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "project-skeleton",
@@ -1216,9 +1172,9 @@
     "source_path": "/home/teng/claude_code/codex-skills-hub/skills/local/project-skeleton",
     "repo_path": "skills/local/project-skeleton",
     "files": "1",
-    "bytes": "1294",
-    "description": "Thin Chinese trigger/alias for bootstrapping or resuming a repository project workflow skeleton. Use when the user says 项目骨架, 新项目骨架, 搭项目骨架, 初始化项目骨架, 项目工作流骨架, 研究项目骨架, 科研项目骨架, 开工, 继续项目, or asks to scaffold a durable research/project harness.",
-    "synced_at": "2026-06-19T22:27:29"
+    "bytes": "2627",
+    "description": "Thin Chinese trigger/alias for bootstrapping or resuming a `.project_os/` research project harness. Use when the user says 项目骨架, 新项目骨架, 搭项目骨架, 初始化项目骨架, 项目工作流骨架, 研究项目骨架, 科研项目骨架, 开工, 继续项目, 继续下一步, 大项目, 逐步推进, 制定计划, 拆解任务, 当前进展, 恢复上下文, task_plan.md, findings.md, progress.md, 项目状态, 写一个项目状态文档, 开始分析, 先跑, 先画, 绘图, or 画图 in a durable project; then defer to research-project-os.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "research-project-os",
@@ -1226,10 +1182,10 @@
     "scope": "local",
     "source_path": "/home/teng/claude_code/codex-skills-hub/skills/local/research-project-os",
     "repo_path": "skills/local/research-project-os",
-    "files": "44",
-    "bytes": "67704",
-    "description": "Operate and bootstrap a repository-local research project harness under `.project_os/` for long-running scientific or analysis projects. Use when the user asks for research-project-os, project harness, 项目骨架, 新项目骨架, 搭项目骨架, 初始化项目骨架, 研究项目骨架, 科研项目骨架, 项目工作流骨架, 项目工作台, 长期科研项目管理, run provenance, RESULTS_INDEX, DATA_ASSETS, current_task, continue 当前任务, task/runtime pointers, result promotion, or release workflow.",
-    "synced_at": "2026-06-19T22:27:29"
+    "files": "72",
+    "bytes": "649665",
+    "description": "Primary repository-local research project harness under `.project_os/` and first router for TypeII PKS/long-running analysis projects. Use for research-project-os, project harness, 项目骨架, 开工, 继续项目, 继续当前任务, 继续下一步, 大项目, 逐步推进, 当前进展, 恢复上下文, 制定计划, 拆解任务, plan out, break down, organize multi-step work, task_plan.md, findings.md, progress.md, 开始分析, 先跑, 先画, 绘图, 画图, 生成结果, 开始运行, 记录结果, 当前结果, run provenance, RESULTS_INDEX, DATA_ASSETS, current_task, result promotion, release workflow, 外置数据, 恢复检查. In any `.project_os/` project, also use before 系统发育, 发育树, 进化树, Newick, FASTA比对, PHYLIP, Nexus, alignment/tree/parsimony/treeness/RCV, ortholog, 同源基因, 分子进化, bootstrap, and before 项目状态/写一个项目状态文档/更新项目状态文档/总结项目状态/记录当前项目进度/项目文档太大/拆分项目文档; establishes branch/task/run/result/assets first.",
+    "synced_at": "2026-06-24T19:11:40"
   },
   {
     "name": "skill-library-publisher",
@@ -1240,17 +1196,6 @@
     "files": "1",
     "bytes": "2620",
     "description": "Manage a GitHub-backed Codex skill library and publish newly created or updated skills using the user's standard repository workflow. Use when the user says 创建skill, 新建skill, 写skill, 更新skill, 上传skill, 同步skill库, 发布skill到GitHub, 自动上传skill, skill仓库, skill库入库, or wants future skills validated, inventoried, committed, and pushed to the skills repository.",
-    "synced_at": "2026-06-19T22:27:29"
-  },
-  {
-    "name": "planning-with-files",
-    "source_id": "pipeline_v2_workspace",
-    "scope": "workspace",
-    "source_path": "/home/teng/claude_code/retron/pipeline_v2/.codex/skills/planning-with-files",
-    "repo_path": "skills/workspace/pipeline_v2/planning-with-files",
-    "files": "17",
-    "bytes": "76670",
-    "description": "Implements Manus-style file-based planning to organize and track progress on complex tasks. Creates task_plan.md, findings.md, and progress.md. Use when asked to plan out, break down, or organize a multi-step project, research task, or any work requiring 5+ tool calls. In Chinese, trigger on 大项目, 逐步推进, 继续下一步, 制定计划, 拆解任务, 当前进展, 恢复上下文, task_plan.md, findings.md, progress.md, planning-with-files. Supports automatic session recovery after /clear and works as the task kernel for phase-routed helper skills.",
-    "synced_at": "2026-06-19T22:27:29"
+    "synced_at": "2026-06-24T19:11:40"
   }
 ]
