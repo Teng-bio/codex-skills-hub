@@ -90,7 +90,7 @@
 | “当前进展 / 项目状态 / 写一个项目状态文档 / 总结项目状态 / 更新项目状态文档” | `research-project-os` route/status/summarize-state | 状态从 `.project_os` indexes/views 派生，不用独立状态 skill |
 | “制定计划 / 拆解任务 / task_plan.md / findings.md / progress.md / plan out / break down” | `research-project-os` route -> task tree/session/handoff | 原 planning-with-files 触发词进入 `.project_os`，不再创建平行 planning-file kernel |
 | “先画 / 画图 / 绘图 / 开始分析 / 先跑” | `research-project-os` route -> task/run | 先建立 branch/task/run，再执行领域命令并记录 provenance |
-| “系统发育 / 发育树 / 进化树 / Newick / FASTA比对 / PHYLIP / Nexus / alignment / tree / parsimony / treeness / RCV / DVMC / ortholog / 同源基因 / 分子进化 / bootstrap” | `research-project-os` route -> task/run/assets/results | 原 phylogeny 触发词先进入 harness，避免绕过 TypeII PKS 项目状态 |
+| “系统发育 / 发育树 / 进化树 / Newick / FASTA比对 / PHYLIP / Nexus / alignment / tree / parsimony / treeness / RCV / DVMC / ortholog / 同源基因 / 分子进化 / bootstrap” | `research-project-os` route -> task/run/assets/results | 原 phylogeny 触发词先进入 harness，避免绕过 `.project_os/` 项目状态 |
 | “新建分支 / 开一个方向” | `research-project-os` route/create-branch | 创建 branch-first 物理工作区 |
 | “新建会话 / 切会话 / 当前会话 / 暂停会话 / 恢复会话” | `research-project-os` route/session CLI | 在多个 runtime focus 间切换，仍指向 canonical branch/task/run |
 | “会话清理 / 规划会话清理” | `research-project-os` route/session cleanup planner | 只生成 archive/GC candidate report，不做物理删除/移动 |

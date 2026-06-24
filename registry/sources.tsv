@@ -1,4 +1,4 @@
 source_id	scope	path	enabled	note
 global_codex_skills	global	/home/teng/.codex/skills	yes	Installed global Codex skills; mirrored into skills/global.
 global_claude_skills	global	/home/teng/.claude/skills	yes	Installed global Claude Code skills; mirrored into skills/global.
-pipeline_v2_workspace	workspace	/home/teng/claude_code/retron/pipeline_v2/.codex/skills	no	Disabled after removing planning-with-files; TypeII PKS .project_os harness is now the primary project workflow.
+pipeline_v2_workspace	workspace	/home/teng/claude_code/retron/pipeline_v2/.codex/skills	no	Disabled after removing planning-with-files; the general .project_os harness is now the primary long-project workflow.

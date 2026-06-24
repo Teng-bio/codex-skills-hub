@@ -11,7 +11,7 @@ https://github.com/Teng-bio/codex-skills-hub.git
 ## 这个仓库解决什么问题
 
 - 把 `~/.codex/skills` 中的全局 skill 版本化备份。
-- 把全局 skill 和项目级 workspace skill 纳入同一个 inventory；当前以 TypeII PKS / `.project_os/` 长期项目工作台为主，已移除会抢占路由的旧规划/状态/系统发育专项 skill。
+- 把全局 skill 和项目级 workspace skill 纳入同一个 inventory；当前以通用 `.project_os/` 长期项目工作台为主，已移除会抢占路由的旧规划/状态/系统发育专项 skill。
 - 所有新写的自定义 skill 先放到 `skills/local/`，通过统一标准验证、同步、提交、推送。
 - 生成机器可读和人可读的 skill 清单：
   - `registry/SKILL_INVENTORY.tsv`
@@ -147,7 +147,7 @@ Codex 选择 skill 时主要依赖每个 `SKILL.md` frontmatter 的 `description
 
 | Skill | 作用 | 典型触发语 | 位置 |
 |---|---|---|---|
-| `research-project-os` | TypeII PKS / 长期科研项目的第一路由和唯一主控 harness：在每个项目内维护 `.project_os/` 工作台、branch/task/run/result/asset/release/session/recovery/hooks 索引；所有“继续/计划/状态/运行/结果/绘图/系统发育/大文件外置”先经 `project_os.py route` 或 `start/status` 建立上下文，再执行领域命令并记录 provenance。保留 no-hardlink 外置资产策略，`asset_id + asset_locations.tsv` 为可迁移数据引用；promotion/release/restore-journal apply 均需 `--approved`。旧 `planning-with-files`、`project-state-maintainer`、`tooluniverse-phylogenetics` 的重叠触发词已并入此 skill。 | `research-project-os`、`project harness`、`.project_os`、`项目骨架`、`开工`、`继续项目`、`继续当前任务`、`继续下一步`、`大项目`、`逐步推进`、`当前进展`、`恢复上下文`、`制定计划`、`拆解任务`、`task_plan.md`、`findings.md`、`progress.md`、`项目状态`、`写一个项目状态文档`、`更新项目状态文档`、`总结项目状态`、`开始分析`、`先跑`、`先画`、`绘图`、`画图`、`发育树`、`系统发育`、`进化树`、`Newick`、`FASTA比对`、`PHYLIP`、`Nexus`、`alignment`、`tree`、`parsimony`、`treeness`、`RCV`、`DVMC`、`ortholog`、`同源基因`、`分子进化`、`bootstrap`、`开始运行`、`记录结果`、`当前结果`、`外置数据`、`纳管外置数据`、`release workflow` | `skills/local/research-project-os/` |
+| `research-project-os` | 通用长期科研/工程项目的第一路由和主控 harness：在每个项目内维护 `.project_os/` 工作台、branch/task/run/result/asset/release/session/recovery/hooks 索引；所有“继续/计划/状态/运行/结果/绘图/系统发育/大文件外置”先经 `project_os.py route` 或 `start/status` 建立上下文，再执行领域命令并记录 provenance。保留 no-hardlink 外置资产策略，`asset_id + asset_locations.tsv` 为可迁移数据引用；promotion/release/restore-journal apply 均需 `--approved`。旧 `planning-with-files`、`project-state-maintainer`、`tooluniverse-phylogenetics` 的重叠触发词已并入此 skill。 | `research-project-os`、`project harness`、`.project_os`、`项目骨架`、`开工`、`继续项目`、`继续当前任务`、`继续下一步`、`大项目`、`逐步推进`、`当前进展`、`恢复上下文`、`制定计划`、`拆解任务`、`task_plan.md`、`findings.md`、`progress.md`、`项目状态`、`写一个项目状态文档`、`更新项目状态文档`、`总结项目状态`、`开始分析`、`先跑`、`先画`、`绘图`、`画图`、`发育树`、`系统发育`、`进化树`、`Newick`、`FASTA比对`、`PHYLIP`、`Nexus`、`alignment`、`tree`、`parsimony`、`treeness`、`RCV`、`DVMC`、`ortholog`、`同源基因`、`分子进化`、`bootstrap`、`开始运行`、`记录结果`、`当前结果`、`外置数据`、`纳管外置数据`、`release workflow` | `skills/local/research-project-os/` |
 | `project-skeleton` | `research-project-os` 的短入口/触发别名：把“项目骨架/新项目骨架/开工/继续项目/先画/先跑”等路由到 `.project_os/` bootstrap 或 resume 流程。 | `项目骨架`、`新项目骨架`、`搭项目骨架`、`初始化项目骨架`、`项目工作流骨架`、`研究项目骨架`、`科研项目骨架`、`开工`、`继续项目`、`继续下一步`、`当前进展`、`项目状态`、`开始分析`、`先跑`、`先画`、`绘图`、`画图` | `skills/local/project-skeleton/` |
 | `project-flow-guard` | 事前防乱：formal run 只作 provenance，使用 `RUN_MANIFEST.json` 和 `RUNS_INDEX.tsv` 记录来源；accepted/candidate 结果通过 `RESULTS_INDEX.md` 和 `current/` 发现。branch/workstream 只在长期方向且用户确认后创建。 | `重跑`、`重新生成`、`保留这个版本`、`设为当前版本`、`release`、`打包`、`开分支`、`snapshot`、`清理旧版本`、`RUN_MANIFEST.json` | `skills/global/project-flow-guard/` |
 | `project-version-curator` | 事后整理：对已经混乱的目录做 inventory、版本冲突检测、cleanup/release dry-run；优先信任 `RESULTS_INDEX.md` / registry，`final/current` 文件名只作线索。 | `整理结果`、`太混乱了`、`清理目录`、`版本混乱`、`final/current/v1/v2 很多`、`生成 inventory`、`dry-run cleanup`、`release planning` | `skills/global/project-version-curator/` |

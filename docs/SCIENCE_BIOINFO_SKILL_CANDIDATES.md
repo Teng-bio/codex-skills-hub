@@ -2,7 +2,7 @@
 
 更新时间：2026-06-24
 
-目标：围绕 TypeII PKS / `.project_os/` 项目 harness 构建科研工作流，而不是让单个专项 skill 单独承担全部状态。长期科研项目、run/result/data provenance、continuation、计划/进展/状态和系统发育类执行现在优先使用 `research-project-os`。
+目标：围绕通用 `.project_os/` 项目 harness 构建科研工作流，而不是让单个专项 skill 单独承担全部状态。长期科研项目、run/result/data provenance、continuation、计划/进展/状态和系统发育类执行现在优先使用 `research-project-os`。
 
 当前状态：推荐安装批次 A 已安装到 `~/.agents/skills`，并复制到 `~/.codex/skills` 以确保 Codex 可自动触发；所有新增 `SKILL.md` description 已补充中文触发词。
 
