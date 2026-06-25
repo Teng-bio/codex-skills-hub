@@ -28,6 +28,7 @@ FILES = {
     "05-源路径索引/外置文献库索引.md": "# 外置文献库索引\n\n",
     "_system/registry.md": "# Registry\n\n| ID | Type | Path | Source |\n|---|---|---|---|\n",
     "_system/lint-report.md": "# Lint report\n\n尚未运行检查。\n",
+    "_system/deep-read-progress.tsv": "short_title\tsource_path\tstatus\tpages_read\textraction_method\tnote_path\tupdated_at\tremarks\n",
 }
 
 

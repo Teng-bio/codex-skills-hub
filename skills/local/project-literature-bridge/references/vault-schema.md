@@ -21,7 +21,9 @@
 │   └── 外置文献库索引.md
 └── _system/
     ├── registry.md
-    └── lint-report.md
+    ├── lint-report.md
+    ├── source-paths.txt
+    └── deep-read-progress.tsv
 ```
 
 ## Short paper note title rule
