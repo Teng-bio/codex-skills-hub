@@ -245,6 +245,7 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 | `pubmed-database` | PubMed / E-utilities / MeSH 查询与医学文献检索。 | `PubMed`、`MeSH`、`医学文献`、`布尔检索`、`批量文献检索` | `skills/global/pubmed-database/` |
 | `systematic-literature-review` | 系统综述流水线：多源检索、去重、逐篇评分、分主题、写综述。 | `系统综述`、`文献综述`、`related work`、`相关工作`、`文献调研` | `skills/global/systematic-literature-review/` |
 | `read-arxiv-paper` | 对 arXiv 论文下载 TeX 源并解析公式/结构。 | `读arXiv论文`、`arXiv URL`、`TeX源`、`论文公式`、`解析论文结构` | `skills/global/read-arxiv-paper/` |
+| `paper-reading-workflow` | 论文精读总路由：用户要 read / 精读 / 总结 / 拆解 / 批判性审读 / 生成 Obsidian 笔记时默认走该路由，将任务导向 `deeppapernote` 核心生产流程，同时强制加入 `literature-method-data-miner`（方法/数据/复现）和 `scientific-critical-thinking`（证据强度/局限/过度声称）两个分析视角，默认输出一篇整合中文 Obsidian Markdown 笔记。 | `精读论文`、`read this paper`、`拆解这篇论文`、`批判性审读`、`生成论文笔记`、`paper-reading-workflow` | `skills/local/paper-reading-workflow/` |
 | `deeppapernote` | 单篇论文深度精读笔记生成器：给定论文标题/DOI/URL/arXiv ID/Zotero 条目/本地 PDF，生成结构化中文 Markdown 笔记，含证据分析、图表占位和 Obsidian vault 写入。 | `给这篇论文生成深度笔记`、`写论文精读笔记`、`deep paper note`、`deeppapernote`、`逐篇精读`、`论文深度笔记` | `skills/global/deeppapernote/` |
 | `literature-reading-and-synthesis` | 科学论文主动阅读与综合：阅读策略、claim/evidence 抽取、图表拆解、跨论文比较、文献追踪、synthesis matrix、可复用笔记。 | `精读论文`、`每篇文章总结`、`阅读策略`、`claim extraction`、`synthesis matrix`、`figure unpacking`、`跨论文比较` | `skills/global/literature-reading-and-synthesis/` |
 | `paper-context-resolver` | 论文复现中补齐关键论文细节，例如数据集版本、split、checkpoint、metric。 | `论文复现`、`复现细节`、`数据集版本`、`dataset split`、`评估协议`、`checkpoint映射` | `skills/global/paper-context-resolver/` |
@@ -271,7 +272,7 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 | `根据这几篇文献有什么想法`、`整合这几篇文献` | `research-orchestrator` + `scientific-critical-thinking` | 多篇文献上传/给出后，先整合，再做方法学和创新点分析。 |
 | `参考文献的做法`、`论文里的实验做法怎么复现` | `literature-method-data-miner`；复现细节缺口时叠加 `paper-context-resolver` | 区分“提取/比较科研方法”和“补齐复现细节”。 |
 | `这个论文代码怎么跑/怎么复现` | `repo-intake-and-plan` → `env-and-assets-bootstrap` → `minimal-run-and-audit` | 如果落入已有 `.project_os/` 项目，先经 `research-project-os` 建 task/run，再逐阶段推进。 |
-| `逐篇精读`、`每篇文章都要总结`、`论文深度笔记` | `literature-reading-and-synthesis` → `deeppapernote`；配合 `pdf` 提取和 `scientific-critical-thinking` 评估 | 在 `project-literature-bridge` 深读模式下逐篇生成完整笔记，替换浅层摘要。 |
+| `逐篇精读`、`每篇文章都要总结`、`论文深度笔记` | `paper-reading-workflow` → `deeppapernote`（强制 `literature-method-data-miner` + `scientific-critical-thinking` 两个视角）；`paper-reading-workflow` 不可用时回退 `literature-reading-and-synthesis` | 在 `project-literature-bridge` 深读模式下逐篇生成完整笔记，替换浅层摘要。 |
 
 ### 需求澄清 / 拆任务 / 执行辅助
 

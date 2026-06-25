@@ -20,13 +20,14 @@ Do **not** turn the project root into an Obsidian vault. Do **not** move, rename
 Use this skill as the bridge controller, then call or emulate these component skills when relevant:
 
 - `research-project-os`: read `.project_os`, `PROJECT_STATE.md`, `DATA_ASSETS.md`, `RESULTS_INDEX.md`, `DECISIONS.md`, and current task context.
-- `literature-reading-and-synthesis`: entry router for `read / 精读 / 总结 / 拆解 / 批判性审读 / Obsidian note` paper tasks. (Installed from `jjfroehlich/agent-skills-for-academic-research`; formerly referenced as `paper-reading-workflow`.)
+- `paper-reading-workflow`: default paper-reading router for `read / 精读 / 总结 / 拆解 / 批判性审读 / Obsidian note` paper tasks. Routes each paper through `deeppapernote` as the main producer, forcing `literature-method-data-miner` and `scientific-critical-thinking` lenses into the note.
 - `deeppapernote`: main producer for one-paper deep notes when writing detailed Chinese Obsidian paper summaries.
+- `literature-reading-and-synthesis`: fallback reading-strategy router when `paper-reading-workflow` is unavailable; handles multi-paper synthesis, comparison, and journal-club readiness.
 - `pdf`: extract local PDF text/tables/metadata before summarizing.
 - `literature-method-data-miner`: extract method/data/experiment/reproducibility/reuse details from papers.
 - `scientific-critical-thinking`: assess evidence strength, limitations, overclaiming, bias, and replication risk.
 
-If `literature-reading-and-synthesis` or `deeppapernote` is unavailable in the current runtime, do not stop. Emulate them with `references/deep-paper-reading.md` and mark notes as `status: deep-read-draft` until full PDF extraction/reading is complete.
+If `paper-reading-workflow` or `deeppapernote` is unavailable in the current runtime, do not stop. Fall back to `literature-reading-and-synthesis` if available, otherwise emulate with `references/deep-paper-reading.md` and mark notes as `status: deep-read-draft` until full PDF extraction/reading is complete.
 
 ## Workflow
 
@@ -49,7 +50,8 @@ If `literature-reading-and-synthesis` or `deeppapernote` is unavailable in the c
 
 4. **Switch to deep-read mode when requested**
    - Trigger when the user asks `逐篇精读`, `每篇文章都要总结`, `论文深度笔记`, `read every paper`, or similar.
-   - Route each selected PDF through `literature-reading-and-synthesis` -> `deeppapernote` when available.
+   - Route each selected PDF through `paper-reading-workflow` -> `deeppapernote` when available.
+   - If `paper-reading-workflow` is unavailable, fall back to `literature-reading-and-synthesis` -> `deeppapernote`.
    - Otherwise use `pdf` extraction plus the checklist in `references/deep-paper-reading.md`.
    - Replace metadata-only notes with full notes; do not leave central papers as shallow summaries.
    - Track progress in `<vault_root>/_system/deep-read-progress.tsv`.

@@ -7,14 +7,16 @@ Use this reference when the user asks to 精读论文 / 逐篇总结 / 每篇文
 For each paper:
 
 ```text
-literature-reading-and-synthesis
+paper-reading-workflow
   -> deeppapernote
   -> pdf text/table extraction
-  -> scientific-critical-thinking
+  -> literature-method-data-miner (method/data/experiment lens)
+  -> scientific-critical-thinking (evidence/critique lens)
   -> project-literature-bridge matrices
 ```
 
-If `literature-reading-and-synthesis` or `deeppapernote` is unavailable, emulate the same output manually.
+If `paper-reading-workflow` is unavailable, fall back to `literature-reading-and-synthesis` -> `deeppapernote`.
+If `deeppapernote` is also unavailable, emulate the same output manually using the checklist below.
 
 ## Batch rule
 
