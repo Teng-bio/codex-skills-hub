@@ -149,6 +149,7 @@ Codex 选择 skill 时主要依赖每个 `SKILL.md` frontmatter 的 `description
 |---|---|---|---|
 | `research-project-os` | 通用长期科研/工程项目的第一路由和主控 harness：在每个项目内维护 `.project_os/` 工作台、branch/task/run/result/asset/release/session/recovery/hooks 索引；所有“继续/计划/状态/运行/结果/绘图/系统发育/大文件外置”先经 `project_os.py route` 或 `start/status` 建立上下文，再执行领域命令并记录 provenance。保留 no-hardlink 外置资产策略，`asset_id + asset_locations.tsv` 为可迁移数据引用；promotion/release/restore-journal apply 均需 `--approved`。旧 `planning-with-files`、`project-state-maintainer`、`tooluniverse-phylogenetics` 的重叠触发词已并入此 skill。 | `research-project-os`、`project harness`、`.project_os`、`项目骨架`、`开工`、`继续项目`、`继续当前任务`、`继续下一步`、`大项目`、`逐步推进`、`当前进展`、`恢复上下文`、`制定计划`、`拆解任务`、`task_plan.md`、`findings.md`、`progress.md`、`项目状态`、`写一个项目状态文档`、`更新项目状态文档`、`总结项目状态`、`开始分析`、`先跑`、`先画`、`绘图`、`画图`、`发育树`、`系统发育`、`进化树`、`Newick`、`FASTA比对`、`PHYLIP`、`Nexus`、`alignment`、`tree`、`parsimony`、`treeness`、`RCV`、`DVMC`、`ortholog`、`同源基因`、`分子进化`、`bootstrap`、`开始运行`、`记录结果`、`当前结果`、`外置数据`、`纳管外置数据`、`release workflow` | `skills/local/research-project-os/` |
 | `project-skeleton` | `research-project-os` 的短入口/触发别名：把“项目骨架/新项目骨架/开工/继续项目/先画/先跑”等路由到 `.project_os/` bootstrap 或 resume 流程。 | `项目骨架`、`新项目骨架`、`搭项目骨架`、`初始化项目骨架`、`项目工作流骨架`、`研究项目骨架`、`科研项目骨架`、`开工`、`继续项目`、`继续下一步`、`当前进展`、`项目状态`、`开始分析`、`先跑`、`先画`、`绘图`、`画图` | `skills/local/project-skeleton/` |
+| `project-literature-bridge` | 项目报告 × 外置文献库 × Obsidian 的桥接工作流：读取项目状态/报告/结果索引和外置文献库，生成独立 Obsidian 项目文献桥接库；把项目问题、短标题论文说明、Evidence Record、方法借鉴、风险和下一步任务配对起来。默认不把项目根目录变成 vault，不移动/复制外置文献库；论文笔记标题要求简短、主题明确。 | `项目总结和论文说明搭配`、`项目-文献桥接`、`项目报告与文献库`、`Obsidian项目文献库`、`外置文献库索引`、`根据项目报告整理参考文献`、`把论文映射到项目模块`、`文献证据矩阵`、`论文标题要简短概括主题` | `skills/local/project-literature-bridge/` |
 | `project-flow-guard` | 事前防乱：formal run 只作 provenance，使用 `RUN_MANIFEST.json` 和 `RUNS_INDEX.tsv` 记录来源；accepted/candidate 结果通过 `RESULTS_INDEX.md` 和 `current/` 发现。branch/workstream 只在长期方向且用户确认后创建。 | `重跑`、`重新生成`、`保留这个版本`、`设为当前版本`、`release`、`打包`、`开分支`、`snapshot`、`清理旧版本`、`RUN_MANIFEST.json` | `skills/global/project-flow-guard/` |
 | `project-version-curator` | 事后整理：对已经混乱的目录做 inventory、版本冲突检测、cleanup/release dry-run；优先信任 `RESULTS_INDEX.md` / registry，`final/current` 文件名只作线索。 | `整理结果`、`太混乱了`、`清理目录`、`版本混乱`、`final/current/v1/v2 很多`、`生成 inventory`、`dry-run cleanup`、`release planning` | `skills/global/project-version-curator/` |
 
@@ -244,6 +245,8 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 | `pubmed-database` | PubMed / E-utilities / MeSH 查询与医学文献检索。 | `PubMed`、`MeSH`、`医学文献`、`布尔检索`、`批量文献检索` | `skills/global/pubmed-database/` |
 | `systematic-literature-review` | 系统综述流水线：多源检索、去重、逐篇评分、分主题、写综述。 | `系统综述`、`文献综述`、`related work`、`相关工作`、`文献调研` | `skills/global/systematic-literature-review/` |
 | `read-arxiv-paper` | 对 arXiv 论文下载 TeX 源并解析公式/结构。 | `读arXiv论文`、`arXiv URL`、`TeX源`、`论文公式`、`解析论文结构` | `skills/global/read-arxiv-paper/` |
+| `deeppapernote` | 单篇论文深度精读笔记生成器：给定论文标题/DOI/URL/arXiv ID/Zotero 条目/本地 PDF，生成结构化中文 Markdown 笔记，含证据分析、图表占位和 Obsidian vault 写入。 | `给这篇论文生成深度笔记`、`写论文精读笔记`、`deep paper note`、`deeppapernote`、`逐篇精读`、`论文深度笔记` | `skills/global/deeppapernote/` |
+| `literature-reading-and-synthesis` | 科学论文主动阅读与综合：阅读策略、claim/evidence 抽取、图表拆解、跨论文比较、文献追踪、synthesis matrix、可复用笔记。 | `精读论文`、`每篇文章总结`、`阅读策略`、`claim extraction`、`synthesis matrix`、`figure unpacking`、`跨论文比较` | `skills/global/literature-reading-and-synthesis/` |
 | `paper-context-resolver` | 论文复现中补齐关键论文细节，例如数据集版本、split、checkpoint、metric。 | `论文复现`、`复现细节`、`数据集版本`、`dataset split`、`评估协议`、`checkpoint映射` | `skills/global/paper-context-resolver/` |
 | `env-and-assets-bootstrap` | 复现环境和资源准备，聚焦 conda、依赖、checkpoint、dataset/cache 路径。 | `复现环境`、`依赖安装`、`checkpoint路径`、`dataset路径`、`cache目录` | `skills/global/env-and-assets-bootstrap/` |
 | `repo-intake-and-plan` | 扫描论文代码仓库，读取 README，提取最小可信复现计划。 | `论文代码仓库`、`复现仓库`、`README扫描`、`复现计划`、`最小可信复现` | `skills/global/repo-intake-and-plan/` |
@@ -268,6 +271,7 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 | `根据这几篇文献有什么想法`、`整合这几篇文献` | `research-orchestrator` + `scientific-critical-thinking` | 多篇文献上传/给出后，先整合，再做方法学和创新点分析。 |
 | `参考文献的做法`、`论文里的实验做法怎么复现` | `literature-method-data-miner`；复现细节缺口时叠加 `paper-context-resolver` | 区分“提取/比较科研方法”和“补齐复现细节”。 |
 | `这个论文代码怎么跑/怎么复现` | `repo-intake-and-plan` → `env-and-assets-bootstrap` → `minimal-run-and-audit` | 如果落入已有 `.project_os/` 项目，先经 `research-project-os` 建 task/run，再逐阶段推进。 |
+| `逐篇精读`、`每篇文章都要总结`、`论文深度笔记` | `literature-reading-and-synthesis` → `deeppapernote`；配合 `pdf` 提取和 `scientific-critical-thinking` 评估 | 在 `project-literature-bridge` 深读模式下逐篇生成完整笔记，替换浅层摘要。 |
 
 ### 需求澄清 / 拆任务 / 执行辅助
 
