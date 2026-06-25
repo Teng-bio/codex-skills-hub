@@ -1,6 +1,6 @@
 ---
 name: scientific-explanatory-schematics
-description: Create, critique, or redesign high-quality scientific explanatory schematics for paper notes, project technical-route notes, mechanism/principle diagrams, graphical abstracts, Obsidian/PPT reading aids, and source Figure/Table explanations. Use when users ask to make, explain, judge, improve, redraw, or replace scientific schematics; decide whether to self-draw versus use original paper figures; or mention 技术路线图, 技术机制图, 机制图, 原理图, 技术原理说明图, 流程图, 工作流图, 方法路线图, 项目路线图, 研究框架图, 模型架构图, 证据链图, 混杂控制图, 补充图, 一图流, 图解, 示意图, 配图, 论文Figure讲解, 原文图讲解, Figure/Table拆解, 插图太丑/不好看, 重画/美化插图, 绘图质量, graphical abstract, workflow schematic, mechanism diagram, model architecture figure, figure quality. Prioritizes original Figure/Table evidence, visual hierarchy, evidence boundaries, and optional-only schematics.
+description: Create, critique, or redesign high-quality scientific explanatory schematics for paper notes, project technical-route notes, mechanism/principle diagrams, graphical abstracts, Obsidian/PPT reading aids, and source Figure/Table explanations. Use when users ask to make, explain, judge, improve, redraw, or replace scientific schematics; decide whether to self-draw versus use original paper figures; or mention 技术路线图, 技术机制图, 机制图, 原理图, 技术原理说明图, 流程图, 工作流图, 方法路线图, 项目路线图, 研究框架图, 模型架构图, 证据链图, 混杂控制图, 补充图, 一图流, 图解, 示意图, 配图, 论文Figure讲解, 原文图讲解, Figure/Table拆解, 关键原文图插入, 重要图表讲解, 插图太丑/不好看, 重画/美化插图, 绘图质量, graphical abstract, workflow schematic, mechanism diagram, model architecture figure, figure quality. Prioritizes high-value original Figure/Table insertion and explanation, visual hierarchy, evidence boundaries, and optional-only schematics.
 ---
 
 # Scientific Explanatory Schematics
@@ -11,10 +11,12 @@ Use this skill to decide whether a scientific note needs a supplemental schemati
 
 1. **Do not draw by default.** A supplemental schematic is optional. Prefer clear prose plus original Figure/Table when that already explains the point.
 2. **Treat original figures as primary evidence.** For paper notes, first insert or unpack the source Figure/Table; self-drawn visuals are only interpretive scaffolds.
-3. **Mark interpretation explicitly.** Caption self-drawn visuals as “项目解读示意图，非原文证据” or equivalent. Never let a schematic imply experimental proof.
-4. **Reject decorative diagrams.** Avoid generic box-arrow chains, stock-icon decoration, unexplained arrows, dense labels, and gradients that reduce contrast.
-5. **Use one figure for one message.** If the figure needs multiple central claims, split it into panels or use text/table instead.
-6. **Inspect before embedding.** If a draft is not clearer than the surrounding prose, keep it as a draft or remove it.
+3. **Do not silently omit high-value source visuals.** For paper notes, every method overview, data/task definition, key result, ablation, comparison, risk/confounder, or conclusion-changing Figure/Table must be inserted when a usable image is available; otherwise add a text-only unpacking block with the concrete reason it was not inserted.
+4. **Explain source visuals after inserting them.** A valuable original Figure/Table is not “handled” by a caption alone. Decode panels, axes, comparisons, result direction, supported claim, limits, and project relevance near the image.
+5. **Mark interpretation explicitly.** Caption self-drawn visuals as “项目解读示意图，非原文证据” or equivalent. Never let a schematic imply experimental proof.
+6. **Reject decorative diagrams.** Avoid generic box-arrow chains, stock-icon decoration, unexplained arrows, dense labels, and gradients that reduce contrast.
+7. **Use one figure for one message.** If the figure needs multiple central claims, split it into panels or use text/table instead.
+8. **Inspect before embedding.** If a draft is not clearer than the surrounding prose, keep it as a draft or remove it.
 
 ## Necessity gate
 
@@ -30,8 +32,8 @@ Do **not** create a new schematic when the source Figure/Table already carries t
 
 ## Workflow
 
-1. **Triage output.** Choose: no new figure, source Figure/Table insert, source Figure/Table unpacking without image, supplemental vector schematic, or AI-assisted illustration draft.
-2. **Inventory evidence.** List the exact paper figures/tables, project documents, matrices, local outputs, and assumptions the visual will summarize.
+1. **Triage output.** Choose: no new figure, source Figure/Table insert plus explanation, source Figure/Table unpacking without image, supplemental vector schematic, or AI-assisted illustration draft.
+2. **Inventory evidence.** List the exact paper figures/tables, project documents, matrices, local outputs, and assumptions the visual will summarize; mark which source visuals are high-value and how each will be handled.
 3. **Select a pattern.** Use `references/design-patterns.md` to choose evidence cascade, parallel multimodal route, architecture map, decision gate, mechanism model, comparison matrix, figure navigator, or confounding map.
 4. **Write a brief before drawing.** Use `references/schematic-brief-template.md`; include central message, node list, arrow semantics, evidence boundary, caption, output format, and acceptance checks.
 5. **Render deliberately.** Prefer editable SVG/PDF plus PNG preview for Obsidian/PPT reuse. Use AI generation only as a draft renderer when appropriate, never as the scientific authority.
@@ -53,5 +55,6 @@ Do **not** create a new schematic when the source Figure/Table already carries t
 - Use relative image paths and verify all links.
 - Prefer editable SVG for line art and PNG for preview/embedding.
 - Keep captions short but explicit about evidence scope.
+- For high-value original paper visuals, embed the source image when usable and follow it with the standard Figure/Table unpacking bullets; if not embedded, record the source location and omission reason.
 - For project overview notes, a clean text route can be better than a poor diagram.
 - If the user says a figure is ugly, first remove or demote the bad embed, then propose a redesign brief instead of rushing a replacement.

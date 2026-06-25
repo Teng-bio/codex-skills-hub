@@ -57,7 +57,20 @@ Add or replace shallow notes with these sections:
 
 ## 关键结果
 
-## 图表/表格要点
+## 原文关键图表讲解
+
+### Figure/Table X：中文说明标题
+
+![Figure/Table X](relative/path/to/image-or-crop.png)
+
+- **图中展示什么**：
+- **技术路线对应哪一步**：
+- **关键结果怎么读**：
+- **支持了什么结论**：
+- **不能证明什么**：
+- **项目启发**：
+
+> 若高价值原文图无法稳定插入，保留同样的讲解结构，并写明原图位置、未插入原因和后续补图动作。
 
 ## 作者结论
 
@@ -107,6 +120,8 @@ read_level: full-text | partial-text | abstract-only | metadata-only
 - Keep the file name short and topic-first.
 - Put bibliographic details in `## 论文身份`, not the title.
 - Separate `作者结论` from `我们对项目的解释`.
+- 尽量插入原文中真正有价值的 Figure/Table，并逐图讲解清楚；方法总览、数据/任务定义、核心结果、关键消融/对比、风险/局限相关图表不可静默跳过。
+- 如果高价值原文图无法插入，必须在 `## 原文关键图表讲解` 中做文字拆解，并说明原图位置和未插入原因；不要用自绘图替代原文证据。
 - Every project recommendation must include a limitation or risk.
 - If the paper is methodologically unrelated but conceptually inspiring, mark evidence as `observed` or `speculative`, not `strong`.
 - Never strengthen a project claim only because the paper is high-impact.

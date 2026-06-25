@@ -121,7 +121,7 @@
 | 论文代码复现 | `repo-intake-and-plan` | `env-and-assets-bootstrap`, `minimal-run-and-audit`, `paper-context-resolver` | `bio-paper-writing` |
 | 科研严谨性/统计/偏倚审查 | `scientific-critical-thinking` | `tooluniverse-*`, `pubmed-database` | `bio-polishing` unless prose is provided |
 | 科学数据图表/统计图 | `scientific-visualization` | `nature-figure` | `bio-paper-writing` |
-| 科研解释性插图/技术路线图/机制图/原理图/流程图/研究框架图/模型架构图/原文Figure讲解 | `scientific-explanatory-schematics` | `scientific-visualization` for data panels, `scientific-slides` for presentation packaging | `bio-paper-writing` unless prose writing is requested |
+| 科研解释性插图/技术路线图/机制图/原理图/流程图/研究框架图/模型架构图/原文Figure讲解/关键原文图插入/重要图表讲解 | `scientific-explanatory-schematics` | `scientific-visualization` for data panels, `scientific-slides` for presentation packaging | `bio-paper-writing` unless prose writing is requested |
 | 做科研汇报/PPT | `scientific-slides` | `nature-paper2ppt`, `bio-paper2ppt` | `tooluniverse-rnaseq-deseq2` unless analysis requested |
 | 生信论文 abstract/introduction/results/discussion | `bio-paper-writing` | `bioinfo-evidence-orchestrator` if evidence missing | `tooluniverse-*` unless user requests analysis |
 | 生信论文润色/中译英 | `bio-polishing` | `nature-polishing` patterns | `tooluniverse-*` |

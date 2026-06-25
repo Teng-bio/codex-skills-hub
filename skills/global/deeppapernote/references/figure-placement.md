@@ -6,6 +6,7 @@ In MVP, the skill must plan figure placement even when it cannot extract image f
 
 Plan placeholders for every high-value figure or table that materially helps the note.
 Do not collapse the paper down to only 1 to 3 items if the paper clearly has more important visuals.
+For high-value visuals, the target is not merely a placeholder: insert the original Figure/Table image or crop when it is usable, and explain it clearly in the note. Keep a placeholder or text-only unpacking only when insertion is blocked by a concrete defect or missing asset.
 
 ## What to Prefer
 
@@ -14,6 +15,7 @@ Priority order:
 2. data or task-definition figure
 3. key result figure or table
 4. other supporting figures that clarify a major argument
+5. limitation, error-analysis, confounder, or negative-result visuals that change claim boundaries
 
 ## Placement Logic
 
@@ -40,6 +42,7 @@ Do not let scripts make the final semantic choice; scripts should only prepare c
 - If a usable image is extracted and semantically matched with high confidence, replace that placeholder with the real image.
 - If a reliable image is not available, keep the placeholder.
 - Never silently remove a figure just because extraction failed.
+- Never silently omit a high-value Figure/Table just because inserting it is inconvenient; if it cannot be inserted, explain the source location and the insertion blocker.
 - Text correctness is more important than image completeness.
 - Figure replacement decisions should be completed inside the same note-generation task.
 - Do not produce a text-only note first and then ask the user in a follow-up whether figures should be inserted.
@@ -137,6 +140,7 @@ If a real image is inserted:
 - render the embed followed immediately by one italic caption line
 - do not keep a redundant `[!figure]` callout for that same inserted figure
 - if the extracted image is only a subpanel or partial crop, say so explicitly
+- for high-value visuals, add nearby Chinese analysis that explains what is shown, how to read the result, what claim it supports, what it cannot prove, and why it matters for the user's project
 
 Preferred final-note format for inserted real images:
 

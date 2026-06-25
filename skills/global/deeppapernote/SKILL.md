@@ -98,7 +98,7 @@ Non-negotiable rules:
 - required structure: include the canonical required sections, with `原文摘要翻译` before `一句话总结` and a dedicated `创新点` section immediately after `原文摘要翻译`
 - abstract translation: when abstract metadata exists, `原文摘要翻译` is a faithful Chinese translation of the original abstract, not a bilingual block and not the model's own summary
 - mechanism depth: method, framework, and system papers should include `### 机制流程` under `方法主线`, normally as a 3 to 4 step numbered flow with input, operation, and output destination
-- placeholder-first figures: plan major figure/table placeholders first; replace one only when identity match and visual usability are both strong; otherwise keep the placeholder
+- high-value source visuals first: plan major figure/table coverage, insert usable original Figure/Table images/crops when identity match and visual usability are both strong, and explicitly unpack important visuals that cannot be inserted
 - final quality gates: lint is a floor; after lint passes, first run `final_quality_review` for analytical depth, then run `final_readability_review` for language polish, and rerun lint if either review edits the note
 - Obsidian-first save: if a vault is configured, treat it as the required target, create the paper-local `images/` directory, and never present a fallback/workspace write as a successful vault save
 
@@ -158,6 +158,8 @@ Local-library-first rule (applies only when the Zotero check above succeeds):
 - The `创新点` section should not be empty praise. It should enumerate the paper's actual innovations and briefly explain why each one matters.
 - High-quality notes should usually contain multiple meaningful `###` subheadings in the technical sections when the paper is non-trivial.
 - The note must include figure/table placeholders for all major visuals rather than silently skipping them.
+- High-value original visuals include method/model/workflow overviews, data/task-definition visuals, main result figures/tables, key ablations/comparisons, error analyses, and limitation/risk/confounder visuals. Do not silently skip these.
+- Every high-value Figure/Table must end in one of two final-note treatments: inserted real image/table with a clear Chinese explanation, or a text-only unpacking/placeholder with the source location and concrete reason it was not inserted.
 - Every kept figure/table placeholder must appear directly under the most relevant analytical section named by its `建议位置`; do not collect unresolved placeholders in catch-all sections such as `剩余图表占位` or `Remaining figures`.
 - Every kept figure/table placeholder must use the standard `> [!figure]` callout format with `建议位置`, `放置原因`, and `当前状态`; do not use ordinary paragraph markers such as `[图表占位 | Fig. 1]`, `图表占位：Table 2`, or `Figure Placeholder | Fig. 3`.
 - Real images replace placeholders when they clearly match the corresponding paper figure/table and pass the visual-usability gate.
@@ -165,6 +167,7 @@ Local-library-first rule (applies only when the Zotero check above succeeds):
 - When a real image is inserted, render it as the Obsidian embed or Markdown image embed followed immediately by one italic caption line.
 - Do not keep a redundant `> [!figure]` placeholder callout for the same inserted real figure.
 - Figure captions in the note must preserve the original paper numbering such as `Fig. 1` or `Table 2`.
+- For inserted high-value visuals, the italic caption is only the traceability caption. The surrounding note must still explain what the figure/table shows, which technical-route step it supports, how to read the key result, what conclusion it directly supports, what it cannot prove, and what project lesson or risk it implies.
 - If a figure/table candidate is marked usable and has a real image path, insert the real image. Do not keep a placeholder merely because the figure/table is lower priority, supplemental, already summarized in text, or less central than another inserted figure.
 - A kept placeholder is valid only when the image cannot be safely inserted because of a concrete visual defect, missing candidate, unresolved visual review, identity mismatch, contamination, or materialization/copy/write failure.
 - For `usable_candidate` or `needs_visual_quality_check` / `review` candidates, make the visual decision only after inspecting the actual candidate image file exposed by the pipeline. Record the concrete visual observation behind the decision. Do not claim manual visual review, visual inspection, or "no reliable insertable candidate" unless the candidate image was actually opened and inspected.
