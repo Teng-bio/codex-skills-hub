@@ -258,7 +258,8 @@ docs/SCIENCE_BIOINFO_SKILL_CANDIDATES.md
 | `tooluniverse-rnaseq-deseq2` | RNA-seq / PyDESeq2 差异表达分析和结果解释。 | `RNA-seq`、`转录组`、`DESeq2`、`差异表达`、`DEG`、`count matrix` | `skills/global/tooluniverse-rnaseq-deseq2/` |
 | `tooluniverse-gene-enrichment` | GO/KEGG/Reactome/GSEA/ORA 富集和通路分析。 | `基因富集`、`GO富集`、`KEGG`、`Reactome`、`GSEA`、`通路分析` | `skills/global/tooluniverse-gene-enrichment/` |
 | `scientific-critical-thinking` | 科研严谨性、方法学、实验设计、统计有效性和证据质量审查。 | `批判性审读`、`方法学评估`、`统计有效性`、`偏倚`、`混杂`、`证据质量` | `skills/global/scientific-critical-thinking/` |
-| `scientific-visualization` | 期刊级科学图表、多面板图、误差棒、显著性标记和导出格式。 | `科学绘图`、`科研图表`、`期刊级figure`、`多面板图`、`显著性标记` | `skills/global/scientific-visualization/` |
+| `scientific-visualization` | 期刊级科学数据图表、多面板图、误差棒、显著性标记和导出格式；偏数据可视化。 | `科学绘图`、`科研图表`、`期刊级figure`、`多面板图`、`显著性标记` | `skills/global/scientific-visualization/` |
+| `scientific-explanatory-schematics` | 科研解释性插图的必要性判定、brief、设计模式和质量验收；用于文献笔记/项目总览中的技术路线图、机制图、原理图、补充图、原文 Figure/Table 讲解，强调原文证据优先和自绘图证据边界。 | `技术路线图`、`机制图`、`原理图`、`补充图`、`一图流`、`graphical abstract`、`workflow schematic`、`论文Figure讲解`、`插图太丑` | `skills/local/scientific-explanatory-schematics/` |
 | `scientific-slides` | 科研汇报、会议报告、答辩 PPT / Beamer 的结构和设计。 | `科研汇报`、`论文slides`、`会议报告`、`答辩PPT`、`scientific talk` | `skills/global/scientific-slides/` |
 
 常用中文提示语的预期路由：
